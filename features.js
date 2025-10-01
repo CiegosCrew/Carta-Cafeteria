@@ -189,23 +189,150 @@ function setupShareButton() {
         shareBtn.addEventListener('click', async () => {
             const shareData = {
                 title: 'PHOTOMARKET - Carta Digital',
-                text: 'Mirá la carta de PHOTOMARKET',
+                text: '¡Mirá la carta de PHOTOMARKET! Cafetería y servicios fotográficos en Mendoza 🍰☕📸',
                 url: window.location.href
             };
             
             try {
                 if (navigator.share) {
                     await navigator.share(shareData);
+                    showNotification('¡Gracias por compartir!');
                 } else {
                     // Fallback: copy to clipboard
                     await navigator.clipboard.writeText(window.location.href);
-                    showNotification('Link copiado al portapapeles');
+                    showNotification('✅ Link copiado al portapapeles');
                 }
             } catch (err) {
-                console.log('Error sharing:', err);
+                if (err.name !== 'AbortError') {
+                    // Try clipboard as fallback
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        showNotification('✅ Link copiado al portapapeles');
+                    } catch (clipErr) {
+                        showNotification('❌ No se pudo compartir');
+                    }
+                }
             }
         });
     }
+}
+
+// ========== REVIEWS SYSTEM ==========
+let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+function setupReviewForm() {
+    const starsInput = document.getElementById('starsInput');
+    const ratingValue = document.getElementById('ratingValue');
+    const reviewForm = document.getElementById('reviewForm');
+    
+    // Star rating interaction
+    if (starsInput) {
+        const stars = starsInput.querySelectorAll('.star');
+        
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = star.getAttribute('data-rating');
+                ratingValue.value = rating;
+                
+                // Update visual
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.add('active');
+                        s.textContent = '★';
+                    } else {
+                        s.classList.remove('active');
+                        s.textContent = '☆';
+                    }
+                });
+            });
+            
+            // Hover effect
+            star.addEventListener('mouseenter', () => {
+                const rating = star.getAttribute('data-rating');
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.textContent = '★';
+                    } else {
+                        s.textContent = '☆';
+                    }
+                });
+            });
+        });
+        
+        starsInput.addEventListener('mouseleave', () => {
+            const currentRating = ratingValue.value;
+            stars.forEach((s, index) => {
+                if (index < currentRating) {
+                    s.textContent = '★';
+                } else {
+                    s.textContent = '☆';
+                }
+            });
+        });
+    }
+    
+    // Form submission
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const rating = ratingValue.value;
+            const name = document.getElementById('reviewName').value;
+            const comment = document.getElementById('reviewText').value;
+            
+            if (!rating) {
+                showNotification('⚠️ Por favor selecciona una calificación');
+                return;
+            }
+            
+            const review = {
+                id: Date.now(),
+                rating: parseInt(rating),
+                name: name,
+                comment: comment,
+                date: new Date().toLocaleDateString('es-AR')
+            };
+            
+            reviews.unshift(review);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+            
+            renderReviews();
+            reviewForm.reset();
+            ratingValue.value = '';
+            
+            // Reset stars
+            const stars = starsInput.querySelectorAll('.star');
+            stars.forEach(s => {
+                s.classList.remove('active');
+                s.textContent = '☆';
+            });
+            
+            showNotification('✅ ¡Gracias por tu reseña!');
+        });
+    }
+}
+
+function renderReviews() {
+    const reviewsDisplay = document.getElementById('reviewsDisplay');
+    
+    if (!reviewsDisplay) return;
+    
+    if (reviews.length === 0) {
+        reviewsDisplay.innerHTML = '<p class="no-reviews">Sé el primero en dejar una reseña</p>';
+        return;
+    }
+    
+    reviewsDisplay.innerHTML = reviews.map(review => {
+        const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+        return `
+            <div class="testimonial-card">
+                <div class="testimonial-rating">${stars}</div>
+                <p class="testimonial-text">"${review.comment}"</p>
+                <p class="testimonial-author">- ${review.name}</p>
+                <p style="font-size: 0.85rem; color: #999; margin-top: 10px;">${review.date}</p>
+            </div>
+        `;
+    }).join('');
 }
 
 // ========== NOTIFICATIONS ==========
@@ -276,6 +403,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCart();
     setupShareButton();
     setupAdminPanel();
+    setupReviewForm();
+    renderReviews();
 });
 
 // Make functions global

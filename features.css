@@ -225,6 +225,107 @@
     margin-bottom: 30px;
 }
 
+/* Review Form */
+.review-form-container {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.review-form-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rating-input {
+    text-align: center;
+}
+
+.rating-input label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 10px;
+}
+
+.stars-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 2rem;
+}
+
+.star {
+    cursor: pointer;
+    color: #ddd;
+    transition: all 0.2s ease;
+}
+
+.star:hover,
+.star.active {
+    color: #ffa500;
+    transform: scale(1.2);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.btn-submit-review {
+    padding: 15px;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit-review:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Reviews Display */
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -237,6 +338,7 @@
     border-radius: 10px;
     box-shadow: var(--shadow);
     border-left: 4px solid var(--color-secondary);
+    animation: fadeIn 0.5s ease;
 }
 
 .testimonial-text {
@@ -255,6 +357,14 @@
     color: #ffa500;
     font-size: 1.2rem;
     margin-bottom: 10px;
+}
+
+.no-reviews {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 40px;
+    grid-column: 1 / -1;
 }
 
 /* Admin Panel */

@@ -17,7 +17,16 @@
     <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
     
     <!-- Share Button -->
-    <button class="share-button" id="shareBtn">📤 Compartir</button>
+    <button class="share-button" id="shareBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="currentColor" stroke-width="2"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        Compartir
+    </button>
     
     <!-- Cart Button -->
     <button class="cart-button" onclick="toggleCart()" aria-label="Ver carrito">
@@ -162,22 +171,40 @@
         <!-- Testimonials Section -->
         <section class="testimonials-section">
             <h2 class="testimonials-title">⭐ Lo que dicen nuestros clientes</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Excelente atención y los mejores cafés de la zona. Las medialunas son deliciosas!"</p>
-                    <p class="testimonial-author">- María González</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Muy profesionales con las fotos carnet. Me sacaron las fotos para el pasaporte italiano en minutos."</p>
-                    <p class="testimonial-author">- Juan Pérez</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"El lugar perfecto para trabajar con la notebook. Buen wifi y café excelente."</p>
-                    <p class="testimonial-author">- Laura Martínez</p>
-                </div>
+            
+            <!-- Review Form -->
+            <div class="review-form-container">
+                <h3 class="review-form-title">Dejanos tu opinión</h3>
+                <form class="review-form" id="reviewForm">
+                    <div class="rating-input">
+                        <label>Tu calificación:</label>
+                        <div class="stars-input" id="starsInput">
+                            <span class="star" data-rating="1">☆</span>
+                            <span class="star" data-rating="2">☆</span>
+                            <span class="star" data-rating="3">☆</span>
+                            <span class="star" data-rating="4">☆</span>
+                            <span class="star" data-rating="5">☆</span>
+                        </div>
+                        <input type="hidden" id="ratingValue" name="rating" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewName">Tu nombre:</label>
+                        <input type="text" id="reviewName" name="name" placeholder="Ej: María González" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewText">Tu comentario:</label>
+                        <textarea id="reviewText" name="comment" rows="4" placeholder="Contanos tu experiencia..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit-review">Enviar reseña</button>
+                </form>
+            </div>
+            
+            <!-- Reviews Display -->
+            <div class="testimonials-grid" id="reviewsDisplay">
+                <p class="no-reviews">Sé el primero en dejar una reseña</p>
             </div>
         </section>
 
