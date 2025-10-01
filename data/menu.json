@@ -5,7 +5,7 @@
     "horario": "Lunes a viernes de 8:30 a 16:00 h",
     "telefono": "",
     "instagram": "",
-    "whatsapp": ""
+    "whatsapp": "5492612636244"
   },
   "promos": [
     {
@@ -159,6 +159,30 @@
     {
       "nombre": "Empanada",
       "precio": 800
+    }
+  ],
+  "fotoCarnet": [
+    {
+      "nombre": "Photo Carnet para Pasaporte Italiano",
+      "precio": 5000
+    },
+    {
+      "nombre": "Photo Carnet para Pasaporte Español",
+      "precio": 5000
+    },
+    {
+      "nombre": "Foto Carnet 4x4",
+      "descripcion": "Para trámites generales y universidad",
+      "precio": 5000
+    },
+    {
+      "nombre": "Photo Carnet para DNI Peruano",
+      "precio": 5000
+    },
+    {
+      "nombre": "Cobertura de Eventos",
+      "descripcion": "Consultá presupuesto por WhatsApp",
+      "precio": 0
     }
   ]
 }

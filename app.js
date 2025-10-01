@@ -22,7 +22,7 @@ function createMenuItem(item) {
     
     const itemPrice = document.createElement('div');
     itemPrice.className = 'item-price';
-    itemPrice.textContent = formatPrice(item.precio);
+    itemPrice.textContent = item.precio === 0 ? 'Consultar' : formatPrice(item.precio);
     
     itemHeader.appendChild(itemName);
     itemHeader.appendChild(itemPrice);
@@ -79,6 +79,13 @@ function renderMenu(data) {
     almuerzoGrid.innerHTML = '';
     data.almuerzo.forEach(item => {
         almuerzoGrid.appendChild(createMenuItem(item));
+    });
+    
+    // Render Foto Carnet
+    const fotoCarnetGrid = document.getElementById('fotocarnet-grid');
+    fotoCarnetGrid.innerHTML = '';
+    data.fotoCarnet.forEach(item => {
+        fotoCarnetGrid.appendChild(createMenuItem(item));
     });
 }
 
