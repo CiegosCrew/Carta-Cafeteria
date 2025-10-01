@@ -22,7 +22,16 @@ function createMenuItem(item) {
     
     const itemPrice = document.createElement('div');
     itemPrice.className = 'item-price';
-    itemPrice.textContent = item.precio === 0 ? 'Consultar' : formatPrice(item.precio);
+    if (item.precio === 0) {
+        const whatsappLink = document.createElement('a');
+        whatsappLink.href = 'https://wa.me/5492612636244';
+        whatsappLink.target = '_blank';
+        whatsappLink.className = 'price-whatsapp-link';
+        whatsappLink.textContent = 'Consultar';
+        itemPrice.appendChild(whatsappLink);
+    } else {
+        itemPrice.textContent = formatPrice(item.precio);
+    }
     
     itemHeader.appendChild(itemName);
     itemHeader.appendChild(itemPrice);

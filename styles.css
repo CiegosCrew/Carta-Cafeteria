@@ -337,6 +337,22 @@ body {
     margin-left: 10px;
 }
 
+.price-whatsapp-link {
+    color: #25D366;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.price-whatsapp-link:hover {
+    background-color: #25D366;
+    color: white;
+    transform: scale(1.05);
+}
+
 .item-description {
     font-size: 0.9rem;
     color: #666;
