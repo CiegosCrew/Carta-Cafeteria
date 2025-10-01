@@ -80,13 +80,6 @@ function renderMenu(data) {
     data.almuerzo.forEach(item => {
         almuerzoGrid.appendChild(createMenuItem(item));
     });
-    
-    // Render Foto Carnet
-    const fotoCarnetGrid = document.getElementById('fotocarnet-grid');
-    fotoCarnetGrid.innerHTML = '';
-    data.fotoCarnet.forEach(item => {
-        fotoCarnetGrid.appendChild(createMenuItem(item));
-    });
 }
 
 // Search functionality

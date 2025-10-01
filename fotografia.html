@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PHOTOMARKET - Cafetería en Peltier 50, local 4. Café, bebidas, panificados y almuerzos.">
-    <meta name="keywords" content="cafetería, café, photomarket, almuerzo, bebidas, panificados">
-    <title>PHOTOMARKET - Carta Digital</title>
+    <meta name="description" content="PHOTOMARKET - Servicios Fotográficos. Foto carnet para pasaportes y trámites.">
+    <meta name="keywords" content="foto carnet, pasaporte italiano, pasaporte español, dni peruano, fotografía, eventos">
+    <title>PHOTOMARKET - Servicios Fotográficos</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,50 +32,28 @@
             <ul class="nav-list">
                 <li><a href="index.html" class="nav-link">☕ Cafetería</a></li>
                 <li><a href="fotografia.html" class="nav-link">📸 Servicios Fotográficos</a></li>
-                <li><a href="#ubicacion-section" class="nav-link">📍 Ubicación</a></li>
+                <li><a href="index.html#ubicacion-section" class="nav-link">📍 Ubicación</a></li>
                 <li><a href="https://wa.me/5492612636244" target="_blank" class="nav-link nav-link-whatsapp">💬 WhatsApp</a></li>
             </ul>
         </nav>
 
         <!-- Info Section -->
         <section class="info-section">
-            <p class="info-item" id="horario"></p>
-            <p class="info-item" id="direccion"></p>
+            <p class="info-item">🕒 Lunes a viernes de 8:30 a 16:00 h</p>
+            <p class="info-item">📍 Peltier 50, local 4</p>
         </section>
 
-        <!-- Cafeteria Menu -->
-        <div id="cafeteria-section"></div>
-        
-        <main id="menuContainer">
-            <!-- Promos Section -->
-            <section class="menu-section" id="promos-section">
-                <h2 class="section-title">PROMOS</h2>
-                <div class="menu-grid" id="promos-grid"></div>
-            </section>
+        <!-- Photography Services Title -->
+        <div class="page-title-section">
+            <h2 class="page-title">📸 SERVICIOS FOTOGRÁFICOS</h2>
+            <p class="page-subtitle">Fotos profesionales para todos tus trámites</p>
+        </div>
 
-            <!-- Bebidas Section -->
-            <section class="menu-section" id="bebidas-section">
-                <h2 class="section-title">BEBIDAS</h2>
-                
-                <h3 class="subsection-title">CALIENTES</h3>
-                <div class="menu-grid" id="bebidas-calientes-grid"></div>
-                
-                <h3 class="subsection-title">FRÍAS</h3>
-                <div class="menu-grid" id="bebidas-frias-grid"></div>
-            </section>
-
-            <!-- Panificado Section -->
-            <section class="menu-section" id="panificado-section">
-                <h2 class="section-title">PANIFICADO</h2>
-                <div class="menu-grid" id="panificado-grid"></div>
-            </section>
-
-            <!-- Almuerzo Section -->
-            <section class="menu-section" id="almuerzo-section">
-                <h2 class="section-title">ALMUERZO</h2>
-                <div class="menu-grid" id="almuerzo-grid"></div>
-            </section>
-        </main>
+        <!-- Foto Carnet Section -->
+        <section class="menu-section" id="fotocarnet-section">
+            <h2 class="section-title">FOTO CARNET</h2>
+            <div class="menu-grid" id="fotocarnet-grid"></div>
+        </section>
 
         <!-- WhatsApp Floating Button -->
         <a href="https://wa.me/5492612636244" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
@@ -121,162 +99,8 @@
     "horario": "Lunes a viernes de 8:30 a 16:00 h",
     "telefono": "",
     "instagram": "",
-    "whatsapp": ""
+    "whatsapp": "5492612636244"
   },
-  "promos": [
-    {
-      "nombre": "Cafe mediano",
-      "descripcion": "con 1 torta",
-      "precio": 3200
-    },
-    {
-      "nombre": "Cafe mediano",
-      "descripcion": "con 1 factura",
-      "precio": 3300
-    },
-    {
-      "nombre": "Cafe mediano",
-      "descripcion": "con 1 tostada con pate y huevo",
-      "precio": 5400
-    },
-    {
-      "nombre": "Cafe grande",
-      "descripcion": "con 2 tortas o factura, vaso de jugo chico",
-      "precio": 5800
-    },
-    {
-      "nombre": "Cafe grande",
-      "descripcion": "con 2 tostadas con pollo y huevo",
-      "precio": 8000
-    },
-    {
-      "nombre": "Cafe grande",
-      "descripcion": "con tostada, vaso de jugo chico",
-      "precio": 6700
-    }
-  ],
-  "bebidas": {
-    "calientes": [
-      {
-        "nombre": "Cafe grande",
-        "precio": 3500
-      },
-      {
-        "nombre": "Cafe mediano",
-        "precio": 2700
-      },
-      {
-        "nombre": "Capuchino",
-        "precio": 3800
-      },
-      {
-        "nombre": "Submarino",
-        "precio": 3800
-      },
-      {
-        "nombre": "Te",
-        "precio": 2000
-      },
-      {
-        "nombre": "Chocolate",
-        "precio": 3800
-      }
-    ],
-    "frias": [
-      {
-        "nombre": "Licuado",
-        "precio": 4500
-      },
-      {
-        "nombre": "Vaso de jugo",
-        "precio": 4000
-      },
-      {
-        "nombre": "Yogur griego",
-        "precio": 3500
-      }
-    ]
-  },
-  "panificado": [
-    {
-      "nombre": "Torta",
-      "precio": 500
-    },
-    {
-      "nombre": "Factura",
-      "precio": 600
-    },
-    {
-      "nombre": "Pastelito",
-      "precio": 800
-    },
-    {
-      "nombre": "Alfajor de maicena/miel",
-      "precio": 800
-    },
-    {
-      "nombre": "Torta de coco",
-      "precio": 800
-    },
-    {
-      "nombre": "Pastafrola",
-      "precio": 800
-    },
-    {
-      "nombre": "Hojaldre con dulce de leche",
-      "precio": 800
-    },
-    {
-      "nombre": "Budin de limon sin gluten",
-      "precio": 1600
-    },
-    {
-      "nombre": "Brownie",
-      "precio": 1800
-    }
-  ],
-  "almuerzo": [
-    {
-      "nombre": "Pizza muzzarella 8 porc.",
-      "precio": 7500
-    },
-    {
-      "nombre": "Pizza con jamon 8 porc.",
-      "precio": 8500
-    },
-    {
-      "nombre": "Pizzeta muzzarella 4 porc.",
-      "precio": 3800
-    },
-    {
-      "nombre": "Pizzeta con jamon 4 porc.",
-      "precio": 4200
-    },
-    {
-      "nombre": "Sandwich de milanesa",
-      "precio": 6500
-    },
-    {
-      "nombre": "Pancho",
-      "precio": 2500
-    },
-    {
-      "nombre": "Tarta",
-      "precio": 3500
-    },
-    {
-      "nombre": "Ensalada",
-      "precio": 2900
-    },
-    {
-      "nombre": "Tostado",
-      "precio": 4500
-    },
-    {
-      "nombre": "Empanada",
-      "precio": 800
-    }
-  ],
   "fotoCarnet": [
     {
       "nombre": "Photo Carnet para Pasaporte Italiano",
@@ -303,6 +127,6 @@
   ]
 };
     </script>
-    <script src="app.js"></script>
+    <script src="fotografia.js"></script>
 </body>
 </html>
