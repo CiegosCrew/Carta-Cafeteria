@@ -126,6 +126,38 @@ body {
     box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.2);
 }
 
+/* Service Divider */
+.service-divider {
+    margin: 50px 0 40px 0;
+    text-align: center;
+    position: relative;
+}
+
+.service-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.service-divider::after {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-secondary), var(--color-accent));
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
 /* Menu Sections */
 .menu-section {
     margin-bottom: 50px;
@@ -292,6 +324,11 @@ body {
     .logo {
         font-size: 2rem;
         letter-spacing: 4px;
+    }
+
+    .service-title {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
     }
 
     .section-title {
