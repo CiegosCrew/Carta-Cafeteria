@@ -18,7 +18,24 @@
             <div class="decorative-line"></div>
             <h1 class="logo">PHOTOMARKET</h1>
             <div class="decorative-line"></div>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburgerBtn" aria-label="Menú de navegación">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </header>
+
+        <!-- Navigation Menu -->
+        <nav class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+                <li><a href="#cafeteria-section" class="nav-link">☕ Cafetería</a></li>
+                <li><a href="#fotografia-section" class="nav-link">📸 Servicios Fotográficos</a></li>
+                <li><a href="#ubicacion-section" class="nav-link">📍 Ubicación</a></li>
+                <li><a href="https://wa.me/5492612636244" target="_blank" class="nav-link nav-link-whatsapp">💬 WhatsApp</a></li>
+            </ul>
+        </nav>
 
         <!-- Info Section -->
         <section class="info-section">
@@ -27,9 +44,7 @@
         </section>
 
         <!-- Cafeteria Menu -->
-        <div class="service-divider">
-            <h2 class="service-title">☕ CAFETERÍA</h2>
-        </div>
+        <div id="cafeteria-section"></div>
         
         <main id="menuContainer">
             <!-- Promos Section -->
@@ -63,9 +78,7 @@
         </main>
 
         <!-- Photography Services -->
-        <div class="service-divider">
-            <h2 class="service-title">📸 SERVICIOS FOTOGRÁFICOS</h2>
-        </div>
+        <div id="fotografia-section"></div>
         
         <section class="menu-section" id="fotocarnet-section">
             <h2 class="section-title">FOTO CARNET</h2>
@@ -80,7 +93,7 @@
         </a>
 
         <!-- Location Section -->
-        <section class="location-section">
+        <section id="ubicacion-section" class="location-section">
             <h2 class="section-title">UBICACIÓN</h2>
             <div class="map-container">
                 <iframe 
