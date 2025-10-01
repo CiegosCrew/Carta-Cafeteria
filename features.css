@@ -514,18 +514,21 @@
 .btn-calendly {
     display: inline-block;
     padding: 15px 40px;
-    background-color: var(--color-secondary);
+    background-color: #25D366;
     color: white;
     text-decoration: none;
+    border: none;
     border-radius: 50px;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: var(--shadow);
+    cursor: pointer;
+    font-family: var(--font-body);
 }
 
 .btn-calendly:hover {
-    background-color: var(--color-accent);
+    background-color: #128C7E;
     transform: translateY(-3px);
     box-shadow: var(--shadow-hover);
 }

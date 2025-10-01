@@ -407,6 +407,13 @@ document.addEventListener('DOMContentLoaded', () => {
     renderReviews();
 });
 
+// ========== APPOINTMENT BOOKING ==========
+function reservarTurno() {
+    const message = `¡Hola! Quiero reservar un turno para fotos carnet.\n\n📸 Servicio: Foto Carnet\n📅 Fecha preferida: [Indicar fecha y horario]\n\n¿Tienen disponibilidad?`;
+    const whatsappUrl = `https://wa.me/5492612636244?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
 // Make functions global
 window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
@@ -415,3 +422,4 @@ window.clearCart = clearCart;
 window.toggleCart = toggleCart;
 window.sendCartWhatsApp = sendCartWhatsApp;
 window.sendProductWhatsApp = sendProductWhatsApp;
+window.reservarTurno = reservarTurno;
