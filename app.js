@@ -155,17 +155,22 @@ function removeNoResultsMessage() {
 // Load menu data
 async function loadMenu() {
     try {
+        // Try to load from external JSON first
         const response = await fetch('data/menu.json');
         if (!response.ok) {
-            throw new Error('Error al cargar el menú');
+            throw new Error('Using embedded data');
         }
         const data = await response.json();
         renderMenu(data);
-        setupSearch();
     } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('menuContainer').innerHTML = 
-            '<div class="no-results">Error al cargar el menú. Por favor, recarga la página.</div>';
+        // Fallback to embedded data (for local file:// access)
+        console.log('Using embedded menu data');
+        if (typeof menuDataEmbedded !== 'undefined') {
+            renderMenu(menuDataEmbedded);
+        } else {
+            document.getElementById('menuContainer').innerHTML = 
+                '<div class="no-results">Error al cargar el menú. Por favor, recarga la página.</div>';
+        }
     }
 }
 
