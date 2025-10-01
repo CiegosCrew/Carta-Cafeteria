@@ -43,8 +43,8 @@ function renderMenu(data) {
     menuData = data;
     
     // Render info section
-    document.getElementById('horario').textContent = data.cafeteria.horario;
-    document.getElementById('direccion').textContent = data.cafeteria.direccion;
+    document.getElementById('horario').innerHTML = `🕒 ${data.cafeteria.horario}`;
+    document.getElementById('direccion').innerHTML = `📍 ${data.cafeteria.direccion}`;
     
     // Render Promos
     const promosGrid = document.getElementById('promos-grid');
