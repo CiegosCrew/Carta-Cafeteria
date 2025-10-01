@@ -9,32 +9,32 @@
   },
   "promos": [
     {
-      "nombre": "Cafe mediano",
+      "nombre": "Café mediano",
       "descripcion": "con 1 torta",
       "precio": 3200
     },
     {
-      "nombre": "Cafe mediano",
+      "nombre": "Café mediano",
       "descripcion": "con 1 factura",
       "precio": 3300
     },
     {
-      "nombre": "Cafe mediano",
-      "descripcion": "con 1 tostada con pate y huevo",
+      "nombre": "Café mediano",
+      "descripcion": "con 1 tostada con paté y huevo",
       "precio": 5400
     },
     {
-      "nombre": "Cafe grande",
+      "nombre": "Café grande",
       "descripcion": "con 2 tortas o factura, vaso de jugo chico",
       "precio": 5800
     },
     {
-      "nombre": "Cafe grande",
+      "nombre": "Café grande",
       "descripcion": "con 2 tostadas con pollo y huevo",
       "precio": 8000
     },
     {
-      "nombre": "Cafe grande",
+      "nombre": "Café grande",
       "descripcion": "con tostada, vaso de jugo chico",
       "precio": 6700
     }
@@ -42,15 +42,15 @@
   "bebidas": {
     "calientes": [
       {
-        "nombre": "Cafe grande",
+        "nombre": "Café grande",
         "precio": 3500
       },
       {
-        "nombre": "Cafe mediano",
+        "nombre": "Café mediano",
         "precio": 2700
       },
       {
-        "nombre": "Capuchino",
+        "nombre": "Capuccino",
         "precio": 3800
       },
       {
@@ -58,7 +58,7 @@
         "precio": 3800
       },
       {
-        "nombre": "Te",
+        "nombre": "Té",
         "precio": 2000
       },
       {
@@ -111,7 +111,7 @@
       "precio": 800
     },
     {
-      "nombre": "Budin de limon sin gluten",
+      "nombre": "Budín de limón sin gluten",
       "precio": 1600
     },
     {
@@ -125,7 +125,7 @@
       "precio": 7500
     },
     {
-      "nombre": "Pizza con jamon 8 porc.",
+      "nombre": "Pizza con jamón 8 porc.",
       "precio": 8500
     },
     {
@@ -133,11 +133,11 @@
       "precio": 3800
     },
     {
-      "nombre": "Pizzeta con jamon 4 porc.",
+      "nombre": "Pizzeta con jamón 4 porc.",
       "precio": 4200
     },
     {
-      "nombre": "Sandwich de milanesa",
+      "nombre": "Sándwich de milanesa",
       "precio": 6500
     },
     {
