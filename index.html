@@ -7,11 +7,66 @@
     <meta name="keywords" content="cafetería, café, photomarket, almuerzo, bebidas, panificados">
     <title>PHOTOMARKET - Carta Digital</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
+    
+    <!-- Share Button -->
+    <button class="share-button" id="shareBtn">📤 Compartir</button>
+    
+    <!-- Cart Button -->
+    <button class="cart-button" onclick="toggleCart()" aria-label="Ver carrito">
+        🛒
+        <span class="cart-count" id="cartCount" style="display: none;">0</span>
+    </button>
+    
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2 class="cart-title">Mi Pedido</h2>
+            <button class="cart-close" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div id="cartTotal"></div>
+        <div class="cart-actions">
+            <button class="btn-send-whatsapp" onclick="sendCartWhatsApp()">📱 Enviar por WhatsApp</button>
+            <button class="btn-clear-cart" onclick="clearCart()">🗑️ Vaciar carrito</button>
+        </div>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div class="admin-panel">
+        <button class="admin-toggle" id="adminToggle" title="Panel Admin">⚙️</button>
+    </div>
+    
+    <div class="admin-overlay" id="adminOverlay"></div>
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-header">
+            <h2 class="admin-title">Panel de Administración</h2>
+            <button class="admin-close" id="adminClose">×</button>
+        </div>
+        <form class="admin-form" id="adminForm">
+            <p style="color: #666; font-style: italic;">Por ahora, edita los precios directamente en el archivo <code>data/menu.json</code>. Panel completo próximamente.</p>
+            <label>Categoría:</label>
+            <select>
+                <option>Promos</option>
+                <option>Bebidas</option>
+                <option>Panificado</option>
+                <option>Almuerzo</option>
+            </select>
+            <label>Nombre del producto:</label>
+            <input type="text" placeholder="Ej: Café grande">
+            <label>Precio:</label>
+            <input type="number" placeholder="Ej: 3500">
+            <button type="submit">Guardar cambios</button>
+        </form>
+    </div>
+    
     <div class="container">
         <!-- Header -->
         <header class="header">
@@ -101,6 +156,28 @@
             <div class="location-info">
                 <p class="location-address">📍 Peltier 50, local 4</p>
                 <a href="https://maps.app.goo.gl/29FAur44hUeSaCiD7" target="_blank" class="location-link">Ver en Google Maps</a>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <h2 class="testimonials-title">⭐ Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Excelente atención y los mejores cafés de la zona. Las medialunas son deliciosas!"</p>
+                    <p class="testimonial-author">- María González</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Muy profesionales con las fotos carnet. Me sacaron las fotos para el pasaporte italiano en minutos."</p>
+                    <p class="testimonial-author">- Juan Pérez</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"El lugar perfecto para trabajar con la notebook. Buen wifi y café excelente."</p>
+                    <p class="testimonial-author">- Laura Martínez</p>
+                </div>
             </div>
         </section>
 
@@ -304,5 +381,6 @@
 };
     </script>
     <script src="app.js"></script>
+    <script src="features.js"></script>
 </body>
 </html>

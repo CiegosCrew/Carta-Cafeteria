@@ -44,6 +44,26 @@ function createMenuItem(item) {
         menuItem.appendChild(itemDescription);
     }
     
+    // Add action buttons (only if price > 0)
+    if (item.precio > 0) {
+        const itemActions = document.createElement('div');
+        itemActions.className = 'item-actions';
+        
+        const btnAddCart = document.createElement('button');
+        btnAddCart.className = 'btn-add-cart';
+        btnAddCart.textContent = '🛒 Agregar';
+        btnAddCart.onclick = () => window.addToCart(item);
+        
+        const btnWhatsApp = document.createElement('button');
+        btnWhatsApp.className = 'btn-whatsapp-product';
+        btnWhatsApp.textContent = '💬 Pedir';
+        btnWhatsApp.onclick = () => window.sendProductWhatsApp(item);
+        
+        itemActions.appendChild(btnAddCart);
+        itemActions.appendChild(btnWhatsApp);
+        menuItem.appendChild(itemActions);
+    }
+    
     return menuItem;
 }
 

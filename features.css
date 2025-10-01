@@ -1,0 +1,446 @@
+/* Scroll Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Product Action Buttons */
+.item-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-add-cart,
+.btn-whatsapp-product {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.btn-add-cart {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.btn-add-cart:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+.btn-whatsapp-product {
+    background-color: #25D366;
+    color: white;
+}
+
+.btn-whatsapp-product:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+}
+
+/* Cart Modal */
+.cart-modal {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background-color: var(--color-white);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1002;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.cart-modal.active {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+.cart-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-dark);
+}
+
+.cart-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-dark);
+}
+
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    background-color: var(--color-light);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.cart-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+.cart-item-remove {
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cart-item-quantity button {
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cart-item-price {
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+.cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.cart-total {
+    background-color: var(--color-light);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.cart-total-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+.cart-total-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+.cart-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-send-whatsapp,
+.btn-clear-cart {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-send-whatsapp {
+    background-color: #25D366;
+    color: white;
+}
+
+.btn-send-whatsapp:hover {
+    background-color: #128C7E;
+}
+
+.btn-clear-cart {
+    background-color: #ff4444;
+    color: white;
+}
+
+.btn-clear-cart:hover {
+    background-color: #cc0000;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    margin: 50px 0;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, var(--color-light), var(--color-white));
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.testimonials-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    text-align: center;
+    color: var(--color-dark);
+    margin-bottom: 30px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.testimonial-card {
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--color-secondary);
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: var(--color-dark);
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+.testimonial-rating {
+    color: #ffa500;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Admin Panel */
+.admin-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1001;
+}
+
+.admin-toggle {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.admin-toggle:hover {
+    transform: scale(1.1);
+}
+
+.admin-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1003;
+    padding: 30px;
+    overflow-y: auto;
+    display: none;
+}
+
+.admin-modal.active {
+    display: block;
+}
+
+.admin-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1002;
+    display: none;
+}
+
+.admin-overlay.active {
+    display: block;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+.admin-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--color-dark);
+}
+
+.admin-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-dark);
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-form label {
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+    padding: 10px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
+.admin-form button {
+    padding: 12px;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-form button:hover {
+    background-color: var(--color-accent);
+}
+
+/* Calendly Integration */
+.calendly-section {
+    margin: 50px 0;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, var(--color-light), var(--color-white));
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.calendly-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-dark);
+    margin-bottom: 20px;
+}
+
+.calendly-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.btn-calendly {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--color-secondary);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.btn-calendly:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cart-modal {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .theme-toggle,
+    .share-button {
+        top: 10px;
+        right: 10px;
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+    
+    .share-button {
+        right: 70px;
+    }
+    
+    .admin-modal {
+        width: 95%;
+        padding: 20px;
+    }
+}

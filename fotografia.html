@@ -7,11 +7,18 @@
     <meta name="keywords" content="foto carnet, pasaporte italiano, pasaporte español, dni peruano, fotografía, eventos">
     <title>PHOTOMARKET - Servicios Fotográficos</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
+    
+    <!-- Share Button -->
+    <button class="share-button" id="shareBtn">📤 Compartir</button>
+    
     <div class="container">
         <!-- Header -->
         <header class="header">
@@ -53,6 +60,16 @@
         <section class="menu-section" id="fotocarnet-section">
             <h2 class="section-title">FOTO CARNET</h2>
             <div class="menu-grid" id="fotocarnet-grid"></div>
+        </section>
+
+        <!-- Calendly Section -->
+        <section class="calendly-section">
+            <h2 class="calendly-title">📅 Reservá tu turno</h2>
+            <p class="calendly-subtitle">Agendá tu sesión de fotos carnet de forma rápida y sencilla</p>
+            <a href="https://calendly.com/tu-usuario" target="_blank" class="btn-calendly">Reservar turno</a>
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                <em>Nota: Reemplazá el link de Calendly con tu cuenta personal</em>
+            </p>
         </section>
 
         <!-- WhatsApp Floating Button -->
@@ -128,5 +145,6 @@
 };
     </script>
     <script src="fotografia.js"></script>
+    <script src="features.js"></script>
 </body>
 </html>
