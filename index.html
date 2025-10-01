@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PHOTOMARKET - Cafetería en Peltier 50, local 4. Café, bebidas, panificados y almuerzos.">
+    <meta name="keywords" content="cafetería, café, photomarket, almuerzo, bebidas, panificados">
+    <title>PHOTOMARKET - Carta Digital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="decorative-line"></div>
+            <h1 class="logo">PHOTOMARKET</h1>
+            <div class="decorative-line"></div>
+        </header>
+
+        <!-- Info Section -->
+        <section class="info-section">
+            <p class="info-item" id="horario"></p>
+            <p class="info-item" id="direccion"></p>
+        </section>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar en la carta..." class="search-input">
+        </div>
+
+        <!-- Menu Sections -->
+        <main id="menuContainer">
+            <!-- Promos Section -->
+            <section class="menu-section" id="promos-section">
+                <h2 class="section-title">PROMOS</h2>
+                <div class="menu-grid" id="promos-grid"></div>
+            </section>
+
+            <!-- Bebidas Section -->
+            <section class="menu-section" id="bebidas-section">
+                <h2 class="section-title">BEBIDAS</h2>
+                
+                <h3 class="subsection-title">CALIENTES</h3>
+                <div class="menu-grid" id="bebidas-calientes-grid"></div>
+                
+                <h3 class="subsection-title">FRÍAS</h3>
+                <div class="menu-grid" id="bebidas-frias-grid"></div>
+            </section>
+
+            <!-- Panificado Section -->
+            <section class="menu-section" id="panificado-section">
+                <h2 class="section-title">PANIFICADO</h2>
+                <div class="menu-grid" id="panificado-grid"></div>
+            </section>
+
+            <!-- Almuerzo Section -->
+            <section class="menu-section" id="almuerzo-section">
+                <h2 class="section-title">ALMUERZO</h2>
+                <div class="menu-grid" id="almuerzo-grid"></div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-icon">☕</div>
+            <p class="footer-text">Gracias por elegirnos</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

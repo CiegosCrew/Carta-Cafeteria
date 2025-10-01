@@ -1,0 +1,164 @@
+{
+  "cafeteria": {
+    "nombre": "PHOTOMARKET",
+    "direccion": "Peltier 50, local 4",
+    "horario": "Lunes a viernes de 8:30 a 16:00 h",
+    "telefono": "",
+    "instagram": "",
+    "whatsapp": ""
+  },
+  "promos": [
+    {
+      "nombre": "Cafe mediano",
+      "descripcion": "con 1 torta",
+      "precio": 3200
+    },
+    {
+      "nombre": "Cafe mediano",
+      "descripcion": "con 1 factura",
+      "precio": 3300
+    },
+    {
+      "nombre": "Cafe mediano",
+      "descripcion": "con 1 tostada con pate y huevo",
+      "precio": 5400
+    },
+    {
+      "nombre": "Cafe grande",
+      "descripcion": "con 2 tortas o factura, vaso de jugo chico",
+      "precio": 5800
+    },
+    {
+      "nombre": "Cafe grande",
+      "descripcion": "con 2 tostadas con pollo y huevo",
+      "precio": 8000
+    },
+    {
+      "nombre": "Cafe grande",
+      "descripcion": "con tostada, vaso de jugo chico",
+      "precio": 6700
+    }
+  ],
+  "bebidas": {
+    "calientes": [
+      {
+        "nombre": "Cafe grande",
+        "precio": 3500
+      },
+      {
+        "nombre": "Cafe mediano",
+        "precio": 2700
+      },
+      {
+        "nombre": "Capuchino",
+        "precio": 3800
+      },
+      {
+        "nombre": "Submarino",
+        "precio": 3800
+      },
+      {
+        "nombre": "Te",
+        "precio": 2000
+      },
+      {
+        "nombre": "Chocolate",
+        "precio": 3800
+      }
+    ],
+    "frias": [
+      {
+        "nombre": "Licuado",
+        "precio": 4500
+      },
+      {
+        "nombre": "Vaso de jugo",
+        "precio": 4000
+      },
+      {
+        "nombre": "Yogur griego",
+        "precio": 3500
+      }
+    ]
+  },
+  "panificado": [
+    {
+      "nombre": "Torta",
+      "precio": 500
+    },
+    {
+      "nombre": "Factura",
+      "precio": 600
+    },
+    {
+      "nombre": "Pastelito",
+      "precio": 800
+    },
+    {
+      "nombre": "Alfajor de maicena/miel",
+      "precio": 800
+    },
+    {
+      "nombre": "Torta de coco",
+      "precio": 800
+    },
+    {
+      "nombre": "Pastafrola",
+      "precio": 800
+    },
+    {
+      "nombre": "Hojaldre con dulce de leche",
+      "precio": 800
+    },
+    {
+      "nombre": "Budin de limon sin gluten",
+      "precio": 1600
+    },
+    {
+      "nombre": "Brownie",
+      "precio": 1800
+    }
+  ],
+  "almuerzo": [
+    {
+      "nombre": "Pizza muzzarella 8 porc.",
+      "precio": 7500
+    },
+    {
+      "nombre": "Pizza con jamon 8 porc.",
+      "precio": 8500
+    },
+    {
+      "nombre": "Pizzeta muzzarella 4 porc.",
+      "precio": 3800
+    },
+    {
+      "nombre": "Pizzeta con jamon 4 porc.",
+      "precio": 4200
+    },
+    {
+      "nombre": "Sandwich de milanesa",
+      "precio": 6500
+    },
+    {
+      "nombre": "Pancho",
+      "precio": 2500
+    },
+    {
+      "nombre": "Tarta",
+      "precio": 3500
+    },
+    {
+      "nombre": "Ensalada",
+      "precio": 2900
+    },
+    {
+      "nombre": "Tostado",
+      "precio": 4500
+    },
+    {
+      "nombre": "Empanada",
+      "precio": 800
+    }
+  ]
+}
