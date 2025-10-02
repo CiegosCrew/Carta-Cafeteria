@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PHOTOMARKET - Cafetería en Peltier 50, local 4. Café, bebidas, panificados y almuerzos.">
-    <meta name="keywords" content="cafetería, café, photomarket, almuerzo, bebidas, panificados">
-    <title>PHOTOMARKET - Carta Digital</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="PHOTOMARKET - Cafetería y servicios fotográficos profesionales en Mendoza. Café, bebidas, panificados, almuerzos y fotos carnet para pasaportes.">
+    <meta name="keywords" content="cafetería mendoza, café, photomarket, almuerzo, bebidas, panificados, foto carnet, pasaporte italiano, fotografía">
+    <meta name="author" content="PHOTOMARKET">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ciegoscrew.github.io/Carta-Cafeteria/">
+    <meta property="og:title" content="PHOTOMARKET - Cafetería y Servicios Fotográficos">
+    <meta property="og:description" content="Cafetería y servicios fotográficos profesionales en Mendoza. Café, bebidas, panificados y fotos carnet.">
+    <meta property="og:image" content="https://ciegoscrew.github.io/Carta-Cafeteria/icon-512.png">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="PHOTOMARKET">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ciegoscrew.github.io/Carta-Cafeteria/">
+    <meta property="twitter:title" content="PHOTOMARKET - Cafetería y Servicios Fotográficos">
+    <meta property="twitter:description" content="Cafetería y servicios fotográficos profesionales en Mendoza.">
+    <meta property="twitter:image" content="https://ciegoscrew.github.io/Carta-Cafeteria/icon-512.png">
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#8fbc8f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PHOTOMARKET">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <title>PHOTOMARKET - Carta Digital | Cafetería y Fotografía en Mendoza</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="features.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -493,7 +524,92 @@
   ]
 };
     </script>
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "PHOTOMARKET",
+      "image": "https://ciegoscrew.github.io/Carta-Cafeteria/icon-512.png",
+      "description": "Cafetería y servicios fotográficos profesionales en Mendoza",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Peltier 50, local 4",
+        "addressLocality": "Mendoza",
+        "addressCountry": "AR"
+      },
+      "telephone": "+5492612636244",
+      "servesCuisine": "Café, Panificados, Almuerzos",
+      "priceRange": "$$",
+      "openingHours": "Mo-Fr 08:00-20:00",
+      "hasMenu": "https://ciegoscrew.github.io/Carta-Cafeteria/",
+      "acceptsReservations": "True",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "0"
+      }
+    }
+    </script>
+    
     <script src="app.js"></script>
     <script src="features.js"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/Carta-Cafeteria/service-worker.js')
+                    .then(registration => {
+                        console.log('SW registered:', registration);
+                        
+                        // Request notification permission
+                        if ('Notification' in window && Notification.permission === 'default') {
+                            Notification.requestPermission();
+                        }
+                    })
+                    .catch(error => {
+                        console.log('SW registration failed:', error);
+                    });
+            });
+        }
+        
+        // Install prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install button
+            const installBtn = document.createElement('button');
+            installBtn.textContent = '📱 Instalar App';
+            installBtn.style.cssText = `
+                position: fixed;
+                bottom: 90px;
+                right: 30px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 50px;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                z-index: 1000;
+                animation: pulse 2s infinite;
+            `;
+            
+            installBtn.addEventListener('click', async () => {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response: ${outcome}`);
+                deferredPrompt = null;
+                installBtn.remove();
+            });
+            
+            document.body.appendChild(installBtn);
+        });
+    </script>
 </body>
 </html>

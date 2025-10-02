@@ -1,0 +1,42 @@
+{
+  "name": "PHOTOMARKET - Cafetería y Servicios Fotográficos",
+  "short_name": "PHOTOMARKET",
+  "description": "Cafetería y servicios fotográficos profesionales en Mendoza",
+  "start_url": "/Carta-Cafeteria/",
+  "display": "standalone",
+  "background_color": "#e8d5c4",
+  "theme_color": "#8fbc8f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["food", "lifestyle", "photography"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Ver Carta",
+      "short_name": "Carta",
+      "description": "Ver la carta completa",
+      "url": "/Carta-Cafeteria/",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Servicios Fotográficos",
+      "short_name": "Fotos",
+      "description": "Ver servicios de fotografía",
+      "url": "/Carta-Cafeteria/fotografia.html",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

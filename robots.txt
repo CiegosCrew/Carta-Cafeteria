@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ciegoscrew.github.io/Carta-Cafeteria/sitemap.xml
