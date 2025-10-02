@@ -148,9 +148,36 @@ function updateSettingsPanelValues() {
     }
 }
 
+// Custom themes
+function setCustomTheme(themeName) {
+    if (themeName === 'default') {
+        document.documentElement.removeAttribute('data-custom-theme');
+    } else {
+        document.documentElement.setAttribute('data-custom-theme', themeName);
+    }
+    localStorage.setItem('customTheme', themeName);
+    
+    // Show confetti for colorful theme
+    if (themeName === 'colorful' && typeof createConfetti === 'function') {
+        createConfetti();
+    }
+}
+
+// Apply custom theme on load
+function applyCustomTheme() {
+    const customTheme = localStorage.getItem('customTheme');
+    if (customTheme && customTheme !== 'default') {
+        document.documentElement.setAttribute('data-custom-theme', customTheme);
+    }
+}
+
 // Make functions global
 window.setFontSize = setFontSize;
 window.setContrast = setContrast;
 window.setTheme = setTheme;
+window.setCustomTheme = setCustomTheme;
 window.showSettingsPanel = showSettingsPanel;
 window.hideSettingsPanel = hideSettingsPanel;
+
+// Apply custom theme on load
+document.addEventListener('DOMContentLoaded', applyCustomTheme);
