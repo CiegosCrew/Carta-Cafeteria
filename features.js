@@ -399,29 +399,75 @@ const ADMIN_PASSWORD = '123pataza'; // Cambiá esta contraseña
 
 function setupAdminPanel() {
     const adminToggle = document.getElementById('adminToggle');
+    const adminLoginModal = document.getElementById('adminLoginModal');
+    const adminLoginOverlay = document.getElementById('adminLoginOverlay');
+    const adminLoginClose = document.getElementById('adminLoginClose');
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    const adminPasswordInput = document.getElementById('adminPasswordInput');
+    
     const adminModal = document.getElementById('adminModal');
     const adminOverlay = document.getElementById('adminOverlay');
     const adminClose = document.getElementById('adminClose');
     
-    if (adminToggle && adminModal) {
+    // Show login modal when clicking admin toggle
+    if (adminToggle && adminLoginModal) {
         adminToggle.addEventListener('click', () => {
-            // Pedir contraseña
-            const password = prompt('🔒 Ingresá la contraseña de administrador:');
+            adminLoginModal.classList.add('active');
+            adminLoginOverlay.classList.add('active');
+            adminPasswordInput.focus();
+        });
+    }
+    
+    // Close login modal
+    if (adminLoginClose) {
+        adminLoginClose.addEventListener('click', () => {
+            adminLoginModal.classList.remove('active');
+            adminLoginOverlay.classList.remove('active');
+            adminPasswordInput.value = '';
+        });
+    }
+    
+    if (adminLoginOverlay) {
+        adminLoginOverlay.addEventListener('click', () => {
+            adminLoginModal.classList.remove('active');
+            adminLoginOverlay.classList.remove('active');
+            adminPasswordInput.value = '';
+        });
+    }
+    
+    // Handle login form submission
+    if (adminLoginForm) {
+        adminLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = adminPasswordInput.value;
             
             if (password === ADMIN_PASSWORD) {
+                // Close login modal
+                adminLoginModal.classList.remove('active');
+                adminLoginOverlay.classList.remove('active');
+                adminPasswordInput.value = '';
+                
+                // Open admin panel
                 adminModal.classList.add('active');
                 adminOverlay.classList.add('active');
                 showNotification('✅ Acceso concedido');
-            } else if (password !== null) {
+            } else {
                 showNotification('❌ Contraseña incorrecta');
+                adminPasswordInput.value = '';
+                adminPasswordInput.focus();
             }
         });
-        
+    }
+    
+    // Close admin panel
+    if (adminClose) {
         adminClose.addEventListener('click', () => {
             adminModal.classList.remove('active');
             adminOverlay.classList.remove('active');
         });
-        
+    }
+    
+    if (adminOverlay) {
         adminOverlay.addEventListener('click', () => {
             adminModal.classList.remove('active');
             adminOverlay.classList.remove('active');
