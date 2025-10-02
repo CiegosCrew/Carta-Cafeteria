@@ -148,12 +148,12 @@ function showLocationNotification(distance) {
     let message = '';
     
     if (distance < 0.1) {
-        message = `📍 ¡Estás muy cerca! A solo ${distanceM}m del local`;
+        message = `<img src="assets/icons/pin.svg" alt="Ubicación" class="icon icon-16 icon-left"/>¡Estás muy cerca! A solo ${distanceM}m del local`;
     } else if (distance < 0.5) {
     } else if (distance < 2) {
-        message = `📍 Estás a ${distanceKm}km. Hacemos delivery en tu zona 🚚`;
+        message = `<img src="assets/icons/pin.svg" alt="Ubicación" class="icon icon-16 icon-left"/>Estás a ${distanceKm}km. <img src=\"assets/icons/truck.svg\" alt=\"Delivery\" class=\"icon icon-16 icon-left\"/> Hacemos delivery en tu zona`;
     } else {
-        message = `📍 Estás a ${distanceKm}km. Consultá por delivery`;
+        message = `<img src="assets/icons/pin.svg" alt="Ubicación" class="icon icon-16 icon-left"/>Estás a ${distanceKm}km. Consultá por delivery`;
     }
 }
 
@@ -163,7 +163,7 @@ let chatOpen = false;
 let chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
 
 const autoResponses = {
-    'hola': '¡Hola! 👋 ¿En qué puedo ayudarte?',
+    'hola': '¡Hola! ¿En qué puedo ayudarte?',
     'horario': 'Nuestro horario es de Lunes a Viernes de 8:00 a 20:00 hs',
     'ubicacion': 'Estamos en Peltier 50, local 4. ¿Querés ver el mapa?',
     'precio': 'Podés ver todos nuestros precios en el menú. ¿Buscás algo en particular?',
@@ -189,8 +189,7 @@ function initChat() {
                 <button onclick="toggleChat()">×</button>
             </div>
             <div class="chat-messages" id="chatMessages">
-                <div class="chat-message bot">
-                    <p>¡Hola! 👋 Soy el asistente virtual de PHOTOMARKET. ¿En qué puedo ayudarte?</p>
+                    <p>¡Hola! Soy el asistente virtual de PHOTOMARKET. ¿En qué puedo ayudarte?</p>
                     <small>${new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}</small>
                 </div>
             </div>
@@ -199,15 +198,14 @@ function initChat() {
                 <button onclick="sendChatMessage()">Enviar</button>
             </div>
             <div class="chat-quick-replies">
-                <button onclick="sendQuickReply('horario')">⏰ Horario</button>
-                <button onclick="sendQuickReply('ubicacion')">📍 Ubicación</button>
-                <button onclick="sendQuickReply('delivery')">🚚 Delivery</button>
+                <button onclick="sendQuickReply('horario')"><img src="assets/icons/clock.svg" class="icon icon-16 icon-left" alt="Horario"/>Horario</button>
+                <button onclick="sendQuickReply('ubicacion')"><img src="assets/icons/pin.svg" class="icon icon-16 icon-left" alt="Ubicación"/>Ubicación</button>
+                <button onclick="sendQuickReply('delivery')"><img src="assets/icons/truck.svg" class="icon icon-16 icon-left" alt="Delivery"/>Delivery</button>
             </div>
         </div>
-    `;
+    </div>
     
     document.body.appendChild(chatWidget);
-}
 
 function toggleChat() {
     chatOpen = !chatOpen;
