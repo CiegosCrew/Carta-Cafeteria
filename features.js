@@ -395,7 +395,7 @@ function showNotification(message) {
 }
 
 // ========== ADMIN PANEL ==========
-const ADMIN_PASSWORD = 'photomarket2025'; // Cambiá esta contraseña
+const ADMIN_PASSWORD = '123pataza'; // Cambiá esta contraseña
 
 function setupAdminPanel() {
     const adminToggle = document.getElementById('adminToggle');
@@ -462,6 +462,93 @@ function setupAdminPanel() {
     }
 }
 
+// ========== ANALYTICS TRACKING ==========
+function trackVisit() {
+    let analyticsData = JSON.parse(localStorage.getItem('analyticsData')) || {
+        visits: [],
+        productClicks: {},
+        hourlyActivity: {}
+    };
+    
+    analyticsData.visits.push(new Date().toISOString());
+    
+    const hour = new Date().getHours();
+    analyticsData.hourlyActivity[hour] = (analyticsData.hourlyActivity[hour] || 0) + 1;
+    
+    localStorage.setItem('analyticsData', JSON.stringify(analyticsData));
+}
+
+function trackProductClick(productName) {
+    let analyticsData = JSON.parse(localStorage.getItem('analyticsData')) || {
+        visits: [],
+        productClicks: {},
+        hourlyActivity: {}
+    };
+    
+    analyticsData.productClicks[productName] = (analyticsData.productClicks[productName] || 0) + 1;
+    localStorage.setItem('analyticsData', JSON.stringify(analyticsData));
+}
+
+// ========== USER NOTIFICATIONS ==========
+function checkUserNotifications() {
+    const userNotifications = JSON.parse(localStorage.getItem('userNotifications')) || [];
+    const shownNotifications = JSON.parse(localStorage.getItem('shownNotifications')) || [];
+    
+    // Show new notifications
+    userNotifications.forEach(notif => {
+        if (!shownNotifications.includes(notif.id)) {
+            setTimeout(() => {
+                showUserNotification(notif);
+                shownNotifications.push(notif.id);
+                localStorage.setItem('shownNotifications', JSON.stringify(shownNotifications));
+            }, 1000);
+        }
+    });
+}
+
+function showUserNotification(notif) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        max-width: 350px;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        animation: slideIn 0.5s ease;
+        border-left: 5px solid ${getNotifColor(notif.type)};
+    `;
+    
+    notification.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <strong style="font-size: 1.1rem; color: #2c2c2c;">${notif.title}</strong>
+            <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #999;">×</button>
+        </div>
+        <p style="color: #666; margin: 0; line-height: 1.5;">${notif.message}</p>
+        <div style="margin-top: 10px; font-size: 0.85rem; color: #999;">${notif.date}</div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.5s ease';
+        setTimeout(() => notification.remove(), 500);
+    }, 8000);
+}
+
+function getNotifColor(type) {
+    const colors = {
+        promo: '#4CAF50',
+        turno: '#2196F3',
+        info: '#666',
+        urgente: '#ff4444'
+    };
+    return colors[type] || '#667eea';
+}
+
 // ========== INITIALIZE ALL FEATURES ==========
 document.addEventListener('DOMContentLoaded', () => {
     setupDarkMode();
@@ -472,6 +559,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setupAdminPanel();
     setupReviewForm();
     renderReviews();
+    
+    // Track visit
+    trackVisit();
+    
+    // Check for notifications
+    checkUserNotifications();
 });
 
 // ========== APPOINTMENT BOOKING ==========

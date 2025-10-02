@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHOTOMARKET - Dashboard Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <h1 class="login-title">🔒 Panel de Administración</h1>
+            <p class="login-subtitle">PHOTOMARKET Dashboard</p>
+            <form class="login-form" id="loginForm">
+                <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                <button type="submit">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard (hidden until login) -->
+    <div class="dashboard-container" id="dashboardContainer" style="display: none;">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <h1>📊 Dashboard PHOTOMARKET</h1>
+            <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="dashboard-tabs">
+            <button class="tab-btn active" onclick="showTab('analytics')">📈 Analytics</button>
+            <button class="tab-btn" onclick="showTab('notifications')">🔔 Notificaciones</button>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div class="tab-content active" id="analyticsTab">
+            <div class="stats-grid">
+                <!-- Visitas Hoy -->
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Visitas Hoy</div>
+                        <div class="stat-value" id="visitasHoy">0</div>
+                    </div>
+                </div>
+
+                <!-- Visitas Totales -->
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Visitas Totales</div>
+                        <div class="stat-value" id="visitasTotales">0</div>
+                    </div>
+                </div>
+
+                <!-- Pedidos en Carrito -->
+                <div class="stat-card">
+                    <div class="stat-icon">🛒</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Items en Carritos</div>
+                        <div class="stat-value" id="itemsCarrito">0</div>
+                    </div>
+                </div>
+
+                <!-- Reseñas -->
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Reseñas</div>
+                        <div class="stat-value" id="totalReviews">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productos Más Vistos -->
+            <div class="analytics-section">
+                <h2 class="section-title">🔥 Productos Más Agregados al Carrito</h2>
+                <div class="products-list" id="topProducts">
+                    <p class="no-data">No hay datos disponibles aún</p>
+                </div>
+            </div>
+
+            <!-- Horarios Pico -->
+            <div class="analytics-section">
+                <h2 class="section-title">⏰ Horarios de Mayor Actividad</h2>
+                <div class="hours-chart" id="hoursChart">
+                    <p class="no-data">Recopilando datos...</p>
+                </div>
+            </div>
+
+            <!-- Historial de Visitas -->
+            <div class="analytics-section">
+                <h2 class="section-title">📅 Visitas por Día (Últimos 7 días)</h2>
+                <div class="visits-chart" id="visitsChart">
+                    <canvas id="visitsCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Tab -->
+        <div class="tab-content" id="notificationsTab">
+            <!-- Enviar Notificación -->
+            <div class="notification-form-section">
+                <h2 class="section-title">📢 Enviar Notificación Push</h2>
+                <form class="notification-form" id="notificationForm">
+                    <label for="notifTitle">Título:</label>
+                    <input type="text" id="notifTitle" placeholder="Ej: ¡Nueva Promo!" required>
+                    
+                    <label for="notifMessage">Mensaje:</label>
+                    <textarea id="notifMessage" rows="3" placeholder="Ej: 2x1 en cafés hasta las 18hs" required></textarea>
+                    
+                    <label for="notifType">Tipo:</label>
+                    <select id="notifType">
+                        <option value="promo">🎉 Promoción</option>
+                        <option value="turno">📅 Recordatorio de Turno</option>
+                        <option value="info">ℹ️ Información</option>
+                        <option value="urgente">⚠️ Urgente</option>
+                    </select>
+                    
+                    <button type="submit">Enviar Notificación</button>
+                </form>
+            </div>
+
+            <!-- Historial de Notificaciones -->
+            <div class="notifications-history">
+                <h2 class="section-title">📋 Historial de Notificaciones</h2>
+                <div class="notifications-list" id="notificationsList">
+                    <p class="no-data">No hay notificaciones enviadas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>

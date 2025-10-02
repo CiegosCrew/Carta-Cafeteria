@@ -52,7 +52,13 @@ function createMenuItem(item) {
         const btnAddCart = document.createElement('button');
         btnAddCart.className = 'btn-add-cart';
         btnAddCart.textContent = '🛒 Agregar';
-        btnAddCart.onclick = () => window.addToCart(item);
+        btnAddCart.onclick = () => {
+            window.addToCart(item);
+            // Track product click
+            if (typeof trackProductClick === 'function') {
+                trackProductClick(item.nombre);
+            }
+        };
         
         const btnWhatsApp = document.createElement('button');
         btnWhatsApp.className = 'btn-whatsapp-product';
