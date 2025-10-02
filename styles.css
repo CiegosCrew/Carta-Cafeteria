@@ -53,11 +53,31 @@ body {
 .header {
     text-align: center;
     padding: 40px 20px;
-    background-color: var(--color-light);
     border-radius: 10px;
     box-shadow: var(--shadow);
     position: relative;
 }
+
+/* Nav actions group inside hamburger menu */
+.nav-actions {
+    display: flex;
+    gap: 10px;
+    padding: 16px 20px 0;
+    align-items: center;
+}
+.nav-actions .share-button,
+.nav-actions .theme-toggle {
+    position: static;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-actions .share-button svg { width: 18px; height: 18px; }
+.nav-actions .share-button .share-text { display: none; }
 
 /* Header actions (share + theme) aligned to top-right, mirroring left dots */
 .header-actions {
@@ -69,28 +89,13 @@ body {
     gap: 8px;
 }
 
-/* When buttons are inside header, avoid fixed positioning */
-.header .share-button,
-.header .theme-toggle {
+.header-actions .share-button,
+.header-actions .theme-toggle {
     position: static;
     box-shadow: var(--shadow);
 }
 
-/* Compact circular buttons inside header */
-.header .share-button,
-.header .theme-toggle {
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.header .share-button svg { width: 18px; height: 18px; }
-.header .share-button .share-text { display: none; }
-
+.header-actions .share-button svg { width: 18px; height: 18px; }
 /* Decorative line under header title */
 .decorative-line {
     height: 2px;
@@ -99,7 +104,6 @@ body {
     max-width: 600px;
     position: relative;
 }
-
 .decorative-line::before {
     left: 0;
 }
@@ -591,7 +595,7 @@ body {
     margin: 20px 0;
 }
 
-/* Dark Mode Toggle */
+/* Dark Mode Toggle default (when used outside nav) */
 .theme-toggle {
     position: fixed;
     top: 20px;
@@ -612,7 +616,7 @@ body {
     box-shadow: var(--shadow-hover);
 }
 
-/* Share Button */
+/* Share Button default (when used outside nav) */
 .share-button {
     position: fixed;
     top: 20px;
