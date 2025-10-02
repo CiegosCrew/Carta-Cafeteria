@@ -98,62 +98,121 @@ function loadAnalytics() {
     renderDailyVisits(visits);
 }
 
+let productsChart, hoursChartInstance, visitsChartInstance;
+
 function renderTopProducts(productClicks) {
-    const container = document.getElementById('topProducts');
+    const canvas = document.getElementById('productsChart');
+    if (!canvas) return;
     
     if (Object.keys(productClicks).length === 0) {
-        container.innerHTML = '<p class="no-data">No hay datos disponibles aún</p>';
         return;
     }
     
-    // Sort by clicks
+    // Sort by clicks and get top 5
     const sorted = Object.entries(productClicks)
         .sort((a, b) => b[1] - a[1])
-        .slice(0, 10);
+        .slice(0, 5);
     
-    container.innerHTML = sorted.map(([name, count]) => `
-        <div class="product-item">
-            <span class="product-name">${name}</span>
-            <span class="product-count">${count} veces</span>
-        </div>
-    `).join('');
+    const labels = sorted.map(([name]) => name);
+    const data = sorted.map(([, count]) => count);
+    
+    // Destroy previous chart
+    if (productsChart) {
+        productsChart.destroy();
+    }
+    
+    // Create pie chart
+    productsChart = new Chart(canvas, {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: [
+                    '#667eea',
+                    '#764ba2',
+                    '#8fbc8f',
+                    '#d4a5a5',
+                    '#e8d5c4'
+                ],
+                borderWidth: 2,
+                borderColor: '#fff'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.parsed + ' veces';
+                        }
+                    }
+                }
+            }
+        }
+    });
 }
 
 function renderHourlyActivity() {
-    const container = document.getElementById('hoursChart');
+    const canvas = document.getElementById('hoursChart');
+    if (!canvas) return;
+    
     const hourlyData = analyticsData.hourlyActivity || {};
     
-    if (Object.keys(hourlyData).length === 0) {
-        container.innerHTML = '<p class="no-data">Recopilando datos...</p>';
-        return;
-    }
+    const hours = [];
+    const activities = [];
     
-    const maxActivity = Math.max(...Object.values(hourlyData));
-    
-    container.innerHTML = '';
     for (let hour = 8; hour <= 20; hour++) {
-        const activity = hourlyData[hour] || 0;
-        const percentage = maxActivity > 0 ? (activity / maxActivity) * 100 : 0;
-        
-        const hourBar = document.createElement('div');
-        hourBar.className = 'hour-bar';
-        hourBar.innerHTML = `
-            <div class="hour-label">${hour}:00</div>
-            <div class="hour-value" style="height: ${percentage}%">${activity}</div>
-        `;
-        container.appendChild(hourBar);
+        hours.push(`${hour}:00`);
+        activities.push(hourlyData[hour] || 0);
     }
+    
+    // Destroy previous chart
+    if (hoursChartInstance) {
+        hoursChartInstance.destroy();
+    }
+    
+    // Create bar chart
+    hoursChartInstance = new Chart(canvas, {
+        type: 'bar',
+        data: {
+            labels: hours,
+            datasets: [{
+                label: 'Actividad',
+                data: activities,
+                backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                borderColor: 'rgba(102, 126, 234, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
 }
 
 function renderDailyVisits(visits) {
-    const canvas = document.getElementById('visitsCanvas');
+    const canvas = document.getElementById('visitsChart');
     if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    
-    // Set canvas size
-    canvas.width = canvas.offsetWidth;
-    canvas.height = 300;
     
     // Get last 7 days
     const days = [];
@@ -163,7 +222,6 @@ function renderDailyVisits(visits) {
         const date = new Date();
         date.setDate(date.getDate() - i);
         
-        // Format: "Lun 25/9" or "Mar 26/9"
         const dayName = date.toLocaleDateString('es-AR', { weekday: 'short' });
         const dayNum = date.getDate();
         const monthNum = date.getMonth() + 1;
@@ -178,39 +236,47 @@ function renderDailyVisits(visits) {
         counts.push(dayVisits);
     }
     
-    // Simple bar chart
-    const maxCount = Math.max(...counts, 1);
-    const barWidth = canvas.width / days.length;
-    const chartHeight = canvas.height - 60;
+    // Destroy previous chart
+    if (visitsChartInstance) {
+        visitsChartInstance.destroy();
+    }
     
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    counts.forEach((count, index) => {
-        const barHeight = (count / maxCount) * chartHeight;
-        const x = index * barWidth;
-        const y = canvas.height - barHeight - 40;
-        
-        // Draw bar
-        const gradient = ctx.createLinearGradient(0, y, 0, canvas.height - 40);
-        gradient.addColorStop(0, '#667eea');
-        gradient.addColorStop(1, '#764ba2');
-        
-        ctx.fillStyle = gradient;
-        ctx.fillRect(x + 15, y, barWidth - 30, barHeight);
-        
-        // Draw count on top of bar
-        if (count > 0) {
-            ctx.fillStyle = '#2c2c2c';
-            ctx.font = 'bold 16px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(count, x + barWidth / 2, y - 8);
+    // Create line chart
+    visitsChartInstance = new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: days,
+            datasets: [{
+                label: 'Visitas',
+                data: counts,
+                borderColor: 'rgba(102, 126, 234, 1)',
+                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
         }
-        
-        // Draw day label
-        ctx.fillStyle = '#666';
-        ctx.font = '11px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText(days[index], x + barWidth / 2, canvas.height - 15);
     });
 }
 

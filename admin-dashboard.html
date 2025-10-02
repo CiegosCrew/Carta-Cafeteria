@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <!-- Login Screen -->
@@ -79,28 +80,25 @@
                 </div>
             </div>
 
-            <!-- Productos Más Vistos -->
-            <div class="analytics-section">
-                <h2 class="section-title">🔥 Productos Más Agregados al Carrito</h2>
-                <div class="products-list" id="topProducts">
-                    <p class="no-data">No hay datos disponibles aún</p>
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <!-- Productos Más Vistos (Pie Chart) -->
+                <div class="analytics-section chart-half">
+                    <h2 class="section-title">🔥 Productos Más Populares</h2>
+                    <canvas id="productsChart"></canvas>
+                </div>
+
+                <!-- Horarios Pico (Bar Chart) -->
+                <div class="analytics-section chart-half">
+                    <h2 class="section-title">⏰ Horarios de Mayor Actividad</h2>
+                    <canvas id="hoursChart"></canvas>
                 </div>
             </div>
 
-            <!-- Horarios Pico -->
-            <div class="analytics-section">
-                <h2 class="section-title">⏰ Horarios de Mayor Actividad</h2>
-                <div class="hours-chart" id="hoursChart">
-                    <p class="no-data">Recopilando datos...</p>
-                </div>
-            </div>
-
-            <!-- Historial de Visitas -->
+            <!-- Historial de Visitas (Line Chart) -->
             <div class="analytics-section">
                 <h2 class="section-title">📅 Visitas por Día (Últimos 7 días)</h2>
-                <div class="visits-chart" id="visitsChart">
-                    <canvas id="visitsCanvas"></canvas>
-                </div>
+                <canvas id="visitsChart"></canvas>
             </div>
         </div>
 
