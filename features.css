@@ -367,6 +367,119 @@
     grid-column: 1 / -1;
 }
 
+/* Share Button */
+.share-button {
+    position: fixed;
+    top: 20px;
+    right: 150px;
+    z-index: 1001;
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.share-button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Share Menu */
+.share-menu {
+    position: fixed;
+    top: 70px;
+    right: 150px;
+    background: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1003;
+    padding: 15px;
+    min-width: 250px;
+    display: none;
+    animation: slideDown 0.3s ease;
+}
+
+.share-menu.active {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.share-menu-title {
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-secondary);
+    font-size: 1rem;
+}
+
+.share-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.share-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background: var(--color-light);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: var(--color-dark);
+    font-weight: 500;
+}
+
+.share-option:hover {
+    background: var(--color-secondary);
+    color: white;
+    transform: translateX(5px);
+}
+
+.share-option-icon {
+    font-size: 1.5rem;
+    width: 30px;
+    text-align: center;
+}
+
+.share-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 1002;
+    display: none;
+}
+
+.share-overlay.active {
+    display: block;
+}
+
 /* Admin Panel */
 .admin-panel {
     position: fixed;

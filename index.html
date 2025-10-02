@@ -28,6 +28,38 @@
         Compartir
     </button>
     
+    <!-- Share Menu -->
+    <div class="share-overlay" id="shareOverlay"></div>
+    <div class="share-menu" id="shareMenu">
+        <div class="share-menu-title">Compartir en:</div>
+        <div class="share-options">
+            <button class="share-option" onclick="shareOn('whatsapp')">
+                <span class="share-option-icon">💬</span>
+                <span>WhatsApp</span>
+            </button>
+            <button class="share-option" onclick="shareOn('facebook')">
+                <span class="share-option-icon">📘</span>
+                <span>Facebook</span>
+            </button>
+            <button class="share-option" onclick="shareOn('twitter')">
+                <span class="share-option-icon">🐦</span>
+                <span>Twitter / X</span>
+            </button>
+            <button class="share-option" onclick="shareOn('telegram')">
+                <span class="share-option-icon">✈️</span>
+                <span>Telegram</span>
+            </button>
+            <button class="share-option" onclick="shareOn('email')">
+                <span class="share-option-icon">📧</span>
+                <span>Email</span>
+            </button>
+            <button class="share-option" onclick="shareOn('copy')">
+                <span class="share-option-icon">📋</span>
+                <span>Copiar link</span>
+            </button>
+        </div>
+    </div>
+    
     <!-- Cart Button -->
     <button class="cart-button" onclick="toggleCart()" aria-label="Ver carrito">
         🛒

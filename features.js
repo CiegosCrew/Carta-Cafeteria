@@ -185,35 +185,60 @@ function sendProductWhatsApp(item) {
 // ========== SHARE BUTTON ==========
 function setupShareButton() {
     const shareBtn = document.getElementById('shareBtn');
-    if (shareBtn) {
-        shareBtn.addEventListener('click', async () => {
-            const shareData = {
-                title: 'PHOTOMARKET - Carta Digital',
-                text: '¡Mirá la carta de PHOTOMARKET! Cafetería y servicios fotográficos en Mendoza 🍰☕📸',
-                url: window.location.href
-            };
-            
-            try {
-                if (navigator.share) {
-                    await navigator.share(shareData);
-                    showNotification('¡Gracias por compartir!');
-                } else {
-                    // Fallback: copy to clipboard
-                    await navigator.clipboard.writeText(window.location.href);
-                    showNotification('✅ Link copiado al portapapeles');
-                }
-            } catch (err) {
-                if (err.name !== 'AbortError') {
-                    // Try clipboard as fallback
-                    try {
-                        await navigator.clipboard.writeText(window.location.href);
-                        showNotification('✅ Link copiado al portapapeles');
-                    } catch (clipErr) {
-                        showNotification('❌ No se pudo compartir');
-                    }
-                }
-            }
+    const shareMenu = document.getElementById('shareMenu');
+    const shareOverlay = document.getElementById('shareOverlay');
+    
+    if (shareBtn && shareMenu) {
+        shareBtn.addEventListener('click', () => {
+            shareMenu.classList.toggle('active');
+            shareOverlay.classList.toggle('active');
         });
+        
+        shareOverlay.addEventListener('click', () => {
+            shareMenu.classList.remove('active');
+            shareOverlay.classList.remove('active');
+        });
+    }
+}
+
+function shareOn(platform) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent('PHOTOMARKET - Carta Digital');
+    const text = encodeURIComponent('¡Mirá la carta de PHOTOMARKET! Cafetería y servicios fotográficos en Mendoza 🍰☕📸');
+    
+    let shareUrl = '';
+    
+    switch(platform) {
+        case 'whatsapp':
+            shareUrl = `https://wa.me/?text=${text}%20${url}`;
+            break;
+        case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            break;
+        case 'twitter':
+            shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+            break;
+        case 'telegram':
+            shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+            break;
+        case 'email':
+            shareUrl = `mailto:?subject=${title}&body=${text}%20${url}`;
+            break;
+        case 'copy':
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showNotification('✅ Link copiado al portapapeles');
+                document.getElementById('shareMenu').classList.remove('active');
+                document.getElementById('shareOverlay').classList.remove('active');
+            }).catch(() => {
+                showNotification('❌ No se pudo copiar');
+            });
+            return;
+    }
+    
+    if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+        document.getElementById('shareMenu').classList.remove('active');
+        document.getElementById('shareOverlay').classList.remove('active');
     }
 }
 
@@ -423,3 +448,4 @@ window.toggleCart = toggleCart;
 window.sendCartWhatsApp = sendCartWhatsApp;
 window.sendProductWhatsApp = sendProductWhatsApp;
 window.reservarTurno = reservarTurno;
+window.shareOn = shareOn;
