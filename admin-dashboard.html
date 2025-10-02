@@ -36,6 +36,7 @@
         <div class="dashboard-tabs">
             <button class="tab-btn active" onclick="showTab('analytics')">📈 Analytics</button>
             <button class="tab-btn" onclick="showTab('notifications')">🔔 Notificaciones</button>
+            <button class="tab-btn" onclick="showTab('reviews')">⭐ Reseñas</button>
         </div>
 
         <!-- Analytics Tab -->
@@ -132,6 +133,16 @@
                 <h2 class="section-title">📋 Historial de Notificaciones</h2>
                 <div class="notifications-list" id="notificationsList">
                     <p class="no-data">No hay notificaciones enviadas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Tab -->
+        <div class="tab-content" id="reviewsTab">
+            <div class="analytics-section">
+                <h2 class="section-title">⭐ Gestión de Reseñas</h2>
+                <div class="reviews-admin-list" id="reviewsAdminList">
+                    <p class="no-data">No hay reseñas aún</p>
                 </div>
             </div>
         </div>

@@ -357,14 +357,54 @@ function renderReviews() {
         return;
     }
     
-    reviewsDisplay.innerHTML = reviews.map(review => {
+    // Calculate average rating
+    const avgRating = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+    
+    // Show rating summary
+    const summaryHTML = `
+        <div class="reviews-summary">
+            <div class="avg-rating">
+                <div class="avg-number">${avgRating.toFixed(1)}</div>
+                <div class="avg-stars">${'★'.repeat(Math.round(avgRating))}${'☆'.repeat(5 - Math.round(avgRating))}</div>
+                <div class="total-reviews">${reviews.length} reseña${reviews.length !== 1 ? 's' : ''}</div>
+            </div>
+            <div class="rating-bars">
+                ${[5,4,3,2,1].map(star => {
+                    const count = reviews.filter(r => r.rating === star).length;
+                    const percentage = reviews.length > 0 ? (count / reviews.length) * 100 : 0;
+                    return `
+                        <div class="rating-bar-row">
+                            <span>${star}★</span>
+                            <div class="rating-bar">
+                                <div class="rating-bar-fill" style="width: ${percentage}%"></div>
+                            </div>
+                            <span>${count}</span>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        </div>
+    `;
+    
+    reviewsDisplay.innerHTML = summaryHTML + reviews.map(review => {
         const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+        const adminReply = review.adminReply ? `
+            <div class="admin-reply">
+                <div class="admin-reply-header">
+                    <strong>⚙️ Respuesta de PHOTOMARKET:</strong>
+                </div>
+                <p>${review.adminReply.text}</p>
+                <small>${review.adminReply.date}</small>
+            </div>
+        ` : '';
+        
         return `
-            <div class="testimonial-card">
+            <div class="testimonial-card" data-review-id="${review.id}">
                 <div class="testimonial-rating">${stars}</div>
                 <p class="testimonial-text">"${review.comment}"</p>
                 <p class="testimonial-author">- ${review.name}</p>
                 <p style="font-size: 0.85rem; color: #999; margin-top: 10px;">${review.date}</p>
+                ${adminReply}
             </div>
         `;
     }).join('');

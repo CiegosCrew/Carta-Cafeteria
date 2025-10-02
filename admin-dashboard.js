@@ -49,6 +49,10 @@ function showTab(tabName) {
     } else if (tabName === 'notifications') {
         document.getElementById('notificationsTab').classList.add('active');
         document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+    } else if (tabName === 'reviews') {
+        document.getElementById('reviewsTab').classList.add('active');
+        document.querySelector('.tab-btn:nth-child(3)').classList.add('active');
+        loadReviewsAdmin();
     }
 }
 
@@ -294,8 +298,73 @@ function trackProductClick(productName) {
     localStorage.setItem('analyticsData', JSON.stringify(analyticsData));
 }
 
+// ========== REVIEWS MANAGEMENT ==========
+function loadReviewsAdmin() {
+    const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    const container = document.getElementById('reviewsAdminList');
+    
+    if (reviews.length === 0) {
+        container.innerHTML = '<p class="no-data">No hay reseñas aún</p>';
+        return;
+    }
+    
+    container.innerHTML = reviews.map(review => {
+        const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+        const hasReply = review.adminReply;
+        
+        return `
+            <div class="review-admin-card">
+                <div class="review-admin-header">
+                    <div>
+                        <div class="review-rating">${stars}</div>
+                        <strong>${review.name}</strong> - ${review.date}
+                    </div>
+                </div>
+                <p class="review-comment">${review.comment}</p>
+                
+                ${hasReply ? `
+                    <div class="admin-reply-preview">
+                        <strong>Tu respuesta:</strong>
+                        <p>${review.adminReply.text}</p>
+                        <small>${review.adminReply.date}</small>
+                    </div>
+                ` : `
+                    <div class="reply-form">
+                        <textarea id="reply-${review.id}" placeholder="Escribe tu respuesta..." rows="3"></textarea>
+                        <button onclick="replyToReview(${review.id})">Responder</button>
+                    </div>
+                `}
+            </div>
+        `;
+    }).join('');
+}
+
+function replyToReview(reviewId) {
+    const replyText = document.getElementById(`reply-${reviewId}`).value.trim();
+    
+    if (!replyText) {
+        alert('Por favor escribe una respuesta');
+        return;
+    }
+    
+    let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    const review = reviews.find(r => r.id === reviewId);
+    
+    if (review) {
+        review.adminReply = {
+            text: replyText,
+            date: new Date().toLocaleString('es-AR')
+        };
+        
+        localStorage.setItem('reviews', JSON.stringify(reviews));
+        alert('✅ Respuesta publicada');
+        loadReviewsAdmin();
+    }
+}
+
 // Make functions global
 window.showTab = showTab;
 window.logout = logout;
 window.trackVisit = trackVisit;
 window.trackProductClick = trackProductClick;
+window.replyToReview = replyToReview;
