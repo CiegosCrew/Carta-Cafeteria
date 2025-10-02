@@ -8,6 +8,8 @@ function setupDarkMode() {
         themeToggle.innerHTML = savedTheme === 'dark'
             ? '<img src="assets/icons/sun.svg" alt="Claro" class="icon icon-20"/>'
             : '<img src="assets/icons/moon.svg" alt="Oscuro" class="icon icon-20"/>';
+        // Accessibility and state
+        themeToggle.setAttribute('aria-pressed', savedTheme === 'dark' ? 'true' : 'false');
 
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -18,6 +20,7 @@ function setupDarkMode() {
             themeToggle.innerHTML = newTheme === 'dark'
                 ? '<img src="assets/icons/sun.svg" alt="Claro" class="icon icon-20"/>'
                 : '<img src="assets/icons/moon.svg" alt="Oscuro" class="icon icon-20"/>';
+            themeToggle.setAttribute('aria-pressed', newTheme === 'dark' ? 'true' : 'false');
         });
     }
 }
