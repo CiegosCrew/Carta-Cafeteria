@@ -151,6 +151,24 @@
     }
 }
 
+/* Coffee beans falling animation */
+@keyframes fallDown {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
 .particle:nth-child(2n) {
     animation-duration: 20s;
     animation-delay: 2s;

@@ -275,29 +275,19 @@ function initParticles() {
     container.className = 'particles-container';
     container.id = 'particlesContainer';
     
-    // Coffee particles (granos de café)
-    for (let i = 0; i < 15; i++) {
+    // Coffee bean particles (granos de café cayendo)
+    for (let i = 0; i < 20; i++) {
         const particle = document.createElement('div');
-        particle.className = 'coffee-particle';
-        particle.textContent = '☕';
+        particle.className = 'coffee-bean-particle';
+        particle.textContent = '🫘'; // Grano de café
         particle.style.position = 'absolute';
         particle.style.left = Math.random() * 100 + '%';
-        particle.style.fontSize = (Math.random() * 20 + 15) + 'px';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.opacity = '0.6';
-        particle.style.animation = 'float 15s infinite ease-in-out';
+        particle.style.top = '-50px';
+        particle.style.fontSize = (Math.random() * 15 + 10) + 'px';
+        particle.style.animationDelay = Math.random() * 10 + 's';
+        particle.style.opacity = '0.4';
+        particle.style.animation = 'fallDown ' + (Math.random() * 10 + 15) + 's infinite linear';
         container.appendChild(particle);
-    }
-    
-    // Steam particles
-    for (let i = 0; i < 10; i++) {
-        const steam = document.createElement('div');
-        steam.className = 'steam-particle';
-        steam.style.position = 'absolute';
-        steam.style.left = Math.random() * 100 + '%';
-        steam.style.bottom = '0';
-        steam.style.animationDelay = Math.random() * 3 + 's';
-        container.appendChild(steam);
     }
     
     document.body.insertBefore(container, document.body.firstChild);
