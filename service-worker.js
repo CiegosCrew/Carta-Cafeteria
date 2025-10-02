@@ -1,17 +1,17 @@
-const CACHE_NAME = 'photomarket-v1';
+const CACHE_VERSION = 'v3';
+const CACHE_NAME = `photomarket-${CACHE_VERSION}`;
+
+// Pre-cache sólo el shell básico; el resto se cachea dinámicamente
 const urlsToCache = [
   '/Carta-Cafeteria/',
   '/Carta-Cafeteria/index.html',
-  '/Carta-Cafeteria/fotografia.html',
-  '/Carta-Cafeteria/admin-dashboard.html',
   '/Carta-Cafeteria/styles.css',
-  '/Carta-Cafeteria/features.css',
-  '/Carta-Cafeteria/admin-dashboard.css',
+  '/Carta-Cafeteria/icons.css',
   '/Carta-Cafeteria/app.js',
   '/Carta-Cafeteria/features.js',
-  '/Carta-Cafeteria/fotografia.js',
-  '/Carta-Cafeteria/admin-dashboard.js',
-  '/Carta-Cafeteria/data/menu.json'
+  '/Carta-Cafeteria/advanced-features-extended.js',
+  '/Carta-Cafeteria/user-system.js',
+  '/Carta-Cafeteria/translations.js'
 ];
 
 // Install event - cache resources
@@ -23,20 +23,27 @@ self.addEventListener('install', event => {
         return cache.addAll(urlsToCache);
       })
   );
+  // Activar SW nuevo inmediatamente
+  self.skipWaiting();
 });
 
 // Fetch event - serve from cache, fallback to network
+// Estrategia: network-first para HTML/CSS/JS del propio sitio; fallback a cache
 self.addEventListener('fetch', event => {
+  const { request } = event;
+  if (request.method !== 'GET') return;
+
+  const isSameOrigin = request.url.includes('/Carta-Cafeteria/');
+  if (!isSameOrigin) return;
+
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
-    )
+    fetch(request)
+      .then(networkResponse => {
+        const cloned = networkResponse.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(request, cloned));
+        return networkResponse;
+      })
+      .catch(() => caches.match(request))
   );
 });
 
@@ -54,6 +61,8 @@ self.addEventListener('activate', event => {
       );
     })
   );
+  // Tomar control de las páginas abiertas
+  self.clients.claim();
 });
 
 // Push notification event

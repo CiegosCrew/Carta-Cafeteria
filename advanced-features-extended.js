@@ -189,6 +189,7 @@ function initChat() {
                 <button onclick="toggleChat()">×</button>
             </div>
             <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot">
                     <p>¡Hola! Soy el asistente virtual de PHOTOMARKET. ¿En qué puedo ayudarte?</p>
                     <small>${new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}</small>
                 </div>
@@ -203,10 +204,9 @@ function initChat() {
                 <button onclick="sendQuickReply('delivery')"><img src="assets/icons/truck.svg" class="icon icon-16 icon-left" alt="Delivery"/>Delivery</button>
             </div>
         </div>
-    </div>
-    
+    `;
     document.body.appendChild(chatWidget);
-
+}
 function toggleChat() {
     chatOpen = !chatOpen;
     const chatWindow = document.getElementById('chatWindow');
