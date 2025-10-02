@@ -283,8 +283,9 @@ function handleChatKeyPress(event) {
 // ========== INITIALIZE ==========
 
 document.addEventListener('DOMContentLoaded', () => {
-    initChat();
-    
+    // Chat deshabilitado
+    // initChat();
+
     // Check location after 3 seconds
     setTimeout(checkUserLocation, 3000);
 });
@@ -293,9 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
 window.showUpsellingSuggestion = showUpsellingSuggestion;
 window.addUpsellItem = addUpsellItem;
 window.closeUpsellModal = closeUpsellModal;
-window.toggleChat = toggleChat;
-window.sendChatMessage = sendChatMessage;
-window.sendQuickReply = sendQuickReply;
-window.handleChatKeyPress = handleChatKeyPress;
+// window.toggleChat = toggleChat;
+// window.sendChatMessage = sendChatMessage;
+// window.sendQuickReply = sendQuickReply;
+// window.handleChatKeyPress = handleChatKeyPress;
 window.addFeaturedBadge = addFeaturedBadge;
 window.isFeaturedProduct = isFeaturedProduct;
