@@ -78,8 +78,8 @@ function renderMenu(data) {
     menuData = data;
     
     // Render info section
-    document.getElementById('horario').innerHTML = `🕒 ${data.cafeteria.horario}`;
-    document.getElementById('direccion').innerHTML = `📍 ${data.cafeteria.direccion}`;
+    document.getElementById('horario').innerHTML = `<img src="assets/icons/clock.svg" alt="Horario" class="icon icon-18 icon-left"/>${data.cafeteria.horario}`;
+    document.getElementById('direccion').innerHTML = `<img src="assets/icons/pin.svg" alt="Dirección" class="icon icon-18 icon-left"/>${data.cafeteria.direccion}`;
     
     // Render Promos
     const promosGrid = document.getElementById('promos-grid');
