@@ -18,7 +18,6 @@
 .cart-button .icon,
 .settings-button .icon,
 .admin-toggle .icon,
-.theme-toggle .icon,
 #chatWidget .chat-toggle .icon,
 .share-button .icon {
   filter: invert(1) brightness(1.8) drop-shadow(0 1px 0 rgba(0,0,0,.15));
@@ -35,3 +34,6 @@
 /* Utility classes to force icon tone when necessary */
 .icon-white { filter: invert(1) brightness(1.8) !important; }
 .icon-dark { filter: none !important; }
+
+/* Ensure theme toggle icon is dark inside hamburger menu actions */
+.nav-actions .theme-toggle .icon { filter: none !important; }
