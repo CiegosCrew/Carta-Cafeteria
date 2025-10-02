@@ -275,12 +275,29 @@ function initParticles() {
     container.className = 'particles-container';
     container.id = 'particlesContainer';
     
-    for (let i = 0; i < 20; i++) {
+    // Coffee particles (granos de café)
+    for (let i = 0; i < 15; i++) {
         const particle = document.createElement('div');
-        particle.className = 'particle';
+        particle.className = 'coffee-particle';
+        particle.textContent = '☕';
+        particle.style.position = 'absolute';
         particle.style.left = Math.random() * 100 + '%';
+        particle.style.fontSize = (Math.random() * 20 + 15) + 'px';
         particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.opacity = '0.6';
+        particle.style.animation = 'float 15s infinite ease-in-out';
         container.appendChild(particle);
+    }
+    
+    // Steam particles
+    for (let i = 0; i < 10; i++) {
+        const steam = document.createElement('div');
+        steam.className = 'steam-particle';
+        steam.style.position = 'absolute';
+        steam.style.left = Math.random() * 100 + '%';
+        steam.style.bottom = '0';
+        steam.style.animationDelay = Math.random() * 3 + 's';
+        container.appendChild(steam);
     }
     
     document.body.insertBefore(container, document.body.firstChild);

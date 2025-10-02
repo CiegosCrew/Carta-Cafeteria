@@ -150,30 +150,11 @@ function showLocationNotification(distance) {
     if (distance < 0.1) {
         message = `📍 ¡Estás muy cerca! A solo ${distanceM}m del local`;
     } else if (distance < 0.5) {
-        message = `📍 Estás a ${distanceKm}km del local. ¡Pasá a visitarnos!`;
     } else if (distance < 2) {
         message = `📍 Estás a ${distanceKm}km. Hacemos delivery en tu zona 🚚`;
     } else {
         message = `📍 Estás a ${distanceKm}km. Consultá por delivery`;
     }
-    
-    const notification = document.createElement('div');
-    notification.className = 'location-notification';
-    notification.innerHTML = `
-        <div class="location-content">
-            <p>${message}</p>
-            <button onclick="this.parentElement.parentElement.remove()">×</button>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => notification.classList.add('active'), 100);
-    
-    setTimeout(() => {
-        notification.classList.remove('active');
-        setTimeout(() => notification.remove(), 300);
-    }, 8000);
 }
 
 // ========== CHAT WIDGET ==========
