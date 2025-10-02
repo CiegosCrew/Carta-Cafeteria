@@ -1,0 +1,10 @@
+:root {
+  --icon-color: #2c2c2c;
+}
+.icon { display:inline-block; vertical-align:middle; }
+.icon-16 { width:16px; height:16px; }
+.icon-18 { width:18px; height:18px; }
+.icon-20 { width:20px; height:20px; }
+.icon-24 { width:24px; height:24px; }
+.icon-left { margin-right:8px; }
+.icon-right { margin-left:8px; }

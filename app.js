@@ -51,7 +51,7 @@ function createMenuItem(item) {
         
         const btnAddCart = document.createElement('button');
         btnAddCart.className = 'btn-add-cart';
-        btnAddCart.textContent = '🛒 Agregar';
+        btnAddCart.innerHTML = '<img src="assets/icons/cart.svg" alt="Carrito" class="icon icon-18 icon-left"/>Agregar';
         btnAddCart.onclick = () => {
             window.addToCart(item);
             // Track product click
@@ -62,7 +62,7 @@ function createMenuItem(item) {
         
         const btnWhatsApp = document.createElement('button');
         btnWhatsApp.className = 'btn-whatsapp-product';
-        btnWhatsApp.textContent = '💬 Pedir';
+        btnWhatsApp.innerHTML = '<img src="assets/icons/chat.svg" alt="Chat" class="icon icon-18 icon-left"/>Pedir';
         btnWhatsApp.onclick = () => window.sendProductWhatsApp(item);
         
         itemActions.appendChild(btnAddCart);

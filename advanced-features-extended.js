@@ -180,7 +180,7 @@ function initChat() {
     chatWidget.className = 'chat-widget';
     chatWidget.innerHTML = `
         <button class="chat-toggle" onclick="toggleChat()">
-            <span class="chat-icon">💬</span>
+            <img src="assets/icons/chat.svg" alt="Chat" class="icon icon-20"/>
             <span class="chat-badge" id="chatBadge">1</span>
         </button>
         <div class="chat-window" id="chatWindow">

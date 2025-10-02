@@ -218,12 +218,12 @@ function updatePageTranslations() {
 function updateButtonTexts() {
     // Add to cart buttons
     document.querySelectorAll('.btn-add-cart').forEach(btn => {
-        btn.textContent = '🛒 ' + t('addToCart');
+        btn.innerHTML = '<img src="assets/icons/cart.svg" alt="Carrito" class="icon icon-18 icon-left"/>' + t('addToCart');
     });
     
     // Order buttons
     document.querySelectorAll('.btn-whatsapp-product').forEach(btn => {
-        btn.textContent = '💬 ' + t('order');
+        btn.innerHTML = '<img src="assets/icons/chat.svg" alt="Chat" class="icon icon-18 icon-left"/>' + t('order');
     });
     
     // Share button
@@ -238,7 +238,7 @@ function updateButtonTexts() {
     // Install app button
     const installBtns = document.querySelectorAll('[data-install-btn]');
     installBtns.forEach(btn => {
-        btn.textContent = '📱 ' + t('installApp');
+        btn.innerHTML = '<img src="assets/icons/whatsapp.svg" alt="App" class="icon icon-18 icon-left"/>' + t('installApp');
     });
 }
 
@@ -261,17 +261,18 @@ function updateCartTranslations() {
     
     const sendBtn = document.querySelector('.btn-send-whatsapp');
     if (sendBtn) {
-        sendBtn.textContent = '📱 ' + t('sendOrder');
+        sendBtn.innerHTML = '<img src="assets/icons/whatsapp.svg" alt="WhatsApp" class="icon icon-18 icon-left"/>' + t('sendOrder');
     }
     
     const clearBtn = document.querySelector('.btn-clear-cart');
     if (clearBtn) {
-        clearBtn.textContent = '🗑️ ' + t('clearCart');
+        clearBtn.innerHTML = '<img src="assets/icons/trash.svg" alt="Vaciar" class="icon icon-18 icon-left"/>' + t('clearCart');
     }
     
     const payBtn = document.querySelector('.btn-pay-online');
     if (payBtn) {
-        payBtn.textContent = currentLang === 'es' ? '💳 Pagar Online' : '💳 Pay Online';
+        const label = currentLang === 'es' ? 'Pagar Online' : 'Pay Online';
+        payBtn.innerHTML = '<img src="assets/icons/credit-card.svg" alt="Pagar" class="icon icon-18 icon-left"/>' + label;
     }
 }
 

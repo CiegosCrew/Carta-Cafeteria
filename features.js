@@ -5,15 +5,19 @@ function setupDarkMode() {
     
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-        
+        themeToggle.innerHTML = savedTheme === 'dark'
+            ? '<img src="assets/icons/sun.svg" alt="Claro" class="icon icon-20"/>'
+            : '<img src="assets/icons/moon.svg" alt="Oscuro" class="icon icon-20"/>';
+
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            themeToggle.innerHTML = newTheme === 'dark'
+                ? '<img src="assets/icons/sun.svg" alt="Claro" class="icon icon-20"/>'
+                : '<img src="assets/icons/moon.svg" alt="Oscuro" class="icon icon-20"/>';
         });
     }
 }

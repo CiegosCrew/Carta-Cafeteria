@@ -84,7 +84,7 @@ function addToFavorites(product) {
     const exists = currentUser.favorites.find(f => f.nombre === product.nombre);
     
     if (exists) {
-        showNotification('ℹ️ Ya está en favoritos');
+        showNotification('Ya está en favoritos');
         return;
     }
     
@@ -94,7 +94,7 @@ function addToFavorites(product) {
     // Heart particle effect
     createHeartParticle(event.target);
     
-    showNotification('❤️ Agregado a favoritos');
+    showNotification('Agregado a favoritos');
     updateFavoritesUI();
 }
 
@@ -104,7 +104,7 @@ function removeFromFavorites(productName) {
     currentUser.favorites = currentUser.favorites.filter(f => f.nombre !== productName);
     updateUser(currentUser);
     
-    showNotification('💔 Eliminado de favoritos');
+    showNotification('Eliminado de favoritos');
     updateFavoritesUI();
 }
 
@@ -225,10 +225,10 @@ function updateFavoritesUI() {
         if (favBtn && productName) {
             if (isFavorite(productName)) {
                 favBtn.classList.add('active');
-                favBtn.textContent = '❤️';
+                favBtn.innerHTML = '<img src="assets/icons/heart.svg" alt="Favorito" class="icon icon-18"/>';
             } else {
                 favBtn.classList.remove('active');
-                favBtn.textContent = '🤍';
+                favBtn.innerHTML = '<img src="assets/icons/heart-outline.svg" alt="No favorito" class="icon icon-18"/>';
             }
         }
     });

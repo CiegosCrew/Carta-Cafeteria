@@ -42,13 +42,16 @@
     <link rel="stylesheet" href="advanced-features.css">
     <link rel="stylesheet" href="themes-extended.css">
     <link rel="stylesheet" href="user-features.css">
+    <link rel="stylesheet" href="icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Settings Button -->
-    <button class="settings-button" onclick="showSettingsPanel()" aria-label="Configuración">⚙️</button>
+    <button class="settings-button" onclick="showSettingsPanel()" aria-label="Configuración">
+        <img src="assets/icons/gear.svg" alt="Config" class="icon icon-20"/>
+    </button>
     
     <!-- Settings Panel -->
     <div class="settings-overlay" id="settingsOverlay" onclick="hideSettingsPanel()"></div>
@@ -215,7 +218,7 @@
     
     <!-- Cart Button -->
     <button class="cart-button" onclick="toggleCart()" aria-label="Ver carrito">
-        🛒
+        <img src="assets/icons/cart.svg" alt="Carrito" class="icon icon-24"/>
         <span class="cart-count" id="cartCount" style="display: none;">0</span>
     </button>
     
@@ -228,22 +231,22 @@
         <div class="cart-items" id="cartItems"></div>
         <div id="cartTotal"></div>
         <div class="cart-actions">
-            <a href="mercadopago.html" class="btn-pay-online">💳 Pagar Online</a>
-            <button class="btn-send-whatsapp" onclick="sendCartWhatsApp()">📱 Enviar por WhatsApp</button>
-            <button class="btn-clear-cart" onclick="clearCart()">🗑️ Vaciar carrito</button>
+            <a href="mercadopago.html" class="btn-pay-online"><img src="assets/icons/credit-card.svg" alt="Pagar" class="icon icon-18 icon-left"/>Pagar Online</a>
+            <button class="btn-send-whatsapp" onclick="sendCartWhatsApp()"><img src="assets/icons/whatsapp.svg" alt="WhatsApp" class="icon icon-18 icon-left"/>Enviar por WhatsApp</button>
+            <button class="btn-clear-cart" onclick="clearCart()"><img src="assets/icons/trash.svg" alt="Vaciar" class="icon icon-18 icon-left"/>Vaciar carrito</button>
         </div>
     </div>
     
     <!-- Admin Panel -->
     <div class="admin-panel">
-        <button class="admin-toggle" id="adminToggle" title="Panel Admin">⚙️</button>
+        <button class="admin-toggle" id="adminToggle" title="Panel Admin"><img src="assets/icons/gear.svg" alt="Admin" class="icon icon-20"/></button>
     </div>
     
     <!-- Admin Login Modal -->
     <div class="admin-login-overlay" id="adminLoginOverlay"></div>
     <div class="admin-login-modal" id="adminLoginModal">
         <div class="admin-login-header">
-            <h3>🔒 Acceso Administrador</h3>
+            <h3>Acceso Administrador</h3>
             <button class="admin-login-close" id="adminLoginClose">×</button>
         </div>
         <form class="admin-login-form" id="adminLoginForm">
@@ -261,12 +264,12 @@
         <form class="admin-form" id="adminForm">
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
                 <a href="admin-dashboard.html" style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600;">
-                    📊 Abrir Dashboard Completo (Analytics + Notificaciones)
+                    <img src="assets/icons/chart.svg" class="icon icon-18" alt="Dashboard"/> Abrir Dashboard Completo (Analytics + Notificaciones)
                 </a>
             </div>
             
             <p style="color: #666; font-style: italic; margin-bottom: 20px;">
-                ℹ️ Este panel genera el código JSON. Copiá el resultado de la consola (F12) y pegalo en <code>data/menu.json</code>
+                Este panel genera el código JSON. Copiá el resultado de la consola (F12) y pegalo en <code>data/menu.json</code>
             </p>
             
             <label for="adminCategory">Categoría:</label>
@@ -300,7 +303,7 @@
             <div class="decorative-line"></div>
             
             <!-- Dark Mode Toggle -->
-            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema"><img src="assets/icons/moon.svg" alt="Tema" class="icon icon-20"/></button>
             
             <!-- Hamburger Menu Button -->
             <button class="hamburger-menu" id="hamburgerBtn" aria-label="Menú de navegación">
@@ -313,10 +316,10 @@
         <!-- Navigation Menu -->
         <nav class="nav-menu" id="navMenu">
             <ul class="nav-list">
-                <li><a href="index.html" class="nav-link">☕ Cafetería</a></li>
-                <li><a href="fotografia.html" class="nav-link">📸 Servicios Fotográficos</a></li>
-                <li><a href="#ubicacion-section" class="nav-link">📍 Ubicación</a></li>
-                <li><a href="https://wa.me/5492612636244" target="_blank" class="nav-link nav-link-whatsapp">💬 WhatsApp</a></li>
+                <li><a href="index.html" class="nav-link"><img src="assets/icons/coffee.svg" class="icon icon-18 icon-left" alt="Cafetería"/>Cafetería</a></li>
+                <li><a href="fotografia.html" class="nav-link"><img src="assets/icons/camera.svg" class="icon icon-18 icon-left" alt="Fotografía"/>Servicios Fotográficos</a></li>
+                <li><a href="#ubicacion-section" class="nav-link"><img src="assets/icons/pin.svg" class="icon icon-18 icon-left" alt="Ubicación"/>Ubicación</a></li>
+                <li><a href="https://wa.me/5492612636244" target="_blank" class="nav-link nav-link-whatsapp"><img src="assets/icons/chat.svg" class="icon icon-18 icon-left" alt="WhatsApp"/>WhatsApp</a></li>
             </ul>
         </nav>
 
@@ -382,14 +385,14 @@
                 </iframe>
             </div>
             <div class="location-info">
-                <p class="location-address">📍 Peltier 50, local 4</p>
+                <p class="location-address">Peltier 50, local 4</p>
                 <a href="https://maps.app.goo.gl/29FAur44hUeSaCiD7" target="_blank" class="location-link">Ver en Google Maps</a>
             </div>
         </section>
 
         <!-- Testimonials Section -->
         <section class="testimonials-section">
-            <h2 class="testimonials-title">⭐ Lo que dicen nuestros clientes</h2>
+            <h2 class="testimonials-title">Lo que dicen nuestros clientes</h2>
             
             <!-- Review Form -->
             <div class="review-form-container">
@@ -429,7 +432,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="footer-icon">☕</div>
+            <div class="footer-icon"><img src="assets/icons/coffee.svg" alt="Café" class="icon icon-24"/></div>
             <p class="footer-text">Gracias por elegirnos</p>
             <p class="footer-copyright">© 2025 PHOTOMARKET - Todos los derechos reservados</p>
         </footer>
