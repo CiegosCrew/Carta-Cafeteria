@@ -55,29 +55,49 @@ body {
     padding: 40px 20px;
     background-color: var(--color-light);
     border-radius: 10px;
-    margin-bottom: 30px;
     box-shadow: var(--shadow);
     position: relative;
 }
 
+/* Header actions (share + theme) aligned to top-right, mirroring left dots */
+.header-actions {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* When buttons are inside header, avoid fixed positioning */
+.header .share-button,
+.header .theme-toggle {
+    position: static;
+    box-shadow: var(--shadow);
+}
+
+/* Compact circular buttons inside header */
+.header .share-button,
+.header .theme-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header .share-button svg { width: 18px; height: 18px; }
+.header .share-button .share-text { display: none; }
+
+/* Decorative line under header title */
 .decorative-line {
     height: 2px;
     background: linear-gradient(to right, transparent, var(--color-dark), transparent);
     margin: 20px auto;
     max-width: 600px;
     position: relative;
-}
-
-.decorative-line::before,
-.decorative-line::after {
-    content: '';
-    position: absolute;
-    top: -8px;
-    width: 12px;
-    height: 12px;
-    background-image: url('assets/icons/diamond.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
 .decorative-line::before {
@@ -507,15 +527,10 @@ body {
         padding: 15px;
     }
 
-    /* Header controls spacing on tablet/mobile */
+    /* Header controls spacing on tablet/mobile (for fixed instances outside header) */
     .share-button { right: 20px; top: 12px; padding: 8px 14px; }
     .theme-toggle { right: 70px; top: 12px; padding: 6px 10px; }
     .hamburger-menu { top: 12px; right: 12px; }
-    .menu-item { padding: 16px; }
-    .section-title { font-size: 1.3rem; padding: 12px; margin-bottom: 18px; }
-    .subsection-title { font-size: 1.1rem; margin: 18px 0 10px; }
-    .item-actions { gap: 10px; }
-    .btn-add-cart, .btn-whatsapp-product { padding: 10px 12px; }
 }
 
 @media (max-width: 480px) {
