@@ -477,10 +477,7 @@
 
 /* Share Button */
 .share-button {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1001;
+    /* Apariencia únicamente; la posición se define en styles.css para mantener coherencia */
     background: var(--color-accent);
     color: white;
     border: none;
@@ -505,7 +502,7 @@
 .share-menu {
     position: fixed;
     top: 70px;
-    left: 20px;
+    right: 20px;
     background: var(--color-white);
     border-radius: 15px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
