@@ -122,6 +122,19 @@
                         <option value="urgente">⚠️ Urgente</option>
                     </select>
                     
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="checkbox" id="scheduleNotif" onchange="toggleSchedule()">
+                        <label for="scheduleNotif">Programar envío</label>
+                    </div>
+                    
+                    <div id="scheduleFields" style="display: none;">
+                        <label for="scheduleDate">Fecha:</label>
+                        <input type="date" id="scheduleDate">
+                        
+                        <label for="scheduleTime">Hora:</label>
+                        <input type="time" id="scheduleTime">
+                    </div>
+                    
                     <button type="submit">Enviar Notificación</button>
                 </form>
             </div>
@@ -146,6 +159,15 @@
         </div>
     </div>
 
+    <script src="scheduled-notifications.js"></script>
     <script src="admin-dashboard.js"></script>
+    
+    <script>
+        function toggleSchedule() {
+            const checkbox = document.getElementById('scheduleNotif');
+            const fields = document.getElementById('scheduleFields');
+            fields.style.display = checkbox.checked ? 'block' : 'none';
+        }
+    </script>
 </body>
 </html>

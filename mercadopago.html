@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar con Mercado Pago - PHOTOMARKET</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="advanced-features.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">💳 Pago Online</h1>
+            <a href="index.html" class="back-link">← Volver al menú</a>
+        </header>
+
+        <div class="payment-container">
+            <div class="payment-section">
+                <h2 class="section-title">Opciones de Pago</h2>
+                
+                <!-- Mercado Pago QR -->
+                <div class="payment-option">
+                    <div class="payment-icon">📱</div>
+                    <div class="payment-info">
+                        <h3>Pagar con QR de Mercado Pago</h3>
+                        <p>Escaneá el código QR con la app de Mercado Pago</p>
+                        <div class="qr-code-container">
+                            <div class="qr-placeholder">
+                                <p>🔲 Código QR</p>
+                                <small>Configurá tu QR de Mercado Pago aquí</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Link de Pago -->
+                <div class="payment-option">
+                    <div class="payment-icon">🔗</div>
+                    <div class="payment-info">
+                        <h3>Link de Pago</h3>
+                        <p>Generá un link de pago personalizado</p>
+                        <button class="btn-generate-link" onclick="generatePaymentLink()">
+                            Generar Link de Pago
+                        </button>
+                        <div id="paymentLinkResult" class="payment-link-result"></div>
+                    </div>
+                </div>
+
+                <!-- Transferencia -->
+                <div class="payment-option">
+                    <div class="payment-icon">🏦</div>
+                    <div class="payment-info">
+                        <h3>Transferencia Bancaria</h3>
+                        <p>Datos para transferencia:</p>
+                        <div class="bank-details">
+                            <p><strong>CBU/CVU:</strong> <span id="cbu">Configurar en admin</span></p>
+                            <p><strong>Alias:</strong> <span id="alias">PHOTOMARKET.CAFE</span></p>
+                            <p><strong>Titular:</strong> <span id="titular">PHOTOMARKET</span></p>
+                            <button onclick="copyBankDetails()">📋 Copiar datos</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Efectivo -->
+                <div class="payment-option">
+                    <div class="payment-icon">💵</div>
+                    <div class="payment-info">
+                        <h3>Efectivo en el Local</h3>
+                        <p>Pagá cuando retires tu pedido</p>
+                        <p class="address-info">📍 Peltier 50, local 4</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen del Pedido -->
+            <div class="order-summary">
+                <h3>Resumen del Pedido</h3>
+                <div id="orderSummary" class="summary-items"></div>
+                <div class="summary-total">
+                    <span>Total:</span>
+                    <span id="summaryTotal">$0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load cart
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Display order summary
+        function displayOrderSummary() {
+            const summaryContainer = document.getElementById('orderSummary');
+            const totalElement = document.getElementById('summaryTotal');
+            
+            if (cart.length === 0) {
+                summaryContainer.innerHTML = '<p class="empty-cart">No hay items en el carrito</p>';
+                totalElement.textContent = '$0';
+                return;
+            }
+            
+            let total = 0;
+            summaryContainer.innerHTML = cart.map(item => {
+                const itemTotal = item.precio * item.quantity;
+                total += itemTotal;
+                return `
+                    <div class="summary-item">
+                        <span>${item.nombre} x${item.quantity}</span>
+                        <span>$${itemTotal.toLocaleString('es-AR')}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            totalElement.textContent = '$' + total.toLocaleString('es-AR');
+        }
+        
+        // Generate payment link (example)
+        function generatePaymentLink() {
+            const total = cart.reduce((sum, item) => sum + (item.precio * item.quantity), 0);
+            
+            // This is a placeholder. In production, you'd call Mercado Pago API
+            const link = `https://mpago.la/PHOTOMARKET?amount=${total}`;
+            
+            const resultDiv = document.getElementById('paymentLinkResult');
+            resultDiv.innerHTML = `
+                <div class="payment-link-box">
+                    <p><strong>Link generado:</strong></p>
+                    <input type="text" value="${link}" readonly id="paymentLink">
+                    <button onclick="copyPaymentLink()">📋 Copiar</button>
+                    <a href="${link}" target="_blank" class="btn-pay-now">Pagar Ahora</a>
+                </div>
+            `;
+        }
+        
+        // Copy payment link
+        function copyPaymentLink() {
+            const linkInput = document.getElementById('paymentLink');
+            linkInput.select();
+            document.execCommand('copy');
+            alert('✅ Link copiado al portapapeles');
+        }
+        
+        // Copy bank details
+        function copyBankDetails() {
+            const cbu = document.getElementById('cbu').textContent;
+            const alias = document.getElementById('alias').textContent;
+            const titular = document.getElementById('titular').textContent;
+            
+            const details = `CBU/CVU: ${cbu}\nAlias: ${alias}\nTitular: ${titular}`;
+            
+            navigator.clipboard.writeText(details).then(() => {
+                alert('✅ Datos bancarios copiados');
+            });
+        }
+        
+        // Initialize
+        displayOrderSummary();
+    </script>
+
+    <style>
+        .payment-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .payment-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .payment-option {
+            background: var(--color-white);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 20px;
+            align-items: start;
+        }
+        
+        .payment-icon {
+            font-size: 3rem;
+            min-width: 60px;
+        }
+        
+        .payment-info {
+            flex: 1;
+        }
+        
+        .payment-info h3 {
+            margin: 0 0 10px 0;
+            color: var(--color-dark);
+        }
+        
+        .qr-code-container {
+            margin-top: 15px;
+        }
+        
+        .qr-placeholder {
+            background: var(--color-light);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px dashed var(--color-secondary);
+        }
+        
+        .btn-generate-link {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .payment-link-result {
+            margin-top: 15px;
+        }
+        
+        .payment-link-box {
+            background: var(--color-light);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .payment-link-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid var(--color-secondary);
+            border-radius: 5px;
+        }
+        
+        .btn-pay-now {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 25px;
+            background: #009ee3;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .bank-details {
+            background: var(--color-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .bank-details button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .order-summary {
+            background: var(--color-white);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .order-summary h3 {
+            margin: 0 0 20px 0;
+            color: var(--color-dark);
+        }
+        
+        .summary-items {
+            margin-bottom: 20px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-light);
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            padding-top: 15px;
+            border-top: 2px solid var(--color-secondary);
+        }
+        
+        .back-link {
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-option {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>

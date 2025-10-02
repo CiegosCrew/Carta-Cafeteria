@@ -287,29 +287,53 @@ document.getElementById('notificationForm').addEventListener('submit', (e) => {
     const title = document.getElementById('notifTitle').value;
     const message = document.getElementById('notifMessage').value;
     const type = document.getElementById('notifType').value;
+    const isScheduled = document.getElementById('scheduleNotif').checked;
     
-    const notification = {
-        id: Date.now(),
-        title,
-        message,
-        type,
-        date: new Date().toLocaleString('es-AR')
-    };
-    
-    // Save notification
-    notifications.unshift(notification);
-    localStorage.setItem('adminNotifications', JSON.stringify(notifications));
-    
-    // Send to users (save in localStorage for users to see)
-    const userNotifications = JSON.parse(localStorage.getItem('userNotifications')) || [];
-    userNotifications.unshift(notification);
-    localStorage.setItem('userNotifications', JSON.stringify(userNotifications));
-    
-    // Show success
-    alert('✅ Notificación enviada correctamente');
+    if (isScheduled) {
+        // Schedule notification
+        const scheduleDate = document.getElementById('scheduleDate').value;
+        const scheduleTime = document.getElementById('scheduleTime').value;
+        
+        if (!scheduleDate || !scheduleTime) {
+            alert('⚠️ Por favor ingresa fecha y hora');
+            return;
+        }
+        
+        const scheduled = scheduleNotification({
+            title,
+            message,
+            type,
+            scheduledDate: scheduleDate,
+            scheduledTime: scheduleTime
+        });
+        
+        alert(`✅ Notificación programada para ${scheduleDate} a las ${scheduleTime}`);
+    } else {
+        // Send immediately
+        const notification = {
+            id: Date.now(),
+            title,
+            message,
+            type,
+            date: new Date().toLocaleString('es-AR')
+        };
+        
+        // Save notification
+        notifications.unshift(notification);
+        localStorage.setItem('adminNotifications', JSON.stringify(notifications));
+        
+        // Send to users
+        const userNotifications = JSON.parse(localStorage.getItem('userNotifications')) || [];
+        userNotifications.unshift(notification);
+        localStorage.setItem('userNotifications', JSON.stringify(userNotifications));
+        
+        alert('✅ Notificación enviada correctamente');
+    }
     
     // Reset form
     document.getElementById('notificationForm').reset();
+    document.getElementById('scheduleFields').style.display = 'none';
+    document.getElementById('scheduleNotif').checked = false;
     
     // Reload history
     loadNotificationsHistory();

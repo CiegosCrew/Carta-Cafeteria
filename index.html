@@ -39,13 +39,77 @@
     <title>PHOTOMARKET - Carta Digital | Cafetería y Fotografía en Mendoza</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="advanced-features.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
+    <!-- Settings Button -->
+    <button class="settings-button" onclick="showSettingsPanel()" aria-label="Configuración">⚙️</button>
+    
+    <!-- Settings Panel -->
+    <div class="settings-overlay" id="settingsOverlay" onclick="hideSettingsPanel()"></div>
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-header">
+            <h2 class="settings-title" data-i18n="settings">Configuración</h2>
+            <button class="settings-close" onclick="hideSettingsPanel()">×</button>
+        </div>
+        
+        <!-- Language -->
+        <div class="settings-section">
+            <div class="settings-section-title" data-i18n="language">Idioma</div>
+            <select class="language-select" id="languageSelect" onchange="changeLanguage(this.value)">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+        
+        <!-- Font Size -->
+        <div class="settings-section">
+            <div class="settings-section-title" data-i18n="fontSize">Tamaño de Fuente</div>
+            <div class="settings-options">
+                <button class="settings-btn" data-font-size-btn="normal" onclick="setFontSize('normal'); updateSettingsPanelValues()">
+                    <span data-i18n="normal">Normal</span>
+                </button>
+                <button class="settings-btn" data-font-size-btn="large" onclick="setFontSize('large'); updateSettingsPanelValues()">
+                    <span data-i18n="large">Grande</span>
+                </button>
+                <button class="settings-btn" data-font-size-btn="extra-large" onclick="setFontSize('extra-large'); updateSettingsPanelValues()">
+                    <span data-i18n="extraLarge">Extra Grande</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Contrast -->
+        <div class="settings-section">
+            <div class="settings-section-title" data-i18n="contrast">Contraste</div>
+            <div class="settings-options">
+                <button class="settings-btn" data-contrast-btn="normal" onclick="setContrast('normal'); updateSettingsPanelValues()">
+                    <span data-i18n="normal">Normal</span>
+                </button>
+                <button class="settings-btn" data-contrast-btn="high" onclick="setContrast('high'); updateSettingsPanelValues()">
+                    <span data-i18n="highContrast">Alto Contraste</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Theme -->
+        <div class="settings-section">
+            <div class="settings-section-title" data-i18n="theme">Tema</div>
+            <div class="settings-options">
+                <button class="settings-btn" data-theme-btn="light" onclick="setTheme('light'); updateSettingsPanelValues()">
+                    <span data-i18n="light">Claro</span>
+                </button>
+                <button class="settings-btn" data-theme-btn="dark" onclick="setTheme('dark'); updateSettingsPanelValues()">
+                    <span data-i18n="dark">Oscuro</span>
+                </button>
+                <button class="settings-btn" data-theme-btn="auto" onclick="setTheme('auto'); updateSettingsPanelValues()">
+                    <span data-i18n="auto">Automático</span>
+                </button>
+            </div>
+        </div>
+    </div>
     
     <!-- Share Button -->
     <button class="share-button" id="shareBtn">
@@ -130,6 +194,7 @@
         <div class="cart-items" id="cartItems"></div>
         <div id="cartTotal"></div>
         <div class="cart-actions">
+            <a href="mercadopago.html" class="btn-pay-online">💳 Pagar Online</a>
             <button class="btn-send-whatsapp" onclick="sendCartWhatsApp()">📱 Enviar por WhatsApp</button>
             <button class="btn-clear-cart" onclick="clearCart()">🗑️ Vaciar carrito</button>
         </div>
@@ -553,6 +618,9 @@
     }
     </script>
     
+    <script src="translations.js"></script>
+    <script src="accessibility.js"></script>
+    <script src="scheduled-notifications.js"></script>
     <script src="app.js"></script>
     <script src="features.js"></script>
     

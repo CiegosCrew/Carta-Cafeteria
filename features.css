@@ -179,6 +179,7 @@
     gap: 10px;
 }
 
+.btn-pay-online,
 .btn-send-whatsapp,
 .btn-clear-cart {
     padding: 12px;
@@ -188,6 +189,18 @@
     font-weight: 600;
     font-size: 1rem;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.btn-pay-online {
+    background-color: #009ee3;
+    color: white;
+}
+
+.btn-pay-online:hover {
+    background-color: #0084c2;
 }
 
 .btn-send-whatsapp {
