@@ -460,9 +460,16 @@
 }
 
 .share-option-icon {
-    font-size: 1.5rem;
     width: 30px;
-    text-align: center;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-option-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .share-overlay {
