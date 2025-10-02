@@ -10,6 +10,18 @@
     font-family: 'Georgia', 'Times New Roman', serif;
 }
 
+/* Coffee bean particle (antes era emoji 🫘) */
+.coffee-bean-particle {
+    width: 18px; /* tamaño por defecto, se ajusta dinámicamente desde JS */
+    height: 18px;
+    background-image: url('assets/particles/coffee-bean.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: block;
+    opacity: 0.4;
+}
+
 [data-custom-theme="vintage"] .header {
     background: linear-gradient(135deg, #8b6f47, #d4a574);
     border-bottom: 3px solid #3e2723;
@@ -230,9 +242,13 @@
     animation: heartFloat 2s ease-out forwards;
 }
 
-.heart-particle::before {
-    content: '❤️';
-    font-size: 20px;
+/* Reemplazo de emoji por imagen */
+.heart-particle {
+    background-image: url('assets/particles/heart.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: block;
 }
 
 @keyframes heartFloat {

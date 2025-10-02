@@ -279,11 +279,13 @@ function initParticles() {
     for (let i = 0; i < 20; i++) {
         const particle = document.createElement('div');
         particle.className = 'coffee-bean-particle';
-        particle.textContent = '🫘'; // Grano de café
         particle.style.position = 'absolute';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = '-50px';
-        particle.style.fontSize = (Math.random() * 15 + 10) + 'px';
+        // tamaño dinámico de la imagen
+        const size = Math.floor(Math.random() * 15 + 10);
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
         particle.style.animationDelay = Math.random() * 10 + 's';
         particle.style.opacity = '0.4';
         particle.style.animation = 'fallDown ' + (Math.random() * 10 + 15) + 's infinite linear';
