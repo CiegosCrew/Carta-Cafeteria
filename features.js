@@ -395,6 +395,8 @@ function showNotification(message) {
 }
 
 // ========== ADMIN PANEL ==========
+const ADMIN_PASSWORD = 'photomarket2025'; // Cambiá esta contraseña
+
 function setupAdminPanel() {
     const adminToggle = document.getElementById('adminToggle');
     const adminModal = document.getElementById('adminModal');
@@ -403,8 +405,16 @@ function setupAdminPanel() {
     
     if (adminToggle && adminModal) {
         adminToggle.addEventListener('click', () => {
-            adminModal.classList.add('active');
-            adminOverlay.classList.add('active');
+            // Pedir contraseña
+            const password = prompt('🔒 Ingresá la contraseña de administrador:');
+            
+            if (password === ADMIN_PASSWORD) {
+                adminModal.classList.add('active');
+                adminOverlay.classList.add('active');
+                showNotification('✅ Acceso concedido');
+            } else if (password !== null) {
+                showNotification('❌ Contraseña incorrecta');
+            }
         });
         
         adminClose.addEventListener('click', () => {
@@ -423,9 +433,31 @@ function setupAdminPanel() {
     if (adminForm) {
         adminForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            showNotification('Función de admin en desarrollo. Por ahora edita data/menu.json');
-            adminModal.classList.remove('active');
-            adminOverlay.classList.remove('active');
+            
+            const category = document.getElementById('adminCategory').value;
+            const name = document.getElementById('adminName').value;
+            const price = document.getElementById('adminPrice').value;
+            const description = document.getElementById('adminDescription').value;
+            
+            // Crear objeto del producto
+            const product = {
+                nombre: name,
+                precio: parseInt(price)
+            };
+            
+            if (description) {
+                product.descripcion = description;
+            }
+            
+            // Mostrar en consola para que puedas copiar y pegar en menu.json
+            console.log('=== NUEVO PRODUCTO ===');
+            console.log('Categoría:', category);
+            console.log('JSON:', JSON.stringify(product, null, 2));
+            console.log('======================');
+            
+            showNotification(`✅ Producto creado. Abrí la consola (F12) para copiar el JSON y agregarlo a data/menu.json en la categoría "${category}"`);
+            
+            adminForm.reset();
         });
     }
 }
