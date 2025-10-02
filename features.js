@@ -213,7 +213,7 @@ function shareOn(platform) {
             shareUrl = `https://wa.me/?text=${text}%20${url}`;
             break;
         case 'facebook':
-            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            shareUrl = `https://www.facebook.com/dialog/share?app_id=87741124305&href=${url}&display=popup`;
             break;
         case 'twitter':
             shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
