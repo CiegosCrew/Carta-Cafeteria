@@ -8,3 +8,26 @@
 .icon-24 { width:24px; height:24px; }
 .icon-left { margin-right:8px; }
 .icon-right { margin-left:8px; }
+
+/* When icons are black source SVGs, use filter to make them white on dark/colored backgrounds */
+.btn-add-cart .icon,
+.btn-whatsapp-product .icon,
+.btn-send-whatsapp .icon,
+.btn-clear-cart .icon,
+.btn-pay-online .icon,
+.cart-button .icon,
+.settings-button .icon,
+.admin-toggle .icon,
+.theme-toggle .icon,
+#chatWidget .chat-toggle .icon,
+.share-button .icon {
+  filter: invert(1) brightness(1.8);
+}
+
+/* Keep icons dark on light/plain contexts (nav links, info lines, etc.) */
+.nav-link .icon,
+.location-info .icon,
+.info-section .icon,
+.menu-item .icon:not(img) {
+  filter: none;
+}
