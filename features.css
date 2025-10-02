@@ -478,7 +478,7 @@
 /* Share Button */
 .share-button {
     position: fixed;
-    top: 80px;
+    top: 20px;
     left: 20px;
     z-index: 1001;
     background: var(--color-accent);
@@ -492,6 +492,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    width: auto;
+    max-width: 200px;
 }
 
 .share-button:hover {

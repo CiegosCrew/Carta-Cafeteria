@@ -223,9 +223,8 @@
 /* ========== CHAT WIDGET ========== */
 .chat-widget {
     position: fixed;
-    top: 50%;
+    bottom: 160px;
     right: 20px;
-    transform: translateY(-50%);
     z-index: 10000;
 }
 
