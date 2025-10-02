@@ -143,7 +143,13 @@ function renderHourlyActivity() {
 
 function renderDailyVisits(visits) {
     const canvas = document.getElementById('visitsCanvas');
+    if (!canvas) return;
+    
     const ctx = canvas.getContext('2d');
+    
+    // Set canvas size
+    canvas.width = canvas.offsetWidth;
+    canvas.height = 300;
     
     // Get last 7 days
     const days = [];
@@ -152,7 +158,12 @@ function renderDailyVisits(visits) {
     for (let i = 6; i >= 0; i--) {
         const date = new Date();
         date.setDate(date.getDate() - i);
-        const dateStr = date.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit' });
+        
+        // Format: "Lun 25/9" or "Mar 26/9"
+        const dayName = date.toLocaleDateString('es-AR', { weekday: 'short' });
+        const dayNum = date.getDate();
+        const monthNum = date.getMonth() + 1;
+        const dateStr = `${dayName.charAt(0).toUpperCase() + dayName.slice(1, 3)} ${dayNum}/${monthNum}`;
         days.push(dateStr);
         
         const dayVisits = visits.filter(v => {
@@ -166,32 +177,36 @@ function renderDailyVisits(visits) {
     // Simple bar chart
     const maxCount = Math.max(...counts, 1);
     const barWidth = canvas.width / days.length;
+    const chartHeight = canvas.height - 60;
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     counts.forEach((count, index) => {
-        const barHeight = (count / maxCount) * (canvas.height - 40);
+        const barHeight = (count / maxCount) * chartHeight;
         const x = index * barWidth;
-        const y = canvas.height - barHeight - 20;
+        const y = canvas.height - barHeight - 40;
         
         // Draw bar
-        const gradient = ctx.createLinearGradient(0, y, 0, canvas.height);
+        const gradient = ctx.createLinearGradient(0, y, 0, canvas.height - 40);
         gradient.addColorStop(0, '#667eea');
         gradient.addColorStop(1, '#764ba2');
         
         ctx.fillStyle = gradient;
-        ctx.fillRect(x + 10, y, barWidth - 20, barHeight);
+        ctx.fillRect(x + 15, y, barWidth - 30, barHeight);
         
-        // Draw label
+        // Draw count on top of bar
+        if (count > 0) {
+            ctx.fillStyle = '#2c2c2c';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(count, x + barWidth / 2, y - 8);
+        }
+        
+        // Draw day label
         ctx.fillStyle = '#666';
-        ctx.font = '12px Arial';
+        ctx.font = '11px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText(days[index], x + barWidth / 2, canvas.height - 5);
-        
-        // Draw count
-        ctx.fillStyle = '#2c2c2c';
-        ctx.font = 'bold 14px Arial';
-        ctx.fillText(count, x + barWidth / 2, y - 5);
+        ctx.fillText(days[index], x + barWidth / 2, canvas.height - 15);
     });
 }
 
