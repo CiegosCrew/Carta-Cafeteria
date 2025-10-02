@@ -202,7 +202,12 @@ function setupShareButton() {
 }
 
 function shareOn(platform) {
-    const url = encodeURIComponent(window.location.href);
+    // Check if running locally
+    const isLocal = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    // Use GitHub Pages URL if local, otherwise use current URL
+    const actualUrl = isLocal ? 'https://ciegoscrew.github.io/Carta-Cafeteria/' : window.location.href;
+    const url = encodeURIComponent(actualUrl);
     const title = encodeURIComponent('PHOTOMARKET - Carta Digital');
     const text = encodeURIComponent('¡Mirá la carta de PHOTOMARKET! Cafetería y servicios fotográficos en Mendoza 🍰☕📸');
     
@@ -213,7 +218,10 @@ function shareOn(platform) {
             shareUrl = `https://wa.me/?text=${text}%20${url}`;
             break;
         case 'facebook':
-            shareUrl = `https://www.facebook.com/dialog/share?app_id=87741124305&href=${url}&display=popup`;
+            if (isLocal) {
+                showNotification('ℹ️ Facebook solo funciona con el sitio publicado. Compartiendo link de GitHub Pages...');
+            }
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
             break;
         case 'twitter':
             shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
@@ -225,8 +233,10 @@ function shareOn(platform) {
             shareUrl = `mailto:?subject=${title}&body=${text}%20${url}`;
             break;
         case 'copy':
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                showNotification('✅ Link copiado al portapapeles');
+            const copyUrl = isLocal ? 'https://ciegoscrew.github.io/Carta-Cafeteria/' : window.location.href;
+            navigator.clipboard.writeText(copyUrl).then(() => {
+                const msg = isLocal ? '✅ Link de GitHub Pages copiado' : '✅ Link copiado al portapapeles';
+                showNotification(msg);
                 document.getElementById('shareMenu').classList.remove('active');
                 document.getElementById('shareOverlay').classList.remove('active');
             }).catch(() => {
