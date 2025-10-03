@@ -1,24 +1,48 @@
-# 📋 PHOTOMARKET - Carta Digital
+# 📋 PHOTOMARKET - Carta Digital Profesional
 
-Sitio web estático para mostrar la carta de la cafetería PHOTOMARKET.
+Sitio web completo con PWA, sistema de usuarios, chat en vivo, analytics, y más de 50 funcionalidades avanzadas para cafetería y servicios fotográficos.
 
 ## 🚀 Ver en vivo
 
-Una vez subido a GitHub, el sitio estará disponible en:
-```
-https://TU-USUARIO.github.io/NOMBRE-REPOSITORIO/
-```
+**URL del sitio:** https://ciegoscrew.github.io/Carta-Cafeteria/
+
+**Páginas disponibles:**
+- 🏠 Cafetería: https://ciegoscrew.github.io/Carta-Cafeteria/
+- 📸 Fotografía: https://ciegoscrew.github.io/Carta-Cafeteria/fotografia.html
+- 📊 Dashboard Admin: https://ciegoscrew.github.io/Carta-Cafeteria/admin-dashboard.html
+- 💳 Pagos: https://ciegoscrew.github.io/Carta-Cafeteria/mercadopago.html
+
+**Contraseña Admin:** `123pataza`
 
 ## 📁 Estructura del proyecto
 
 ```
 Carta-Cafeteria/
-├── index.html          # Página principal
-├── styles.css          # Estilos CSS
-├── app.js              # Lógica JavaScript
-├── data/
-│   └── menu.json       # Datos del menú (precios, productos)
-└── README.md           # Este archivo
+├── index.html                      # Página principal (Cafetería)
+├── fotografia.html                 # Servicios fotográficos
+├── admin-dashboard.html            # Dashboard administrativo
+├── mercadopago.html               # Página de pagos
+├── styles.css                     # Estilos principales
+├── features.css                   # Estilos de funcionalidades
+├── advanced-features.css          # Estilos avanzados
+├── themes-extended.css            # Temas personalizados
+├── user-features.css              # Estilos de usuario
+├── admin-dashboard.css            # Estilos del dashboard
+├── app.js                         # Lógica principal
+├── features.js                    # Funcionalidades
+├── fotografia.js                  # Lógica de fotografía
+├── admin-dashboard.js             # Lógica del dashboard
+├── translations.js                # Sistema multi-idioma
+├── accessibility.js               # Accesibilidad y temas
+├── user-system.js                 # Sistema de usuarios
+├── advanced-features-extended.js  # Funcionalidades avanzadas
+├── scheduled-notifications.js     # Notificaciones programadas
+├── service-worker.js              # Service Worker PWA
+├── manifest.json                  # Manifest PWA
+├── robots.txt                     # SEO
+├── sitemap.xml                    # Mapa del sitio
+└── data/
+    └── menu.json                  # Datos del menú
 ```
 
 ## ✏️ Cómo editar precios y productos
@@ -134,21 +158,141 @@ Edita `data/menu.json`, sección `cafeteria`:
 }
 ```
 
-## 📱 Características
+## 🎯 Funcionalidades Completas (50+)
 
-- ✅ Diseño responsive (se adapta a móviles y tablets)
+### 📱 PWA (Progressive Web App)
+- ✅ Instalable como app nativa
+- ✅ Funciona offline
+- ✅ Notificaciones push reales
+- ✅ Ícono en pantalla de inicio
+- ✅ Service Worker configurado
+
+### 🌐 Multi-idioma
+- ✅ Español / English
+- ✅ Traducción completa automática
+- ✅ Guarda preferencia del usuario
+
+### 🎨 Temas y Personalización
+- ✅ 6 temas: Claro, Oscuro, Auto, Vintage, Minimalista, Colorido
+- ✅ 3 tamaños de fuente
+- ✅ Alto contraste para accesibilidad
+- ✅ Modo oscuro con botón
+
+### 👤 Sistema de Usuarios
+- ✅ Registro y login
+- ✅ Perfiles personales
+- ✅ Sistema de puntos (1 punto cada $100)
+- ✅ Niveles: Bronze, Silver, Gold, Platinum
+- ✅ Historial de pedidos
+- ✅ Direcciones guardadas
+
+### ❤️ Favoritos
+- ✅ Guardar productos favoritos
+- ✅ Efecto de corazón animado
+- ✅ "Pedir lo de siempre"
+
+### 🛒 Carrito de Compras
+- ✅ Agregar/quitar productos
+- ✅ Ajustar cantidades
+- ✅ Persistente en localStorage
+- ✅ Enviar por WhatsApp
+- ✅ Pagar online
+
+### 💰 Upselling / Cross-selling
+- ✅ Sugerencias automáticas
+- ✅ Descuentos en combos
+- ✅ Modal atractivo
+
+### ⭐ Productos Destacados
+- ✅ Badge "Más Vendido"
+- ✅ Destacados configurables
+
+### 📊 Analytics Completo
+- ✅ Tracking de visitas
+- ✅ Productos más agregados
+- ✅ Horarios pico
+- ✅ Gráficos con Chart.js (Pie, Bar, Line)
+- ✅ Dashboard en tiempo real
+
+### ⭐ Sistema de Reseñas
+- ✅ Calificación con estrellas
+- ✅ Promedio y distribución
+- ✅ Admin puede responder
+- ✅ Barras de rating
+
+### 🔔 Notificaciones
+- ✅ Push notifications
+- ✅ Notificaciones programadas
+- ✅ 4 tipos: Promo, Turno, Info, Urgente
+- ✅ Historial completo
+
+### 💬 Chat en Vivo
+- ✅ Widget flotante
+- ✅ Respuestas automáticas
+- ✅ Botones rápidos
+- ✅ Historial guardado
+
+### 📍 Geolocalización
+- ✅ Detecta ubicación del usuario
+- ✅ Muestra distancia al local
+- ✅ Mensajes personalizados
+
+### 💳 Pagos Online
+- ✅ Mercado Pago (QR y links)
+- ✅ Transferencia bancaria
+- ✅ Efectivo en local
+- ✅ Resumen del pedido
+
+### 🎬 Animaciones y Efectos
+- ✅ Granos de café cayendo (partículas)
+- ✅ Parallax scrolling
+- ✅ Hover effects avanzados
+- ✅ Scroll reveal
+- ✅ Stagger animations
+- ✅ Confetti y corazones
+
+### 🔍 SEO Avanzado
+- ✅ Meta tags completos
+- ✅ Open Graph (Facebook)
+- ✅ Twitter Cards
+- ✅ Schema.org (Restaurant)
+- ✅ robots.txt
+- ✅ sitemap.xml
+
+### ♿ Accesibilidad
+- ✅ Navegación por teclado
+- ✅ ARIA labels
+- ✅ Alto contraste
+- ✅ Tamaños de fuente ajustables
+
+### 📱 Compartir en Redes
+- ✅ WhatsApp, Facebook, Twitter, Telegram
+- ✅ Email y copiar link
+- ✅ Logos oficiales
+
+### 🎯 Otras Funcionalidades
+- ✅ Diseño responsive
 - ✅ Buscador en tiempo real
-- ✅ Precios editables desde JSON
-- ✅ Animaciones suaves
-- ✅ Tipografía elegante
-- ✅ Optimizado para SEO
+- ✅ Modo kiosco
+- ✅ Generador de JSON
+- ✅ Panel admin protegido
 
 ## 🛠️ Tecnologías
 
-- HTML5
-- CSS3 (con variables CSS)
-- JavaScript (Vanilla)
-- Google Fonts (Playfair Display + Lato)
+- **Frontend:** HTML5, CSS3, JavaScript ES6
+- **Gráficos:** Chart.js
+- **PWA:** Service Workers, Web Manifest
+- **Fuentes:** Google Fonts (Playfair Display + Lato)
+- **Hosting:** GitHub Pages
+- **Control de versiones:** Git
+
+## 📊 Estadísticas del Proyecto
+
+- **Archivos totales:** 25+
+- **Líneas de código:** ~7,000+
+- **Funcionalidades:** 50+
+- **Temas:** 6
+- **Idiomas:** 2 (ES/EN)
 
 ## 📞 Soporte
 
