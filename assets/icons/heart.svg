@@ -1,1 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#e63946" d="M12 21s-6.716-4.158-9.373-7.134C.57 11.59.53 8.36 2.343 6.546 4.156 4.733 7.39 4.77 9.2 6.58L12 9.38l2.8-2.8c1.81-1.81 5.044-1.847 6.857-.034 1.814 1.814 1.775 5.045-.284 7.32C18.716 16.842 12 21 12 21z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C4A57B"/>
+      <stop offset="50%" style="stop-color:#E8C4A0"/>
+      <stop offset="100%" style="stop-color:#A67C52"/>
+    </linearGradient>
+    <filter id="heartGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Forma principal del corazón -->
+  <path fill="url(#heartGradient)" d="M12 21s-6.716-4.158-9.373-7.134C.57 11.59.53 8.36 2.343 6.546 4.156 4.733 7.39 4.77 9.2 6.58L12 9.38l2.8-2.8c1.81-1.81 5.044-1.847 6.857-.034 1.814 1.814 1.775 5.045-.284 7.32C18.716 16.842 12 21 12 21z" filter="url(#heartGlow)"/>
+
+  <!-- Brillo interno -->
+  <path fill="#F5E6D3" d="M12 19.5c-.828 0-1.5-.672-1.5-1.5 0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5c0 .828-.672 1.5-1.5 1.5z" opacity="0.6"/>
+
+  <!-- Detalles del corazón -->
+  <path fill="#8B6F47" d="M9 7.5c.5-.5 1.5-.5 2 0L12 8.5l1-1c.5-.5 1.5-.5 2 0s.5 1.5 0 2l-3 3c-.5.5-1.5.5-2 0l-3-3c-.5-.5-.5-1.5 0-2s1.5-.5 2 0z" opacity="0.3"/>
+</svg>

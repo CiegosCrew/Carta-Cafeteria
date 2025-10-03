@@ -1,1 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="#2c2c2c" d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-2 9H6V9h12v2zm0-4H6V5h12v2zm-5 8H6v-2h7v2z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="chatGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C4A57B"/>
+      <stop offset="50%" style="stop-color:#8B6F47"/>
+      <stop offset="100%" style="stop-color:#6D4C41"/>
+    </linearGradient>
+    <filter id="chatGlow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Burbuja de chat principal -->
+  <path fill="url(#chatGradient)" d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" filter="url(#chatGlow)"/>
+
+  <!-- Burbujas de diálogo internas -->
+  <ellipse cx="8" cy="9" rx="3" ry="1.5" fill="#E8C4A0" opacity="0.8"/>
+  <ellipse cx="12" cy="12" rx="4" ry="1.8" fill="#E8C4A0" opacity="0.7"/>
+  <ellipse cx="7" cy="15" rx="2.5" ry="1.2" fill="#E8C4A0" opacity="0.6"/>
+
+  <!-- Indicador de escritura (puntos) -->
+  <g fill="#A67C52" opacity="0.8">
+    <circle cx="16" cy="15" r="0.8"/>
+    <circle cx="17.5" cy="15" r="0.8">
+      <animate attributeName="r" values="0.8;1.2;0.8" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="19" cy="15" r="0.8">
+      <animate attributeName="r" values="0.8;1.2;0.8" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

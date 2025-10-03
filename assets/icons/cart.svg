@@ -1,1 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="#2c2c2c" d="M7 4h-2l-1 2h-2v2h2l3.6 7.59-1.35 2.45A2 2 0 0 0 8 20h10v-2H8.42a.25.25 0 0 1-.22-.37L9 15h8a2 2 0 0 0 1.8-1.1l3.58-6.49A1 1 0 0 0 21.5 6H6.21l.94-2zM7 22a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="cartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B6F47"/>
+      <stop offset="50%" style="stop-color:#C4A57B"/>
+      <stop offset="100%" style="stop-color:#6D4C41"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Cuerpo del carrito -->
+  <path fill="url(#cartGradient)" d="M7 4V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4z"/>
+
+  <!-- Asa del carrito -->
+  <path fill="url(#cartGradient)" d="M21 8v9a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V8h4z"/>
+
+  <!-- Mango superior -->
+  <path fill="#A67C52" d="M8 3h8v1H8V3z"/>
+
+  <!-- Ruedas -->
+  <circle cx="6" cy="21" r="2" fill="#5D3E2A"/>
+  <circle cx="6" cy="21" r="1.2" fill="#3E2723"/>
+  <circle cx="18" cy="21" r="2" fill="#5D3E2A"/>
+  <circle cx="18" cy="21" r="1.2" fill="#3E2723"/>
+
+  <!-- Ejes -->
+  <line x1="4" y1="21" x2="8" y2="21" stroke="#3E2723" stroke-width="0.5"/>
+  <line x1="16" y1="21" x2="20" y2="21" stroke="#3E2723" stroke-width="0.5"/>
+
+  <!-- Detalles del carrito -->
+  <path fill="#E8C4A0" d="M9 10h6v2H9v-2z" opacity="0.8"/>
+  <path fill="#E8C4A0" d="M9 13h6v2H9v-2z" opacity="0.6"/>
+  <path fill="#E8C4A0" d="M9 16h4v1H9v-1z" opacity="0.4"/>
+</svg>
