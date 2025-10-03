@@ -62,6 +62,8 @@ function createMenuItem(item) {
         
         const btnWhatsApp = document.createElement('button');
         btnWhatsApp.className = 'btn-whatsapp-product';
+        btnWhatsApp.setAttribute('data-product-name', item.nombre);
+        btnWhatsApp.setAttribute('data-product-price', item.precio.toLocaleString('es-AR'));
         btnWhatsApp.innerHTML = '<img src="assets/icons/chat.svg" alt="Chat" class="icon icon-18 icon-left"/>Pedir';
         btnWhatsApp.onclick = () => window.sendProductWhatsApp(item);
         
