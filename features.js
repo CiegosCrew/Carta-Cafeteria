@@ -705,6 +705,7 @@ function updateUserButton() {
 
 // ========== INITIALIZE ==========
 document.addEventListener('DOMContentLoaded', () => {
+    setupDarkMode();
     trackVisit();
     checkUserNotifications();
     updateUserButton();
