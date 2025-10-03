@@ -1,3 +1,10 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9ZM12 13C11.17 13 10.5 12.33 10.5 11.5C10.5 10.67 11.17 10 12 10C12.83 10 13.5 10.67 13.5 11.5C13.5 12.33 12.83 13 12 13ZM20 5H18.27L16.27 3H7.73L5.73 5H4C2.9 5 2 5.9 2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7C22 5.9 21.1 5 20 5ZM20 17H4V7H8.05L10.05 5H13.95L15.95 7H20V17Z" fill="#6C5D4F"/>
+  <!-- Cámara Sharp Style - Material Design -->
+  <path d="M9 3L7.17 5H4C2.9 5 2 5.9 2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7C22 5.9 21.1 5 20 5H16.83L15 3H9ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17Z" fill="#6C5D4F" stroke="#6C5D4F" stroke-width="0.5"/>
+  <!-- Lente circular -->
+  <circle cx="12" cy="12" r="3.5" fill="#8B6F47" stroke="#6C5D4F" stroke-width="0.3"/>
+  <!-- Punto central del lente -->
+  <circle cx="12" cy="12" r="1" fill="#A67C52"/>
+  <!-- Flash -->
+  <rect x="16" y="7" width="2" height="1" fill="#C4A57B"/>
 </svg>

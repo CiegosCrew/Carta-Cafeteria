@@ -1,3 +1,6 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.62L12 2L9.19 8.62L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#DAA063"/>
+  <!-- Estrella Sharp Style - Material Design -->
+  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.62L12 2L9.19 8.62L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#DAA063" stroke="#B8956A" stroke-width="0.3"/>
+  <!-- Brillo interno -->
+  <path d="M12 15C10.89 15 10 14.1 10 13C10 11.9 10.89 10 12 10C13.11 10 14 10.89 14 12C14 13.1 13.11 15 12 15Z" fill="#F5E6D3" opacity="0.6"/>
 </svg>
