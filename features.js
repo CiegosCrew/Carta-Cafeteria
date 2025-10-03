@@ -639,25 +639,108 @@ function getNotifColor(type) {
         info: '#666',
         urgente: '#ff4444'
     };
-    return colors[type] || '#667eea';
+    return colors[type] || '#666';
 }
 
-// ========== INITIALIZE ALL FEATURES ==========
+// ========== USER AUTHENTICATION ==========
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('currentUser')) || null;
+}
+
+function handleUserClick() {
+    const currentUser = getCurrentUser();
+    
+    if (currentUser) {
+        // User is logged in, show user menu
+        showUserMenu();
+    } else {
+        // User not logged in, redirect to auth page
+        window.location.href = 'auth.html';
+    }
+}
+
+function showUserMenu() {
+    const currentUser = getCurrentUser();
+    
+    const menu = `
+        <div style="padding: 15px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); position: absolute; top: 60px; right: 80px; min-width: 200px; z-index: 1000;">
+            <div style="padding-bottom: 10px; border-bottom: 2px solid #8fbc8f; margin-bottom: 10px;">
+                <strong>${currentUser.name}</strong>
+                <div style="font-size: 0.85rem; color: #666;">${currentUser.email}</div>
+                <div style="font-size: 0.85rem; color: #667eea; margin-top: 5px;">
+                    Nivel: ${currentUser.level} | ${currentUser.points} pts
+                </div>
+            </div>
+            <button onclick="viewProfile()" style="width: 100%; padding: 8px; margin: 5px 0; background: #8fbc8f; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Mi Perfil
+            </button>
+            <button onclick="viewOrders()" style="width: 100%; padding: 8px; margin: 5px 0; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Mis Pedidos
+            </button>
+            <button onclick="logout()" style="width: 100%; padding: 8px; margin: 5px 0; background: #ff4444; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Cerrar Sesión
+            </button>
+        </div>
+    `;
+    
+    // Remove existing menu
+    const existingMenu = document.querySelector('.user-dropdown-menu');
+    if (existingMenu) {
+        existingMenu.remove();
+        return;
+    }
+    
+    const menuDiv = document.createElement('div');
+    menuDiv.className = 'user-dropdown-menu';
+    menuDiv.innerHTML = menu;
+    document.body.appendChild(menuDiv);
+    
+    // Close menu when clicking outside
+    setTimeout(() => {
+        document.addEventListener('click', function closeMenu(e) {
+            if (!e.target.closest('.user-dropdown-menu') && !e.target.closest('.user-account-btn')) {
+                menuDiv.remove();
+                document.removeEventListener('click', closeMenu);
+            }
+        });
+    }, 100);
+}
+
+function viewProfile() {
+    alert('Funcionalidad de perfil en desarrollo');
+}
+
+function viewOrders() {
+    const currentUser = getCurrentUser();
+    if (currentUser.orderHistory && currentUser.orderHistory.length > 0) {
+        console.log('Pedidos:', currentUser.orderHistory);
+        alert(`Tenés ${currentUser.orderHistory.length} pedido(s). Ver consola (F12) para detalles.`);
+    } else {
+        alert('No tenés pedidos aún');
+    }
+}
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    location.reload();
+}
+
+function updateUserButton() {
+    const currentUser = getCurrentUser();
+    const userBtn = document.getElementById('userAccountBtn');
+    const userAvatar = document.getElementById('userAvatar');
+    
+    if (currentUser && userBtn) {
+        userBtn.classList.add('logged-in');
+        userAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+    }
+}
+
+// ========== INITIALIZE ==========
 document.addEventListener('DOMContentLoaded', () => {
-    setupDarkMode();
-    setupScrollAnimations();
-    updateCartCount();
-    renderCart();
-    setupShareButton();
-    setupAdminPanel();
-    setupReviewForm();
-    renderReviews();
-    
-    // Track visit
     trackVisit();
-    
-    // Check for notifications
     checkUserNotifications();
+    updateUserButton();
 });
 
 // ========== APPOINTMENT BOOKING ==========
@@ -677,3 +760,7 @@ window.sendCartWhatsApp = sendCartWhatsApp;
 window.sendProductWhatsApp = sendProductWhatsApp;
 window.reservarTurno = reservarTurno;
 window.shareOn = shareOn;
+window.handleUserClick = handleUserClick;
+window.viewProfile = viewProfile;
+window.viewOrders = viewOrders;
+window.logout = logout;

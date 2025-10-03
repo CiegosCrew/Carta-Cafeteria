@@ -529,33 +529,9 @@
 }
 
 .share-menu-title {
-    font-weight: 600;
-    color: var(--color-dark);
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 2px solid var(--color-secondary);
-    font-size: 1rem;
-}
-
-.share-options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.share-option {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 15px;
-    background: var(--color-light);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-    color: var(--color-dark);
-    font-weight: 500;
 }
 
 .share-option:hover {
