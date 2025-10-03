@@ -1,10 +1,38 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Papelera Sharp Style - Material Design -->
+  <!-- Papelera linda estilo cafetería -->
+  <defs>
+    <linearGradient id="trashGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C4A57B"/>
+      <stop offset="50%" style="stop-color:#A67C52"/>
+      <stop offset="100%" style="stop-color:#8B6F47"/>
+    </linearGradient>
+  </defs>
+
   <!-- Contenedor principal -->
-  <path d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z" fill="#6C5D4F"/>
-  <!-- Línea superior -->
-  <rect x="7" y="8" width="10" height="1" fill="#8B6F47" opacity="0.6"/>
+  <path d="M6 7H8V19C8 20.1 8.9 21 10 21H14C15.1 21 16 20.1 16 19V7H18V19C18 21.2 16.2 23 14 23H10C7.8 23 6 21.2 6 19V7Z" fill="url(#trashGradient)" stroke="#6C5D4F" stroke-width="0.5"/>
+
+  <!-- Tapa de la papelera -->
+  <path d="M4 7H20V9C20 10.1 19.1 11 18 11H6C4.9 11 4 10.1 4 9V7Z" fill="#A67C52"/>
+  <rect x="5" y="8" width="14" height="1" fill="#8B6F47" opacity="0.6"/>
+
   <!-- Manijas laterales -->
-  <rect x="9" y="2" width="1" height="3" fill="#A67C52" opacity="0.5"/>
-  <rect x="14" y="2" width="1" height="3" fill="#A67C52" opacity="0.5"/>
+  <path d="M7 5 Q8 4 9 5 L9 7" stroke="#C4A57B" stroke-width="1.5" fill="none"/>
+  <path d="M15 5 Q16 4 17 5 L17 7" stroke="#C4A57B" stroke-width="1.5" fill="none"/>
+
+  <!-- Pequeños detalles -->
+  <circle cx="9" cy="5.5" r="0.5" fill="#A55725"/>
+  <circle cx="15" cy="5.5" r="0.5" fill="#A55725"/>
+
+  <!-- Papeles arrugados dentro -->
+  <g opacity="0.4">
+    <path d="M9 12 Q10 11 11 12 Q10 13 9 12" fill="#E8C4A0"/>
+    <path d="M11 14 Q12 13 13 14 Q12 15 11 14" fill="#E8C4A0"/>
+    <path d="M13 16 Q14 15 15 16 Q14 17 13 16" fill="#E8C4A0"/>
+  </g>
+
+  <!-- Línea de sombra -->
+  <ellipse cx="12" cy="22" rx="6" ry="1.5" fill="#5D3E2A" opacity="0.2"/>
+
+  <!-- Efecto de apertura sutil -->
+  <animate attributeName="d" values="M4 7H20V9C20 10.1 19.1 11 18 11H6C4.9 11 4 10.1 4 9V7Z;M4 7H20V8.5C20 9.3 19.3 10 18.5 10H5.5C4.7 10 4 9.3 4 8.5V7Z" dur="3s" repeatCount="indefinite"/>
 </svg>

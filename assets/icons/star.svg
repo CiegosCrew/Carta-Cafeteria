@@ -1,6 +1,47 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Estrella Sharp Style - Material Design -->
-  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.62L12 2L9.19 8.62L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#DAA063" stroke="#B8956A" stroke-width="0.3"/>
+  <!-- Estrella hermosa estilo cafetería -->
+  <defs>
+    <radialGradient id="starGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#F5E6D3"/>
+      <stop offset="30%" style="stop-color:#E8C4A0"/>
+      <stop offset="70%" style="stop-color:#DAA063"/>
+      <stop offset="100%" style="stop-color:#B8956A"/>
+    </radialGradient>
+    <filter id="starGlow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Estrella principal de 5 puntas -->
+  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="url(#starGradient)" filter="url(#starGlow)" stroke="#A67C52" stroke-width="0.3"/>
+
   <!-- Brillo interno -->
-  <path d="M12 15C10.89 15 10 14.1 10 13C10 11.9 10.89 10 12 10C13.11 10 14 10.89 14 12C14 13.1 13.11 15 12 15Z" fill="#F5E6D3" opacity="0.6"/>
+  <path d="M12 6L14.5 10.5L19.5 11L16.5 14L17.5 19L12 16.5L6.5 19L7.5 14L4.5 11L9.5 10.5L12 6Z" fill="#FFF3E0" opacity="0.6"/>
+
+  <!-- Centro brillante -->
+  <circle cx="12" cy="12" r="2" fill="#F8F5F0" opacity="0.8"/>
+  <circle cx="12" cy="12" r="1" fill="#E8C4A0"/>
+
+  <!-- Destellos mágicos -->
+  <g opacity="0.8">
+    <path d="M8 8 L9 7 L10 8 L9 9 Z" fill="#FFF3E0">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M16 8 L17 7 L18 8 L17 9 Z" fill="#FFF3E0">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M12 4 L13 3 L14 4 L13 5 Z" fill="#FFF3E0">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Efecto de brillo pulsante -->
+  <circle cx="12" cy="12" r="3" fill="none" stroke="#DAA063" stroke-width="0.5" opacity="0.6">
+    <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+  </circle>
 </svg>

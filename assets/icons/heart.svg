@@ -1,6 +1,44 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Corazón Sharp Style - Material Design -->
-  <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z" fill="#A55725" stroke="#8B6F47" stroke-width="0.3"/>
-  <!-- Brillo interno -->
-  <path d="M12 19.1C11.2 18.5 9.8 16.9 9.8 16.9C8.2 15.3 7 13.8 7 12.2C7 10.6 8.6 9 10.2 9C11.8 9 13.4 10.6 13.4 12.2C13.4 13.8 12.2 15.3 10.6 16.9C10.6 16.9 9.2 18.5 12 19.1Z" fill="#C4A57B" opacity="0.4"/>
+  <!-- Corazón lindo estilo cafetería -->
+  <defs>
+    <radialGradient id="heartGradient" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#E8C4A0"/>
+      <stop offset="40%" style="stop-color:#D4A574"/>
+      <stop offset="100%" style="stop-color:#A55725"/>
+    </radialGradient>
+    <filter id="heartGlow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Forma principal del corazón -->
+  <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z" fill="url(#heartGradient)" filter="url(#heartGlow)"/>
+
+  <!-- Brillo interno cremoso -->
+  <path d="M12 18.5C10.5 17.5 9 15.5 9 15.5C7.5 14 7 12.5 7 11.5C7 9.5 8.5 8 10.5 8C12.5 8 14 9.5 14 11.5C14 12.5 13.5 14 12 15.5C12 15.5 10.5 17.5 12 18.5Z" fill="#F5E6D3" opacity="0.6"/>
+
+  <!-- Vapor de café saliendo del corazón -->
+  <g opacity="0.7">
+    <path d="M9 6 Q10 4 11 6" stroke="#E8C4A0" stroke-width="1.5" fill="none">
+      <animate attributeName="d" values="M9 6 Q10 4 11 6;M9 6 Q10 3 11 6" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M13 6 Q14 4 15 6" stroke="#E8C4A0" stroke-width="1.2" fill="none">
+      <animate attributeName="d" values="M13 6 Q14 4 15 6;M13 6 Q14 3 15 6" dur="2.2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Pequeñas burbujas de amor -->
+  <circle cx="8" cy="8" r="0.8" fill="#F8F5F0" opacity="0.8">
+    <animate attributeName="cy" values="8;6;8" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="16" cy="9" r="0.6" fill="#F8F5F0" opacity="0.6">
+    <animate attributeName="cy" values="9;7;9" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Detalle del centro -->
+  <ellipse cx="12" cy="12" rx="2" ry="1.5" fill="#C4A57B" opacity="0.4"/>
 </svg>

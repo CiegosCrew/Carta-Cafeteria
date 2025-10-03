@@ -1,9 +1,38 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Ubicación Sharp Style - Material Design -->
-  <!-- Pin principal -->
-  <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#6C5D4F" stroke="#8B6F47" stroke-width="0.3"/>
-  <!-- Centro del pin -->
-  <circle cx="12" cy="9" r="2.5" fill="#A67C52" opacity="0.8"/>
-  <!-- Punto central -->
-  <circle cx="12" cy="9" r="1" fill="#C4A57B"/>
+  <!-- Pin elegante estilo cafetería -->
+  <defs>
+    <radialGradient id="pinGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#C4A57B"/>
+      <stop offset="50%" style="stop-color:#A67C52"/>
+      <stop offset="100%" style="stop-color:#8B6F47"/>
+    </radialGradient>
+    <linearGradient id="pinBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6C5D4F"/>
+      <stop offset="100%" style="stop-color:#5D3E2A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base del pin -->
+  <ellipse cx="12" cy="21" rx="6" ry="2" fill="url(#pinBase)" opacity="0.3"/>
+
+  <!-- Pin principal elegante -->
+  <path d="M12 2C8.7 2 6 4.7 6 8C6 12.5 12 22 12 22C12 22 18 12.5 18 8C18 4.7 15.3 2 12 2Z" fill="url(#pinGradient)" stroke="#6C5D4F" stroke-width="0.5"/>
+
+  <!-- Centro brillante del pin -->
+  <circle cx="12" cy="8" r="3" fill="#F5E6D3" opacity="0.9"/>
+  <circle cx="12" cy="8" r="2" fill="url(#pinGradient)" opacity="0.6"/>
+  <circle cx="12" cy="8" r="1" fill="#E8C4A0"/>
+
+  <!-- Destello elegante -->
+  <ellipse cx="10.5" cy="6.5" rx="1" ry="0.8" fill="#FFF3E0" opacity="0.8"/>
+
+  <!-- Pequeñas ondas alrededor -->
+  <circle cx="12" cy="8" r="4" fill="none" stroke="#A67C52" stroke-width="0.3" opacity="0.4"/>
+  <circle cx="12" cy="8" r="5.5" fill="none" stroke="#A67C52" stroke-width="0.2" opacity="0.3"/>
+
+  <!-- Detalle del pin -->
+  <rect x="11.7" y="4" width="0.6" height="2" fill="#8B6F47" opacity="0.6"/>
+
+  <!-- Sombra sutil -->
+  <ellipse cx="12" cy="22" rx="4" ry="1" fill="#5D3E2A" opacity="0.2"/>
 </svg>
