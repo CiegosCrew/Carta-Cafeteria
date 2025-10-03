@@ -1,25 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ícono de WhatsApp perfecto y moderno -->
   <defs>
+    <!-- Gradiente verde WhatsApp -->
     <linearGradient id="whatsappGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#7FD99F"/>
       <stop offset="50%" style="stop-color:#5BC885"/>
       <stop offset="100%" style="stop-color:#4CAF50"/>
     </linearGradient>
-    <filter id="whatsappGlow">
-      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <!-- Efecto de brillo -->
+    <filter id="whatsappGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#4CAF50" flood-opacity="0.3"/>
     </filter>
   </defs>
 
-  <!-- Fondo circular elegante -->
-  <circle cx="16" cy="16" r="15" fill="url(#whatsappGradient)" filter="url(#whatsappGlow)"/>
+  <!-- Círculo de fondo -->
+  <circle cx="12" cy="12" r="11" fill="url(#whatsappGradient)" stroke="#388E3C" stroke-width="0.5" filter="url(#whatsappGlow)"/>
 
-  <!-- Icono principal de WhatsApp -->
-  <path fill="#FFFFFF" d="M16 0C7.164 0 0 7.163 0 16c0 2.826.736 5.585 2.138 8.024L.07 31.765l7.958-2.087A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333c-2.547 0-5.042-.726-7.21-2.098l-.517-.327-5.363 1.407 1.43-5.223-.358-.536A13.276 13.276 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.308-9.952c-.4-.2-2.37-1.17-2.738-1.303-.367-.134-.634-.2-.9.2-.268.4-1.035 1.303-1.27 1.57-.233.267-.467.3-.867.1-.4-.2-1.687-.622-3.213-1.984-1.188-1.06-1.99-2.37-2.223-2.77-.233-.4-.025-.617.175-.816.18-.18.4-.467.6-.7.2-.234.267-.4.4-.667.134-.267.067-.5-.033-.7-.1-.2-.9-2.17-1.234-2.97-.325-.78-.655-.674-.9-.687-.233-.012-.5-.015-.767-.015s-.7.1-1.067.5c-.367.4-1.4 1.37-1.4 3.337s1.433 3.87 1.633 4.137c.2.267 2.817 4.3 6.825 6.033.954.413 1.7.66 2.28.845.958.304 1.83.26 2.52.158.768-.115 2.37-.97 2.703-1.905.334-.936.334-1.738.234-1.905-.1-.167-.367-.267-.767-.467z"/>
+  <!-- Ícono de teléfono -->
+  <path d="M17 14L15.59 12.59L13.41 14.76L14.76 16.11L17 14ZM17 10V8H15V10H17ZM17 6H15V4H17V6ZM9 14L10.41 15.41L12.59 13.24L11.24 11.89L9 14ZM8 10H10V8H8V10ZM8 6H10V4H8V6ZM6.76 9.24L8.11 10.59L10.29 8.41L8.94 7.06L6.76 9.24Z" fill="#FFFFFF"/>
 
-  <!-- Brillo sutil -->
-  <ellipse cx="12" cy="12" rx="3" ry="2" fill="#E8F5E8" opacity="0.3"/>
+  <!-- Burbuja de mensaje -->
+  <path d="M18 16.5C17.26 16.5 16.61 16.2 16.11 15.74L14.5 17.25L15.25 16.5C15.25 15.67 14.58 15 13.75 15H8.25C7.42 15 6.75 15.67 6.75 16.5C6.75 17.33 7.42 18 8.25 18H15.5L18 20.5V16.5Z" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- Punto de notificación -->
+  <circle cx="18" cy="6" r="1.5" fill="#FF5722"/>
+  <circle cx="18" cy="6" r="0.8" fill="#FFFFFF"/>
 </svg>
