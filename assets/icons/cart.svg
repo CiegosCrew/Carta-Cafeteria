@@ -1,50 +1,8 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Ícono de carrito perfecto y elegante -->
-  <defs>
-    <!-- Gradiente para el cuerpo del carrito -->
-    <linearGradient id="cartBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#C4A57B"/>
-      <stop offset="50%" style="stop-color:#A67C52"/>
-      <stop offset="100%" style="stop-color:#8B6F47"/>
-    </linearGradient>
-    <!-- Gradiente para las ruedas -->
-    <radialGradient id="wheelGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#3E2723"/>
-      <stop offset="70%" style="stop-color:#6D4C41"/>
-      <stop offset="100%" style="stop-color:#8B6F47"/>
-    </radialGradient>
-    <!-- Sombra sutil -->
-    <filter id="cartShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1" stdDeviation="0.5" flood-color="#3E2723" flood-opacity="0.2"/>
-    </filter>
-  </defs>
-
-  <!-- Cuerpo principal del carrito -->
-  <path d="M5 8 Q5 6 7 6 L17 6 Q19 6 19 8 L19 16 Q19 18 17 18 L7 18 Q5 18 5 16 Z" fill="url(#cartBodyGrad)" stroke="#6D4C41" stroke-width="0.5" filter="url(#cartShadow)"/>
-
-  <!-- Asa superior elegante -->
-  <path d="M7 6 Q12 4 17 6" stroke="#8B6F47" stroke-width="2" stroke-linecap="round" fill="none"/>
-  <circle cx="7" cy="6" r="0.8" fill="#A67C52"/>
-  <circle cx="17" cy="6" r="0.8" fill="#A67C52"/>
-
-  <!-- Ruedas perfectas -->
-  <circle cx="8" cy="19" r="2" fill="url(#wheelGrad)" stroke="#3E2723" stroke-width="0.3"/>
-  <circle cx="8" cy="19" r="1.2" fill="#6D4C41"/>
-  <circle cx="16" cy="19" r="2" fill="url(#wheelGrad)" stroke="#3E2723" stroke-width="0.3"/>
-  <circle cx="16" cy="19" r="1.2" fill="#6D4C41"/>
-
-  <!-- Ejes de las ruedas -->
-  <rect x="6" y="18.5" width="4" height="1" fill="#5D3E2A" rx="0.5"/>
-  <rect x="14" y="18.5" width="4" height="1" fill="#5D3E2A" rx="0.5"/>
-
-  <!-- Productos dentro del carrito -->
-  <ellipse cx="10.5" cy="10" rx="1.5" ry="1" fill="#6D4C41" opacity="0.8"/>
-  <ellipse cx="13.5" cy="11.5" rx="1.2" ry="0.8" fill="#8B6F47" opacity="0.6"/>
-  <ellipse cx="12" cy="13" rx="1" ry="0.7" fill="#A67C52" opacity="0.7"/>
-
-  <!-- Detalle decorativo de asa -->
-  <path d="M11 6 Q12 5.5 13 6" stroke="#C4A57B" stroke-width="1" fill="none" opacity="0.6"/>
-
-  <!-- Sombra base -->
-  <ellipse cx="12" cy="20.5" rx="9" ry="1.5" fill="#3E2723" opacity="0.1"/>
+  <g stroke="#6D4C41" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 5h2l1.5 9h9.5l1.5-5.5H7"/>
+    <circle cx="9" cy="18.5" r="1.8"/>
+    <circle cx="16.5" cy="18.5" r="1.8"/>
+    <path d="M8.2 10h8.6"/>
+  </g>
 </svg>

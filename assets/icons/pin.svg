@@ -1,38 +1,7 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Ícono de ubicación perfecto y elegante -->
-  <defs>
-    <!-- Gradiente principal del pin -->
-    <radialGradient id="pinGradient" cx="50%" cy="30%" r="70%">
-      <stop offset="0%" style="stop-color:#C4A57B"/>
-      <stop offset="40%" style="stop-color:#A67C52"/>
-      <stop offset="80%" style="stop-color:#8B6F47"/>
-      <stop offset="100%" style="stop-color:#6D4C41"/>
-    </radialGradient>
-    <!-- Sombra sutil -->
-    <filter id="pinShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="#3E2723" flood-opacity="0.2"/>
-    </filter>
-  </defs>
-
-  <!-- Pin principal -->
-  <path d="M12 2C8.7 2 6 4.7 6 8C6 12.5 12 22 12 22C12 22 18 12.5 18 8C18 4.7 15.3 2 12 2Z" fill="url(#pinGradient)" stroke="#6D4C41" stroke-width="0.5" filter="url(#pinShadow)"/>
-
-  <!-- Centro brillante del pin -->
-  <circle cx="12" cy="8" r="3.5" fill="#F8F5F0" stroke="#C4A57B" stroke-width="0.3"/>
-  <circle cx="12" cy="8" r="2.5" fill="#EFEBE9" stroke="#A67C52" stroke-width="0.2"/>
-  <circle cx="12" cy="8" r="1.5" fill="#8B6F47"/>
-  <circle cx="12" cy="8" r="0.8" fill="#C4A57B" opacity="0.8"/>
-
-  <!-- Punto central -->
-  <circle cx="12" cy="8" r="0.3" fill="#3E2723"/>
-
-  <!-- Efecto de reflexión -->
-  <ellipse cx="10.5" cy="6.5" rx="0.8" ry="0.6" fill="#FFFFFF" opacity="0.7"/>
-  <ellipse cx="13.5" cy="9.5" rx="0.4" ry="0.3" fill="#FFFFFF" opacity="0.5"/>
-
-  <!-- Detalle superior -->
-  <path d="M11.5 4 Q12 3.5 12.5 4" stroke="#8B6F47" stroke-width="0.3" fill="none" opacity="0.6"/>
-
-  <!-- Base del pin -->
-  <ellipse cx="12" cy="21.5" rx="5" ry="1.5" fill="#5D3E2A" opacity="0.3"/>
+  <g stroke="#6D4C41" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20.5s-6-6.5-6-11.2C6 6 8.7 3.5 12 3.5s6 2.5 6 5.8c0 4.7-6 11.2-6 11.2z"/>
+    <circle cx="12" cy="9" r="2.6"/>
+  </g>
+  <circle cx="12" cy="9" r="1.2" fill="#C4A57B"/>
 </svg>
