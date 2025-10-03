@@ -317,22 +317,32 @@ body {
     opacity: 0.9;
 }
 
-.nav-link-login {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-}
-
-.nav-link-login:hover {
-    background: linear-gradient(135deg, #764ba2, #667eea);
-}
-
+.nav-link-login,
 .nav-link-register {
-    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
-    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    background: rgba(196, 165, 123, 0.18);
+    border: 1px solid rgba(141, 111, 71, 0.25);
+    box-shadow: none;
+    transition: all var(--transition-fast);
 }
 
+.nav-link-login:hover,
 .nav-link-register:hover {
-    background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+    background: rgba(196, 165, 123, 0.32);
+    color: var(--color-dark);
+    transform: translateX(-4px);
+}
+
+.nav-user-section .nav-link-login,
+.nav-user-section .nav-link-register {
+    margin-bottom: var(--spacing-sm);
 }
 
 .nav-link-logout {

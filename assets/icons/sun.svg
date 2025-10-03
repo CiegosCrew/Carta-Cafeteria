@@ -1,14 +1,14 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g stroke="#6D4C41" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="4.8" fill="#C4A57B" stroke="none"/>
-    <circle cx="12" cy="12" r="4.8" fill="none"/>
-    <line x1="12" y1="3" x2="12" y2="5.4"/>
-    <line x1="12" y1="18.6" x2="12" y2="21"/>
-    <line x1="5.4" y1="5.4" x2="7.1" y2="7.1"/>
-    <line x1="16.9" y1="16.9" x2="18.6" y2="18.6"/>
-    <line x1="3" y1="12" x2="5.4" y2="12"/>
-    <line x1="18.6" y1="12" x2="21" y2="12"/>
-    <line x1="5.4" y1="18.6" x2="7.1" y2="16.9"/>
-    <line x1="16.9" y1="7.1" x2="18.6" y2="5.4"/>
+    <circle cx="12" cy="12" r="3.8" fill="#F8F5F0"/>
+    <circle cx="12" cy="12" r="2.1" fill="#C4A57B" stroke="none"/>
+    <line x1="12" y1="3.2" x2="12" y2="5.2"/>
+    <line x1="12" y1="18.8" x2="12" y2="20.8"/>
+    <line x1="5.7" y1="5.7" x2="7.1" y2="7.1"/>
+    <line x1="16.9" y1="16.9" x2="18.3" y2="18.3"/>
+    <line x1="3.2" y1="12" x2="5.2" y2="12"/>
+    <line x1="18.8" y1="12" x2="20.8" y2="12"/>
+    <line x1="5.7" y1="18.3" x2="7.1" y2="16.9"/>
+    <line x1="16.9" y1="7.1" x2="18.3" y2="5.7"/>
   </g>
 </svg>
