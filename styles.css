@@ -170,6 +170,15 @@ body {
     right: -100%;
     width: 300px;
     height: 100vh;
+    background-color: var(--color-white);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.nav-menu.active {
+    right: 0;
 }
 
 .nav-list {
