@@ -1,255 +1,5 @@
-// ========== USER SYSTEM ==========
-
-let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
-let users = JSON.parse(localStorage.getItem('users')) || [];
-
-// User class
-class User {
-    constructor(name, email, password) {
-        this.id = Date.now();
-        this.name = name;
-        this.email = email;
-        this.password = password; // En producción, usar hash
-        this.favorites = [];
-        this.orderHistory = [];
-        this.addresses = [];
-        this.points = 0;
-        this.level = 'Bronze';
-        this.createdAt = new Date().toISOString();
-    }
-}
-
-// Register user
-function registerUser(name, email, password) {
-    // Check if email exists
-    if (users.find(u => u.email === email)) {
-        return { success: false, message: 'El email ya está registrado' };
-    }
-    
-    const user = new User(name, email, password);
-    users.push(user);
-    localStorage.setItem('users', JSON.stringify(users));
-    
-    return { success: true, message: 'Usuario registrado exitosamente', user };
-}
-
-// Login user
-function loginUser(email, password) {
-    const user = users.find(u => u.email === email && u.password === password);
-    
-    if (!user) {
-        return { success: false, message: 'Email o contraseña incorrectos' };
-    }
-    
-    currentUser = user;
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    
-    return { success: true, message: 'Inicio de sesión exitoso', user };
-}
-
-// Logout user
-function logoutUser() {
-    currentUser = null;
-    localStorage.removeItem('currentUser');
-    updateUIForUser();
-}
-
-// Update user in storage
-function updateUser(updatedUser) {
-    const index = users.findIndex(u => u.id === updatedUser.id);
-    if (index !== -1) {
-        users[index] = updatedUser;
-        localStorage.setItem('users', JSON.stringify(users));
-        
-        if (currentUser && currentUser.id === updatedUser.id) {
-            currentUser = updatedUser;
-            localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-        }
-    }
-}
-
-// ========== FAVORITES SYSTEM ==========
-
-function addToFavorites(product) {
-    if (!currentUser) {
-        showNotification('⚠️ Inicia sesión para guardar favoritos');
-        showLoginModal();
-        return;
-    }
-    
-    if (!currentUser.favorites) {
-        currentUser.favorites = [];
-    }
-    
-    const exists = currentUser.favorites.find(f => f.nombre === product.nombre);
-    
-    if (exists) {
-        showNotification('Ya está en favoritos');
-        return;
-    }
-    
-    currentUser.favorites.push(product);
-    updateUser(currentUser);
-    
-    // Heart particle effect
-    createHeartParticle(event.target);
-    
-    showNotification('Agregado a favoritos');
-    updateFavoritesUI();
-}
-
-function removeFromFavorites(productName) {
-    if (!currentUser) return;
-    
-    currentUser.favorites = currentUser.favorites.filter(f => f.nombre !== productName);
-    updateUser(currentUser);
-    
-    showNotification('Eliminado de favoritos');
-    updateFavoritesUI();
-}
-
-function isFavorite(productName) {
-    if (!currentUser || !currentUser.favorites) return false;
-    return currentUser.favorites.some(f => f.nombre === productName);
-}
-
-// ========== ORDER HISTORY ==========
-
-function addToOrderHistory(order) {
-    if (!currentUser) return;
-    
-    if (!currentUser.orderHistory) {
-        currentUser.orderHistory = [];
-    }
-    
-    const orderRecord = {
-        id: Date.now(),
-        items: order,
-        total: order.reduce((sum, item) => sum + (item.precio * item.quantity), 0),
-        date: new Date().toISOString(),
-        status: 'pending'
-    };
-    
-    currentUser.orderHistory.unshift(orderRecord);
-    
-    // Add points (1 point per $100)
-    const points = Math.floor(orderRecord.total / 100);
-    currentUser.points += points;
-    
-    // Update level
-    updateUserLevel();
-    
-    updateUser(currentUser);
-}
-
-function updateUserLevel() {
-    if (!currentUser) return;
-    
-    if (currentUser.points >= 1000) {
-        currentUser.level = 'Platinum';
-    } else if (currentUser.points >= 500) {
-        currentUser.level = 'Gold';
-    } else if (currentUser.points >= 200) {
-        currentUser.level = 'Silver';
-    } else {
-        currentUser.level = 'Bronze';
-    }
-}
-
-// ========== ADDRESSES ==========
-
-function addAddress(address) {
-    if (!currentUser) return;
-    
-    if (!currentUser.addresses) {
-        currentUser.addresses = [];
-    }
-    
-    currentUser.addresses.push({
-        id: Date.now(),
-        ...address,
-        isDefault: currentUser.addresses.length === 0
-    });
-    
-    updateUser(currentUser);
-}
-
-function setDefaultAddress(addressId) {
-    if (!currentUser) return;
-    
-    currentUser.addresses.forEach(addr => {
-        addr.isDefault = addr.id === addressId;
-    });
-    
-    updateUser(currentUser);
-}
-
-// ========== UI UPDATES ==========
-
-function updateUIForUser() {
-    const userBtn = document.getElementById('userButton');
-    const userMenu = document.getElementById('userMenu');
-    
-    if (currentUser) {
-        if (userBtn) {
-            userBtn.innerHTML = `
-                <span class="user-avatar">${currentUser.name.charAt(0).toUpperCase()}</span>
-                <span class="user-name">${currentUser.name}</span>
-            `;
-        }
-        
-        if (userMenu) {
-            userMenu.classList.add('logged-in');
-        }
-    } else {
-        if (userBtn) {
-            userBtn.innerHTML = `
-                <span>👤 Iniciar Sesión</span>
-            `;
-        }
-        
-        if (userMenu) {
-            userMenu.classList.remove('logged-in');
-        }
-    }
-    
-    updateFavoritesUI();
-}
-
-function updateFavoritesUI() {
-    // Update favorite buttons in menu items
-    document.querySelectorAll('.menu-item').forEach(item => {
-        const productName = item.querySelector('.item-name')?.textContent;
-        const favBtn = item.querySelector('.btn-favorite');
-        
-        if (favBtn && productName) {
-            if (isFavorite(productName)) {
-                favBtn.classList.add('active');
-                favBtn.innerHTML = '<img src="assets/icons/heart.svg" alt="Favorito" class="icon icon-18"/>';
-            } else {
-                favBtn.classList.remove('active');
-                favBtn.innerHTML = '<img src="assets/icons/heart-outline.svg" alt="No favorito" class="icon icon-18"/>';
-            }
-        }
-    });
-}
-
 // ========== PARTICLE EFFECTS ==========
-
-function createHeartParticle(element) {
-    const rect = element.getBoundingClientRect();
-    const particle = document.createElement('div');
-    particle.className = 'heart-particle';
-    particle.style.position = 'fixed';
-    particle.style.left = rect.left + 'px';
-    particle.style.top = rect.top + 'px';
-    particle.style.pointerEvents = 'none';
-    particle.style.zIndex = '10000';
-    
-    document.body.appendChild(particle);
-    
-    setTimeout(() => particle.remove(), 2000);
-}
+// Note: User authentication is in auth.js, user menu is in features.js
 
 function createConfetti() {
     const colors = ['#ff6b9d', '#c06c84', '#f67280', '#ffeaa7'];
@@ -275,19 +25,17 @@ function initParticles() {
     container.className = 'particles-container';
     container.id = 'particlesContainer';
     
-    // Coffee bean particles (granos de café cayendo)
-    for (let i = 0; i < 20; i++) {
+    // Coffee particles (granos de café cayendo)
+    for (let i = 0; i < 15; i++) {
         const particle = document.createElement('div');
         particle.className = 'coffee-bean-particle';
+        particle.textContent = '☕'; // Coffee cup emoji
         particle.style.position = 'absolute';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = '-50px';
-        // tamaño dinámico de la imagen
-        const size = Math.floor(Math.random() * 15 + 10);
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
+        particle.style.fontSize = (Math.random() * 15 + 10) + 'px';
         particle.style.animationDelay = Math.random() * 10 + 's';
-        particle.style.opacity = '0.4';
+        particle.style.opacity = '0.3';
         particle.style.animation = 'fallDown ' + (Math.random() * 10 + 15) + 's infinite linear';
         container.appendChild(particle);
     }
@@ -305,19 +53,9 @@ function toggleParticles(enabled) {
 // ========== INITIALIZE ==========
 
 document.addEventListener('DOMContentLoaded', () => {
-    updateUIForUser();
     initParticles();
 });
 
 // Make functions global
-window.registerUser = registerUser;
-window.loginUser = loginUser;
-window.logoutUser = logoutUser;
-window.addToFavorites = addToFavorites;
-window.removeFromFavorites = removeFromFavorites;
-window.isFavorite = isFavorite;
-window.addToOrderHistory = addToOrderHistory;
-window.addAddress = addAddress;
-window.currentUser = currentUser;
 window.createConfetti = createConfetti;
 window.toggleParticles = toggleParticles;
