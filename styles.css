@@ -719,3 +719,8 @@ body {
     :root { --fab-size: 55px; --fab-right: 20px; --fab-bottom: 20px; --fab-gap: 10px; }
     .whatsapp-icon { width: 30px; height: 30px; }
 }
+
+/* Ultra-compact for small phones */
+@media (max-width: 414px) {
+    :root { --fab-size: 50px; --fab-right: 16px; --fab-bottom: 16px; --fab-gap: 8px; }
+}
