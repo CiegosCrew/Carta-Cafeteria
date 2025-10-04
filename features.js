@@ -694,7 +694,7 @@ function updateUserButton() {
                 <img src="assets/icons/login.svg" class="icon icon-18 icon-left" alt="Iniciar sesión"/>
                 Iniciar Sesión
             </a>
-            <a href="auth.html" class="nav-link nav-link-register">
+            <a href="auth.html?register=true" class="nav-link nav-link-register">
                 <img src="assets/icons/register.svg" class="icon icon-18 icon-left" alt="Registrarse"/>
                 Registrarse
             </a>`;
