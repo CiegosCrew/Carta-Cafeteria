@@ -1,23 +1,66 @@
 // ========== USER AUTHENTICATION SYSTEM ==========
 
-// Get users from localStorage
+const USERS_KEY = 'users';
+const CURRENT_USER_KEY = 'currentUser';
+
+function storageAvailable() {
+    try {
+        const testKey = '__auth_test__';
+        localStorage.setItem(testKey, '1');
+        localStorage.removeItem(testKey);
+        return true;
+    } catch (error) {
+        console.warn('[auth] localStorage no disponible, se usará un fallback en memoria.', error);
+        return false;
+    }
+}
+
+const useLocalStorage = storageAvailable();
+let fallbackUsers = [];
+let fallbackCurrentUser = null;
+
+function safeParse(value) {
+    if (!value) return null;
+    try {
+        return JSON.parse(value);
+    } catch (error) {
+        console.warn('[auth] JSON inválido en almacenamiento, se ignora.', error);
+        return null;
+    }
+}
+
 function getUsers() {
-    return JSON.parse(localStorage.getItem('users')) || [];
+    if (useLocalStorage) {
+        const raw = localStorage.getItem(USERS_KEY);
+        const parsed = safeParse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+    }
+    return fallbackUsers;
 }
 
-// Save users to localStorage
 function saveUsers(users) {
-    localStorage.setItem('users', JSON.stringify(users));
+    if (useLocalStorage) {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    }
+    fallbackUsers = Array.isArray(users) ? [...users] : [];
 }
 
-// Get current user
 function getCurrentUser() {
-    return JSON.parse(localStorage.getItem('currentUser')) || null;
+    if (useLocalStorage) {
+        return safeParse(localStorage.getItem(CURRENT_USER_KEY));
+    }
+    return fallbackCurrentUser;
 }
 
-// Save current user
 function saveCurrentUser(user) {
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    if (useLocalStorage) {
+        if (user) {
+            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+        } else {
+            localStorage.removeItem(CURRENT_USER_KEY);
+        }
+    }
+    fallbackCurrentUser = user ? { ...user } : null;
 }
 
 // Show alert message
@@ -56,11 +99,11 @@ function showRegister() {
 function handleLogin(event) {
     event.preventDefault();
 
-    const email = document.getElementById('loginEmail').value.trim();
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
     const password = document.getElementById('loginPassword').value;
 
     const users = getUsers();
-    const user = users.find(u => u.email === email && u.password === password);
+    const user = users.find(u => (u.email || '').toLowerCase() === email && u.password === password);
 
     if (user) {
         // Update last login
@@ -143,6 +186,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentUser) {
         // User already logged in, redirect to home
         window.location.href = 'index.html';
+    }
+    const users = getUsers();
+    if (!users.find(u => u.email === 'cristianbenegas137@gmail.com')) {
+        users.push({
+            id: Date.now(),
+            name: 'Cristian Benegas',
+            email: 'cristianbenegas137@gmail.com',
+            phone: '',
+            password: 'Ciego.2024',
+            createdAt: new Date().toISOString(),
+            lastLogin: null,
+            favorites: [],
+            orderHistory: [],
+            addresses: [],
+            points: 0,
+            level: 'Bronze'
+        });
+        saveUsers(users);
     }
 });
 
