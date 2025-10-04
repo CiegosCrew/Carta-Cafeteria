@@ -692,11 +692,11 @@ function updateUserButton() {
         // User not logged in - show login/register options
         navUserSection.innerHTML = `
             <a href="auth.html" class="nav-link nav-link-login">
-                <img src="assets/icons/coffee.svg" class="icon icon-18 icon-left" alt="Login"/>
+                <img src="assets/icons/login.svg" class="icon icon-18 icon-left" alt="Iniciar sesión"/>
                 Iniciar Sesión
             </a>
             <a href="auth.html" class="nav-link nav-link-register">
-                <img src="assets/icons/camera.svg" class="icon icon-18 icon-left" alt="Register"/>
+                <img src="assets/icons/register.svg" class="icon icon-18 icon-left" alt="Registrarse"/>
                 Registrarse
             </a>
         `;
