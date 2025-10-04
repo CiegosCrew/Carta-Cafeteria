@@ -29,15 +29,15 @@
     <div class="dashboard-container" id="dashboardContainer" style="display: none;">
         <!-- Header -->
         <header class="dashboard-header">
-            <h1>📊 Dashboard PHOTOMARKET</h1>
+            <h1><img src="assets/icons/chart-bar.svg" class="icon icon-24 icon-left" alt="Dashboard"/>Dashboard PHOTOMARKET</h1>
             <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
         </header>
 
         <!-- Navigation Tabs -->
         <div class="dashboard-tabs">
-            <button class="tab-btn active" onclick="showTab('analytics')">📈 Analytics</button>
-            <button class="tab-btn" onclick="showTab('notifications')">🔔 Notificaciones</button>
-            <button class="tab-btn" onclick="showTab('reviews')">⭐ Reseñas</button>
+            <button class="tab-btn active" onclick="showTab('analytics')"><img src="assets/icons/chart-line.svg" class="icon icon-18" alt="Analytics"/> Analytics</button>
+            <button class="tab-btn" onclick="showTab('notifications')"><img src="assets/icons/bell.svg" class="icon icon-18" alt="Notificaciones"/> Notificaciones</button>
+            <button class="tab-btn" onclick="showTab('reviews')"><img src="assets/icons/star.svg" class="icon icon-18" alt="Reseñas"/> Reseñas</button>
         </div>
 
         <!-- Analytics Tab -->
@@ -45,7 +45,7 @@
             <div class="stats-grid">
                 <!-- Visitas Hoy -->
                 <div class="stat-card">
-                    <div class="stat-icon">👥</div>
+                    <div class="stat-icon"><img src="assets/icons/users.svg" alt="Visitas"/></div>
                     <div class="stat-info">
                         <div class="stat-label">Visitas Hoy</div>
                         <div class="stat-value" id="visitasHoy">0</div>
@@ -54,7 +54,7 @@
 
                 <!-- Visitas Totales -->
                 <div class="stat-card">
-                    <div class="stat-icon">📊</div>
+                    <div class="stat-icon"><img src="assets/icons/chart-pie.svg" alt="Estadísticas"/></div>
                     <div class="stat-info">
                         <div class="stat-label">Visitas Totales</div>
                         <div class="stat-value" id="visitasTotales">0</div>
@@ -63,7 +63,7 @@
 
                 <!-- Pedidos en Carrito -->
                 <div class="stat-card">
-                    <div class="stat-icon">🛒</div>
+                    <div class="stat-icon"><img src="assets/icons/shopping-cart.svg" alt="Carrito"/></div>
                     <div class="stat-info">
                         <div class="stat-label">Items en Carritos</div>
                         <div class="stat-value" id="itemsCarrito">0</div>
@@ -72,7 +72,7 @@
 
                 <!-- Reseñas -->
                 <div class="stat-card">
-                    <div class="stat-icon">⭐</div>
+                    <div class="stat-icon"><img src="assets/icons/star.svg" alt="Reseñas"/></div>
                     <div class="stat-info">
                         <div class="stat-label">Reseñas</div>
                         <div class="stat-value" id="totalReviews">0</div>
@@ -84,20 +84,20 @@
             <div class="charts-row">
                 <!-- Productos Más Vistos (Pie Chart) -->
                 <div class="analytics-section chart-half">
-                    <h2 class="section-title">🔥 Productos Más Populares</h2>
+                    <h2 class="section-title"><img src="assets/icons/popular.svg" class="icon icon-24" alt="Popular"/> Productos Más Populares</h2>
                     <canvas id="productsChart"></canvas>
                 </div>
 
                 <!-- Horarios Pico (Bar Chart) -->
                 <div class="analytics-section chart-half">
-                    <h2 class="section-title">⏰ Horarios de Mayor Actividad</h2>
+                    <h2 class="section-title"><img src="assets/icons/clock.svg" class="icon icon-24" alt="Horarios"/> Horarios de Mayor Actividad</h2>
                     <canvas id="hoursChart"></canvas>
                 </div>
             </div>
 
             <!-- Historial de Visitas (Line Chart) -->
             <div class="analytics-section">
-                <h2 class="section-title">📅 Visitas por Día (Últimos 7 días)</h2>
+                <h2 class="section-title"><img src="assets/icons/calendar.svg" class="icon icon-24" alt="Calendario"/> Visitas por Día (Últimos 7 días)</h2>
                 <canvas id="visitsChart"></canvas>
             </div>
         </div>
@@ -106,7 +106,7 @@
         <div class="tab-content" id="notificationsTab">
             <!-- Enviar Notificación -->
             <div class="notification-form-section">
-                <h2 class="section-title">📢 Enviar Notificación Push</h2>
+                <h2 class="section-title"><img src="assets/icons/megaphone.svg" class="icon icon-24" alt="Notificación"/> Enviar Notificación Push</h2>
                 <form class="notification-form" id="notificationForm">
                     <label for="notifTitle">Título:</label>
                     <input type="text" id="notifTitle" placeholder="Ej: ¡Nueva Promo!" required>
@@ -141,7 +141,7 @@
 
             <!-- Historial de Notificaciones -->
             <div class="notifications-history">
-                <h2 class="section-title">📋 Historial de Notificaciones</h2>
+                <h2 class="section-title"><img src="assets/icons/list.svg" class="icon icon-24" alt="Historial"/> Historial de Notificaciones</h2>
                 <div class="notifications-list" id="notificationsList">
                     <p class="no-data">No hay notificaciones enviadas</p>
                 </div>

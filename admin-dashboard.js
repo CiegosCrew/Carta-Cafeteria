@@ -52,14 +52,29 @@ function showTab(tabName) {
     } else if (tabName === 'reviews') {
         document.getElementById('reviewsTab').classList.add('active');
         document.querySelector('.tab-btn:nth-child(3)').classList.add('active');
-        loadReviewsAdmin();
     }
 }
 
 // ========== ANALYTICS ==========
 function loadDashboard() {
+    // Inicializar datos de analíticos si no existen
+    analyticsData = JSON.parse(localStorage.getItem('analyticsData')) || {
+        visits: [],
+        productClicks: {},
+        hourlyActivity: {},
+        dailyVisits: {}
+    };
+
+    // Cargar notificaciones
+    notifications = JSON.parse(localStorage.getItem('adminNotifications')) || [];
+
+    // Mostrar estadísticas
     loadAnalytics();
     loadNotificationsHistory();
+    loadReviewsAdmin();
+    
+    // Mostrar la primera pestaña
+    showTab('analytics');
 }
 
 function loadAnalytics() {
@@ -67,7 +82,6 @@ function loadAnalytics() {
     const visits = analyticsData.visits || [];
     const productClicks = analyticsData.productClicks || {};
     const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    
     // Calculate visits today
     const today = new Date().toDateString();
     const visitsToday = visits.filter(v => new Date(v).toDateString() === today).length;
@@ -361,10 +375,10 @@ function loadNotificationsHistory() {
 
 function getTypeLabel(type) {
     const labels = {
-        promo: '🎉 Promoción',
-        turno: '📅 Recordatorio',
-        info: 'ℹ️ Información',
-        urgente: '⚠️ Urgente'
+        promo: '<span class="notif-icon">🎉</span> Promoción',
+        turno: '<img src="assets/icons/calendar.svg" alt="Turno" class="notif-icon-img"/> Recordatorio',
+        info: '<span class="notif-icon">ℹ️</span> Información',
+        urgente: '<span class="notif-icon">⚠️</span> Urgente'
     };
     return labels[type] || type;
 }
@@ -451,6 +465,36 @@ function replyToReview(reviewId) {
         loadReviewsAdmin();
     }
 }
+
+// Inicializar el dashboard cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    // Verificar si ya está autenticado
+    const isAuthenticated = localStorage.getItem('adminAuthenticated') === 'true';
+    
+    if (isAuthenticated) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('dashboardContainer').style.display = 'block';
+        loadDashboard();
+    }
+
+    // Configurar el formulario de login
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('loginPassword').value;
+            
+            if (password === ADMIN_PASSWORD) {
+                localStorage.setItem('adminAuthenticated', 'true');
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboardContainer').style.display = 'block';
+                loadDashboard();
+            } else {
+                alert('❌ Contraseña incorrecta');
+            }
+        });
+    }
+});
 
 // Make functions global
 window.showTab = showTab;
