@@ -318,7 +318,9 @@ body {
 }
 
 .nav-link-login,
-.nav-link-register {
+.nav-link-register,
+.nav-link-logout,
+.nav-link-user-action {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -333,6 +335,14 @@ body {
     transition: all var(--transition-fast);
 }
 
+.nav-link-login .icon,
+.nav-link-register .icon,
+.nav-link-logout .icon,
+.nav-link-user-action .icon {
+    width: 18px;
+    height: 18px;
+}
+
 .nav-link-login:hover,
 .nav-link-register:hover {
     background: rgba(196, 165, 123, 0.32);
@@ -345,14 +355,7 @@ body {
     margin-bottom: var(--spacing-sm);
 }
 
-.nav-link-logout {
-    background: #ff4444;
-    color: white;
-}
 
-.nav-link-logout:hover {
-    background: #cc0000;
-}
 
 .nav-divider {
     height: 2px;

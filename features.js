@@ -671,29 +671,29 @@ function updateUserButton() {
     
     if (currentUser) {
         // User is logged in - show user info and logout
-        navUserSection.innerHTML = `
-            <div class="nav-user-info">
-                <div class="nav-user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div>
-                <div class="nav-user-details">
-                    <div class="nav-user-name">${currentUser.name}</div>
-                    <div class="nav-user-level">${currentUser.level} • ${currentUser.points} pts</div>
+            navUserSection.innerHTML = `
+                <div class="nav-user-info">
+                    <div class="nav-user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div>
+                    <div class="nav-user-details">
+                        <div class="nav-user-name">${currentUser.name}</div>
+                        <div class="nav-user-level">${currentUser.level} • ${currentUser.points} pts</div>
+                    </div>
                 </div>
-            </div>
-            <a href="#" onclick="viewOrders(); return false;" class="nav-link">
-                <img src="assets/icons/coffee.svg" class="icon icon-18 icon-left" alt="Pedidos"/>
-                Mis Pedidos
-            </a>
-            <a href="#" onclick="logout(); return false;" class="nav-link nav-link-logout">
-                <img src="assets/icons/pin.svg" class="icon icon-18 icon-left" alt="Salir"/>
-                Cerrar Sesión
-            </a>
-        `;
+                <a href="#" onclick="viewOrders(); return false;" class="nav-link nav-link-user-action">
+                    <img src="assets/icons/orders.svg" class="icon icon-18 icon-left" alt="Mis pedidos"/>
+                    Mis Pedidos
+                </a>
+                <a href="#" onclick="logout(); return false;" class="nav-link nav-link-logout">
+                    <img src="assets/icons/logout.svg" class="icon icon-18 icon-left" alt="Cerrar sesión"/>
+                    Cerrar Sesión
+                </a>
+            `;
     } else {
         // User not logged in - show login/register options
         navUserSection.innerHTML = `
             <a href="auth.html" class="nav-link nav-link-login">
-                <img src="assets/icons/login.svg" class="icon icon-18 icon-left" alt="Iniciar sesión"/>
-                Iniciar Sesión
+                <img src="assets/icons/person.svg" class="icon icon-18 icon-left" alt="Iniciar sesión"/>
+{{ ... }}
             </a>
             <a href="auth.html" class="nav-link nav-link-register">
                 <img src="assets/icons/register.svg" class="icon icon-18 icon-left" alt="Registrarse"/>
