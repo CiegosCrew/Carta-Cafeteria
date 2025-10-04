@@ -557,34 +557,47 @@ function updateUserButton() {
     if (!navUserSection) return;
     
     if (currentUser) {
-        // Usuario logueado - mostrar info de usuario y botón de cerrar sesión
+        // Verificar si el usuario es administrador
+        const isAdmin = currentUser.email === 'photomarketgadea@gmail.com';
+        
+        let adminLink = '';
+        if (isAdmin) {
+            adminLink = `
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="admin-panel.html" class="nav-link admin-link" target="_blank">
+                        <img src="assets/icons/shield.svg" class="icon icon-18 icon-left" alt="Admin"/>
+                        Panel de Administración
+                    </a>
+                </li>`;
+        }
+        
         navUserSection.innerHTML = `
-            <div class="nav-user-info">
-                <div class="nav-user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div>
-                <div class="nav-user-details">
-                    <div class="nav-user-name">${currentUser.name}</div>
-                    <div class="nav-user-level">${currentUser.level} • ${currentUser.points} pts</div>
+            <div class="user-profile">
+                <div class="user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div>
+                <div class="user-details">
+                    <span class="user-name">${currentUser.name}</span>
+                    <span class="user-email">${currentUser.email}</span>
                 </div>
+                <button class="logout-btn" onclick="logout()" aria-label="Cerrar sesión">
+                    <img src="assets/icons/logout.svg" alt="Cerrar sesión" class="icon icon-18"/>
+                </button>
             </div>
-            <a href="#" onclick="viewOrders(); return false;" class="nav-link nav-link-user-action">
-                <img src="assets/icons/orders.svg" class="icon icon-18 icon-left" alt="Mis pedidos"/>
-                Mis Pedidos
-            </a>
-            <a href="#" onclick="logout(); return false;" class="nav-link nav-link-logout">
-                <img src="assets/icons/logout.svg" class="icon icon-18 icon-left" alt="Cerrar sesión"/>
-                Cerrar Sesión
-            </a>`;
+            ${adminLink}
+        `;
     } else {
-        // Usuario no logueado - mostrar opciones de inicio de sesión/registro
         navUserSection.innerHTML = `
-            <a href="auth.html" class="nav-link nav-link-login">
-                <img src="assets/icons/login.svg" class="icon icon-18 icon-left" alt="Iniciar sesión"/>
-                Iniciar Sesión
-            </a>
-            <a href="auth.html?register=true" class="nav-link nav-link-register">
-                <img src="assets/icons/register.svg" class="icon icon-18 icon-left" alt="Registrarse"/>
-                Registrarse
-            </a>`;
+            <div class="auth-buttons">
+                <a href="auth.html" class="nav-link nav-link-login">
+                    <img src="assets/icons/login.svg" class="icon icon-18 icon-left" alt="Iniciar sesión"/>
+                    Iniciar sesión
+                </a>
+                <a href="auth.html?register=true" class="nav-link nav-link-register">
+                    <img src="assets/icons/register.svg" class="icon icon-18 icon-left" alt="Registrarse"/>
+                    Registrarse
+                </a>
+            </div>
+        `;
     }
     
     // Asegurarse de que los estilos se apliquen correctamente
