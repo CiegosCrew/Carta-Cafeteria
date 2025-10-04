@@ -21,7 +21,7 @@
             <!-- Login Form -->
             <div class="auth-form-container" id="loginForm">
                 <h2>Iniciar Sesión</h2>
-                <form id="loginFormElement" onsubmit="handleLogin(event)">
+                <form id="loginFormElement" onsubmit="handleLogin(event); return false;">
                     <div class="form-group">
                         <label for="loginEmail">Email</label>
                         <input type="email" id="loginEmail" required placeholder="tu@email.com">
@@ -33,14 +33,14 @@
                     <button type="submit" class="btn-primary">Iniciar Sesión</button>
                 </form>
                 <p class="auth-switch">
-                    ¿No tenés cuenta? <a href="#" onclick="showRegister()">Registrate</a>
+                    ¿No tenés cuenta? <a href="#" id="registerLink">Registrate</a>
                 </p>
             </div>
 
             <!-- Register Form -->
             <div class="auth-form-container hidden" id="registerForm">
                 <h2>Crear Cuenta</h2>
-                <form id="registerFormElement" onsubmit="handleRegister(event)">
+                <form id="registerFormElement" onsubmit="handleRegister(event); return false;">
                     <div class="form-group">
                         <label for="registerName">Nombre Completo</label>
                         <input type="text" id="registerName" required placeholder="Juan Pérez">
@@ -64,9 +64,55 @@
                     <button type="submit" class="btn-primary">Crear Cuenta</button>
                 </form>
                 <p class="auth-switch">
-                    ¿Ya tenés cuenta? <a href="#" onclick="showLogin()">Iniciá sesión</a>
+                    ¿Ya tenés cuenta? <a href="#" id="loginLink">Iniciá sesión</a>
                 </p>
             </div>
+            
+            <script>
+                // Manejo del enlace de registro
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Mostrar formulario de registro
+                    const registerLink = document.getElementById('registerLink');
+                    if (registerLink) {
+                        registerLink.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            showRegister();
+                        });
+                    }
+                    
+                    // Mostrar formulario de inicio de sesión
+                    const loginLink = document.getElementById('loginLink');
+                    if (loginLink) {
+                        loginLink.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            showLogin();
+                        });
+                    }
+                    
+                    // Asegurar que solo un formulario esté visible al cargar la página
+                    const urlParams = new URLSearchParams(window.location.search);
+                    if (urlParams.get('register') === 'true') {
+                        showRegister();
+                    } else {
+                        showLogin();
+                    }
+                });
+                
+                // Hacer las funciones accesibles globalmente
+                window.showLogin = function() {
+                    document.getElementById('loginForm').classList.remove('hidden');
+                    document.getElementById('registerForm').classList.add('hidden');
+                    // Actualizar la URL sin recargar la página
+                    window.history.pushState({}, '', window.location.pathname);
+                };
+                
+                window.showRegister = function() {
+                    document.getElementById('loginForm').classList.add('hidden');
+                    document.getElementById('registerForm').classList.remove('hidden');
+                    // Actualizar la URL sin recargar la página
+                    window.history.pushState({}, '', window.location.pathname + '?register=true');
+                };
+            </script>
 
             <div class="auth-footer">
                 <a href="index.html">← Volver al inicio</a>
