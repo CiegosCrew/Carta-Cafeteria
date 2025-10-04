@@ -529,39 +529,40 @@
 }
 
 .share-menu-title {
-    font-weight: 600;
-    color: var(--color-dark);
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 2px solid var(--color-secondary);
-    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-dark);
 }
 
 .share-options {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
 .share-option {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
     padding: 12px 15px;
     background: var(--color-light);
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-    color: var(--color-dark);
+    transition: all 0.3s ease;
+    font-size: 1rem;
     font-weight: 500;
+    color: var(--color-dark);
+    text-align: left;
 }
 
 .share-option:hover {
     background: var(--color-secondary);
     color: white;
     transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(143, 188, 143, 0.3);
 }
 
 .share-option-icon {

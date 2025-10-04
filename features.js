@@ -639,30 +639,110 @@ function getNotifColor(type) {
         info: '#666',
         urgente: '#ff4444'
     };
-    return colors[type] || '#667eea';
+    return colors[type] || '#666';
 }
 
-// ========== INITIALIZE ALL FEATURES ==========
+// ========== USER AUTHENTICATION ==========
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('currentUser')) || null;
+}
+
+
+function viewOrders() {
+    const currentUser = getCurrentUser();
+    if (currentUser.orderHistory && currentUser.orderHistory.length > 0) {
+        console.log('Pedidos:', currentUser.orderHistory);
+        alert(`Tenés ${currentUser.orderHistory.length} pedido(s). Ver consola (F12) para detalles.`);
+    } else {
+        alert('No tenés pedidos aún');
+    }
+}
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    location.reload();
+}
+
+function updateUserButton() {
+    const currentUser = getCurrentUser();
+    const navUserSection = document.getElementById('navUserSection');
+    
+    if (!navUserSection) return;
+    
+    if (currentUser) {
+        // Usuario logueado - mostrar info de usuario y botón de cerrar sesión
+        navUserSection.innerHTML = `
+            <div class="nav-user-info">
+                <div class="nav-user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div>
+                <div class="nav-user-details">
+                    <div class="nav-user-name">${currentUser.name}</div>
+                    <div class="nav-user-level">${currentUser.level} • ${currentUser.points} pts</div>
+                </div>
+            </div>
+            <a href="#" onclick="viewOrders(); return false;" class="nav-link nav-link-user-action">
+                <img src="assets/icons/orders.svg" class="icon icon-18 icon-left" alt="Mis pedidos"/>
+                Mis Pedidos
+            </a>
+            <a href="#" onclick="logout(); return false;" class="nav-link nav-link-logout">
+                <img src="assets/icons/logout.svg" class="icon icon-18 icon-left" alt="Cerrar sesión"/>
+                Cerrar Sesión
+            </a>`;
+    } else {
+        // Usuario no logueado - mostrar opciones de inicio de sesión/registro
+        navUserSection.innerHTML = `
+            <a href="auth.html" class="nav-link nav-link-login">
+                <img src="assets/icons/login.svg" class="icon icon-18 icon-left" alt="Iniciar sesión"/>
+                Iniciar Sesión
+            </a>
+            <a href="auth.html?register=true" class="nav-link nav-link-register">
+                <img src="assets/icons/register.svg" class="icon icon-18 icon-left" alt="Registrarse"/>
+                Registrarse
+            </a>`;
+    }
+    
+    // Asegurarse de que los estilos se apliquen correctamente
+    const style = document.createElement('style');
+    style.textContent = `
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .nav-link-login {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .nav-link-register {
+            background-color: #8d6e63;
+            color: white;
+        }
+        .icon-18 {
+            width: 18px;
+            height: 18px;
+        }
+        .icon-left {
+            margin-right: 6px;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// ========== INITIALIZE ==========
 document.addEventListener('DOMContentLoaded', () => {
     setupDarkMode();
-    setupScrollAnimations();
-    updateCartCount();
-    renderCart();
     setupShareButton();
-    setupAdminPanel();
-    setupReviewForm();
-    renderReviews();
-    
-    // Track visit
     trackVisit();
-    
-    // Check for notifications
     checkUserNotifications();
+    updateUserButton();
 });
 
 // ========== APPOINTMENT BOOKING ==========
 function reservarTurno() {
-    const message = `¡Hola! Quiero reservar un turno para fotos carnet.\n\n📸 Servicio: Foto Carnet\n📅 Fecha preferida: [Indicar fecha y horario]\n\n¿Tienen disponibilidad?`;
+    const message = `¡Hola! Quiero reservar un turno para fotos carnet.\n\nServicio: Foto Carnet\nFecha preferida: [Indicar fecha y horario]\n\n¿Tienen disponibilidad?`;
     const whatsappUrl = `https://wa.me/5492612636244?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
@@ -677,3 +757,5 @@ window.sendCartWhatsApp = sendCartWhatsApp;
 window.sendProductWhatsApp = sendProductWhatsApp;
 window.reservarTurno = reservarTurno;
 window.shareOn = shareOn;
+window.viewOrders = viewOrders;
+window.logout = logout;

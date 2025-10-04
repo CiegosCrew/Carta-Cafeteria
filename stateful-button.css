@@ -1,0 +1,100 @@
+/* ========== STATEFUL BUTTON STYLES ========== */
+
+/* Spinner animation */
+.btn-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Button states */
+.btn-send-whatsapp,
+.btn-whatsapp-product {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-send-whatsapp:disabled,
+.btn-whatsapp-product:disabled {
+    opacity: 0.9;
+    cursor: wait;
+}
+
+/* Ripple effect on click */
+.btn-send-whatsapp::before,
+.btn-whatsapp-product::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-send-whatsapp:active::before,
+.btn-whatsapp-product:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Success state animation */
+@keyframes successPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.btn-send-whatsapp.success,
+.btn-whatsapp-product.success {
+    animation: successPulse 0.5s ease;
+}
+
+/* Loading shimmer effect */
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.btn-send-whatsapp:disabled,
+.btn-whatsapp-product:disabled {
+    background: linear-gradient(
+        90deg,
+        #25D366 0%,
+        #34E677 50%,
+        #25D366 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+}
+
+/* Smooth transitions */
+.btn-send-whatsapp span,
+.btn-whatsapp-product span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}

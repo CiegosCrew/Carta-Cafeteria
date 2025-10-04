@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="advanced-features.css">
     <link rel="stylesheet" href="themes-extended.css">
     <link rel="stylesheet" href="user-features.css">
+    <link rel="stylesheet" href="stateful-button.css">
     <link rel="stylesheet" href="icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,9 +156,57 @@
         </div>
         <form class="admin-form" id="adminForm">
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
-                <a href="admin-dashboard.html" style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600;">
-                    <img src="assets/icons/chart.svg" class="icon icon-18" alt="Dashboard"/> Abrir Dashboard Completo (Analytics + Notificaciones)
-                </a>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button id="adminPanelBtn" class="admin-button">
+                        <img src="assets/icons/chart-bar.svg" class="icon icon-18" alt="Dashboard"/> 
+                        Abrir Panel de Administración
+                    </button>
+                    <a href="admin-dashboard.html" target="_blank" class="admin-button" style="text-decoration: none; text-align: center;">
+                        <img src="assets/icons/external-link.svg" class="icon icon-18" alt="Abrir en nueva pestaña"/>
+                        Abrir en nueva pestaña
+                    </a>
+                </div>
+                <style>
+                    .admin-button {
+                        width: 100%;
+                        color: white;
+                        background: rgba(255,255,255,0.1);
+                        border: 1px solid rgba(255,255,255,0.2);
+                        padding: 12px;
+                        border-radius: 6px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+                        transition: all 0.3s ease;
+                    }
+                    .admin-button:hover {
+                        background: rgba(255,255,255,0.2);
+                    }
+                    .admin-button img {
+                        width: 18px;
+                        height: 18px;
+                    }
+                </style>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const adminBtn = document.getElementById('adminPanelBtn');
+                        if (adminBtn) {
+                            adminBtn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const newWindow = window.open('', 'AdminPanel', 'width=1200,height=800,menubar=no,status=no,location=no,toolbar=no');
+                                if (newWindow) {
+                                    newWindow.location.href = 'admin-dashboard.html';
+                                } else {
+                                    // Si el navegador bloquea la ventana emergente, redirigir en la misma pestaña
+                                    window.location.href = 'admin-dashboard.html';
+                                }
+                            });
+                        }
+                    });
+                </script>
             </div>
             
             <p style="color: #666; font-style: italic; margin-bottom: 20px;">
@@ -194,8 +243,6 @@
             <h1 class="logo" data-i18n="title">PHOTOMARKET</h1>
             <div class="decorative-line"></div>
 
-            
-
             <!-- Hamburger Menu Button -->
             <button class="hamburger-menu" id="hamburgerBtn" aria-label="Menú de navegación">
                 <span></span>
@@ -219,6 +266,13 @@
                 <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema"><img src="assets/icons/moon.svg" alt="Tema" class="icon icon-20"/></button>
             </div>
             <ul class="nav-list">
+                <!-- User Section -->
+                <li class="nav-user-section" id="navUserSection">
+                    <!-- Content will be loaded by JS -->
+                </li>
+                
+                <li class="nav-divider"></li>
+                
                 <li><a href="index.html" class="nav-link"><img src="assets/icons/coffee.svg" class="icon icon-18 icon-left" alt="Cafetería"/>Cafetería</a></li>
                 <li><a href="fotografia.html" class="nav-link"><img src="assets/icons/camera.svg" class="icon icon-18 icon-left" alt="Fotografía"/>Servicios Fotográficos</a></li>
                 <li><a href="#ubicacion-section" class="nav-link"><img src="assets/icons/pin.svg" class="icon icon-18 icon-left" alt="Ubicación"/>Ubicación</a></li>
@@ -565,7 +619,7 @@
     <script src="accessibility.js"></script>
     <script src="scheduled-notifications.js"></script>
     <script src="user-system.js"></script>
-    <script src="advanced-features-extended.js"></script>
+    <script src="stateful-button.js"></script>
     <script src="app.js"></script>
     <script src="features.js"></script>
     

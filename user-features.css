@@ -220,7 +220,8 @@
     cursor: pointer;
 }
 
-/* ========== CHAT WIDGET ========== */
+/* ========== CHAT WIDGET - DISABLED ========== */
+/* Chat functionality has been disabled */
 .chat-widget {
     position: fixed;
     bottom: 90px;
