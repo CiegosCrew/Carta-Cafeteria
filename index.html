@@ -51,19 +51,32 @@
 <body>
     <!-- Animaciones de fondo -->
     <div class="floating-animations">
-        <div class="coffee-cup">
-            <div class="cup">
-                <div class="cup-body">
-                    <div class="cup-handle"></div>
-                </div>
-                <div class="steam">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
+        <!-- Hand-drawn Coffee Animation -->
+        <div class="hand-drawn-coffee">
+            <svg viewBox="0 0 200 200" class="hand-drawn-svg">
+                <!-- Grupo de la taza para el giro -->
+                <g id="cup-group">
+                    <!-- Plato -->
+                    <circle id="plate" cx="100" cy="160" r="50" />
+                    
+                    <!-- Cuerpo de la taza -->
+                    <path id="cup-body" d="M 60 100 Q 100 80 140 100 L 140 140 Q 100 120 60 140 Z" />
+                    
+                    <!-- Asa de la taza -->
+                    <path id="cup-handle" d="M 140 110 Q 160 120 140 130" />
+                    
+                    <!-- Café dentro -->
+                    <path id="coffee" d="M 70 100 Q 100 90 130 100 L 130 130 Q 100 110 70 130 Z" transform="scaleY(0)" />
+                    
+                    <!-- Vapor (ondas simples) -->
+                    <ellipse class="steam" id="steam1" cx="100" cy="80" rx="5" ry="15" />
+                    <ellipse class="steam" id="steam2" cx="95" cy="70" rx="4" ry="12" />
+                    <ellipse class="steam" id="steam3" cx="105" cy="60" rx="3" ry="10" />
+                </g>
+            </svg>
         </div>
         
+        <!-- Existing Croissant Animation -->
         <div class="croissant">
             <div class="croissant-body">
                 <div class="croissant-layer"></div>
