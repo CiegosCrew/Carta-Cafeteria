@@ -556,22 +556,20 @@ function updateUserButton() {
     
     if (!navUserSection) return;
     
+    // Obtener el elemento padre (ul) para poder insertar elementos li después del navUserSection
+    const navList = navUserSection.parentNode;
+    
+    // Eliminar cualquier elemento de administración existente
+    const existingAdminLink = document.querySelector('.admin-nav-item');
+    if (existingAdminLink) {
+        existingAdminLink.remove();
+    }
+    
     if (currentUser) {
         // Verificar si el usuario es administrador
         const isAdmin = currentUser.email === 'photomarketgadea@gmail.com';
         
-        let adminLink = '';
-        if (isAdmin) {
-            adminLink = `
-                <li class="nav-divider"></li>
-                <li>
-                    <a href="admin-panel.html" class="nav-link admin-link" target="_blank">
-                        <img src="assets/icons/shield.svg" class="icon icon-18 icon-left" alt="Admin"/>
-                        Panel de Administración
-                    </a>
-                </li>`;
-        }
-        
+        // Actualizar la sección de usuario
         navUserSection.innerHTML = `
             <div class="user-profile">
                 <div class="user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div>
@@ -583,9 +581,23 @@ function updateUserButton() {
                     <img src="assets/icons/logout.svg" alt="Cerrar sesión" class="icon icon-18"/>
                 </button>
             </div>
-            ${adminLink}
         `;
+        
+        // Si es administrador, agregar el enlace de administración como un nuevo elemento li
+        if (isAdmin) {
+            const adminLi = document.createElement('li');
+            adminLi.className = 'admin-nav-item';
+            adminLi.innerHTML = `
+                <a href="admin-panel.html" class="nav-link admin-link" target="_blank">
+                    <img src="assets/icons/shield.svg" class="icon icon-18 icon-left" alt="Admin"/>
+                    Panel de Administración
+                </a>
+            `;
+            // Insertar después del navUserSection
+            navList.insertBefore(adminLi, navUserSection.nextSibling);
+        }
     } else {
+        // Mostrar botones de autenticación
         navUserSection.innerHTML = `
             <div class="auth-buttons">
                 <a href="auth.html" class="nav-link nav-link-login">

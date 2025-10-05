@@ -3,27 +3,45 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 :root {
-    --primary-color: #667eea;
-    --primary-dark: #5a67d8;
-    --secondary-color: #764ba2;
-    --success-color: #48bb78;
-    --danger-color: #f56565;
-    --warning-color: #ecc94b;
-    --text-color: #2d3748;
-    --text-light: #718096;
-    --bg-light: #f7fafc;
-    --border-color: #e2e8f0;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    /* Paleta Premium Coffee Shop */
+    --color-primary: #F8F5F0;        /* Crema suave - fondo principal */
+    --color-secondary: #8B6F47;      /* Café con leche - botones principales */
+    --color-accent: #C4A57B;         /* Caramelo dorado - acentos */
+    --color-dark: #3E2723;           /* Café oscuro - texto */
+    --color-medium: #6D4C41;         /* Marrón medio - subtítulos */
+    --color-light: #EFEBE9;          /* Beige claro - fondos secundarios */
+    --color-white: #FFFFFF;          /* Blanco puro */
+    --color-success: #66BB6A;        /* Verde suave - éxito */
+    --color-warning: #FFA726;        /* Naranja suave - advertencia */
+    --color-error: #EF5350;          /* Rojo suave - error */
+    
+    /* Variables de panel de administración */
+    --primary-color: var(--color-secondary);
+    --primary-dark: #6D4C41;
+    --secondary-color: var(--color-accent);
+    --success-color: var(--color-success);
+    --danger-color: var(--color-error);
+    --warning-color: var(--color-warning);
+    --text-color: var(--color-dark);
+    --text-light: #6D4C41;
+    --bg-light: var(--color-light);
+    --border-color: #E0D5CE;
+    --shadow: 0 4px 6px -1px rgba(62, 39, 35, 0.1), 0 2px 4px -1px rgba(62, 39, 35, 0.06);
+    
+    /* Tipografía */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
 }
 
 body {
-    background-color: #f8f9fa;
-    color: var(--text-color);
+    background-color: var(--color-primary);
+    color: var(--color-dark);
     line-height: 1.6;
+    font-family: var(--font-body);
 }
 
 /* Layout principal */
@@ -35,33 +53,38 @@ body {
 /* Barra lateral */
 .sidebar {
     width: 280px;
-    background: linear-gradient(180deg, #4c51bf 0%, #667eea 100%);
-    color: white;
+    background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-accent) 100%);
+    color: var(--color-white);
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     position: fixed;
     height: 100vh;
     overflow-y: auto;
+    z-index: 10;
 }
 
 .logo {
     padding: 1rem 0 2rem;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     margin-bottom: 1.5rem;
 }
 
 .logo h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
     font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-white);
 }
 
 .logo p {
-    font-size: 0.85rem;
-    opacity: 0.8;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Navegación */
@@ -78,37 +101,44 @@ nav li {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
 }
 
 nav li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
 }
 
 nav li.active {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--color-accent);
+    color: var(--color-dark);
     font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 nav li i {
     width: 20px;
     text-align: center;
+    color: inherit;
 }
-
 /* Información de usuario */
 .user-info {
     margin-top: auto;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
     gap: 1rem;
+    background-color: var(--color-light);
 }
 
 .user-info img {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .user-details {
@@ -118,60 +148,82 @@ nav li i {
 .user-details span {
     display: block;
     font-size: 0.9rem;
-    margin-bottom: 0.25rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.user-details span:first-child {
+    font-weight: 600;
+    margin-bottom: 0.1rem;
 }
 
 #logout-btn {
     background: none;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
     cursor: pointer;
-    transition: all 0.2s;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    display: inline-block;
 }
 
 #logout-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
 }
 
 /* Contenido principal */
 .main-content {
     flex: 1;
     margin-left: 280px;
-    padding: 2rem;
-    background-color: var(--bg-light);
+    padding: 2.5rem 3rem;
+    background-color: var(--color-primary);
     min-height: 100vh;
+    color: var(--color-dark);
 }
 
-header {
+/* Header del contenido */
+.main-content header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--border-color);
 }
 
-header h1 {
-    font-size: 1.75rem;
-    color: var(--text-color);
-    font-weight: 600;
+.main-content h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-dark);
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .last-updated {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--text-light);
+    color: var(--color-medium);
     font-size: 0.9rem;
+    font-style: italic;
+}
+
+.last-updated i {
+    color: var(--color-accent);
 }
 
 /* Pestañas */
 .tab-content {
     display: none;
-    animation: fadeIn 0.3s ease;
+    animation: fadeIn 0.4s ease;
+    background-color: var(--color-white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
 }
 
 .tab-content.active {
@@ -179,7 +231,7 @@ header h1 {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
