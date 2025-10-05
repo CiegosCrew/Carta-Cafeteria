@@ -52,10 +52,11 @@ function toggleParticles(enabled) {
 
 // ========== INITIALIZE ==========
 
-document.addEventListener('DOMContentLoaded', () => {
-    initParticles();
-});
+// Comentada la inicialización automática de partículas
+// document.addEventListener('DOMContentLoaded', () => {
+//     initParticles();
+// });
 
 // Make functions global
 window.createConfetti = createConfetti;
-window.toggleParticles = toggleParticles;
+// window.toggleParticles = toggleParticles; // No se exporta para evitar su uso
