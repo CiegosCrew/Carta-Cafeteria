@@ -1095,12 +1095,13 @@ body {
 /* ========== HAND-DRAWN COFFEE ANIMATION ========== */
 .hand-drawn-coffee {
     position: absolute;
-    left: 5%;
+    left: 10%;
     top: 50%;
     transform: translateY(-50%);
-    width: 150px;
-    height: 200px;
+    width: 120px;
+    height: 160px;
     z-index: 1;
+    perspective: 1000px;
 }
 
 .hand-drawn-svg {
@@ -1117,6 +1118,7 @@ body {
     stroke-dasharray: 200;
     stroke-dashoffset: 200;
     animation: draw 1s ease-out 0s forwards;
+    transform-origin: center 160px;
 }
 
 /* Animación para dibujar la taza */
@@ -1156,8 +1158,10 @@ body {
 
 /* Giro de la taza al final */
 #cup-group {
-    transform-origin: center;
-    animation: rotate 8s linear 4s infinite;
+    transform-origin: bottom center;
+    animation: rotate 4s ease-in-out infinite;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 @keyframes draw {
@@ -1189,6 +1193,6 @@ body {
 }
 
 @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
 }
