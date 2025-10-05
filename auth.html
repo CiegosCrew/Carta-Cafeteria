@@ -230,6 +230,25 @@
             users: []
         };
 
+        const DEFAULT_ACCOUNTS = [
+            {
+                id: 1,
+                name: 'PHOTOMARKET Admin',
+                email: 'photomarketgadea@gmail.com',
+                password: 'Admin123!',
+                phone: '',
+                role: 'admin'
+            },
+            {
+                id: 2,
+                name: 'Admin',
+                email: 'admin@photomarket.com',
+                password: 'admin123',
+                phone: '',
+                role: 'admin'
+            }
+        ];
+
         // Inicialización
         document.addEventListener('DOMContentLoaded', function() {
             // Cargar usuarios del localStorage
@@ -250,25 +269,57 @@
             const storedUsers = localStorage.getItem('users');
             if (storedUsers) {
                 try {
-                    authState.users = JSON.parse(storedUsers);
+                    const parsed = JSON.parse(storedUsers);
+                    authState.users = Array.isArray(parsed) ? parsed : [];
                 } catch (e) {
                     console.error('Error al cargar usuarios:', e);
                     authState.users = [];
                 }
             } else {
-                // Crear usuario administrador por defecto si no hay usuarios
-                authState.users = [
-                    {
-                        id: 1,
-                        name: 'Admin',
-                        email: 'admin@photomarket.com',
-                        password: 'admin123', // En una aplicación real, esto debería estar hasheado
-                        phone: '',
-                        role: 'admin',
-                        createdAt: new Date().toISOString(),
-                        lastLogin: null
+                authState.users = [];
+            }
+
+            let usersChanged = false;
+            const now = new Date().toISOString();
+
+            DEFAULT_ACCOUNTS.forEach(account => {
+                const existingUser = authState.users.find(
+                    u => (u.email || '').toLowerCase() === account.email.toLowerCase()
+                );
+
+                if (existingUser) {
+                    let updated = false;
+                    if (existingUser.password !== account.password) {
+                        existingUser.password = account.password;
+                        updated = true;
                     }
-                ];
+                    if (account.role && existingUser.role !== account.role) {
+                        existingUser.role = account.role;
+                        updated = true;
+                    }
+                    if (!existingUser.createdAt) {
+                        existingUser.createdAt = now;
+                        updated = true;
+                    }
+                    if (updated) {
+                        usersChanged = true;
+                    }
+                } else {
+                    authState.users.push({
+                        id: account.id,
+                        name: account.name,
+                        email: account.email.toLowerCase(),
+                        password: account.password,
+                        phone: account.phone,
+                        role: account.role,
+                        createdAt: now,
+                        lastLogin: null
+                    });
+                    usersChanged = true;
+                }
+            });
+
+            if (usersChanged) {
                 saveUsers();
             }
         }
@@ -372,7 +423,7 @@
             event.preventDefault();
             
             // Obtener valores del formulario
-            const email = document.getElementById('loginEmail').value.trim();
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
             const password = document.getElementById('loginPassword').value;
             
             // Validar campos
@@ -405,7 +456,9 @@
             setTimeout(() => {
                 try {
                     // Buscar usuario
-                    const user = authState.users.find(u => u.email === email && u.password === password);
+                    const user = authState.users.find(
+                        u => (u.email || '').toLowerCase() === email && u.password === password
+                    );
                     
                     if (user) {
                         // Actualizar último inicio de sesión
@@ -440,7 +493,7 @@
             
             // Obtener valores del formulario
             const name = document.getElementById('registerName').value.trim();
-            const email = document.getElementById('registerEmail').value.trim();
+            const email = document.getElementById('registerEmail').value.trim().toLowerCase();
             const phone = document.getElementById('registerPhone').value.trim();
             const password = document.getElementById('registerPassword').value;
             const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
@@ -459,7 +512,7 @@
             } else if (!/\S+@\S+\.\S+/.test(email)) {
                 showError('registerEmail', 'El email no es válido');
                 isValid = false;
-            } else if (authState.users.some(u => u.email === email)) {
+            } else if (authState.users.some(u => (u.email || '').toLowerCase() === email)) {
                 showError('registerEmail', 'Este email ya está registrado');
                 isValid = false;
             }
