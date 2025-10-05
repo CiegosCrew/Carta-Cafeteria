@@ -49,9 +49,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Animaciones de fondo -->
+    <!-- Fondo 3D Animado -->
+    <div id="canvas-3d-background"></div>
+    
+    <div class="main-content">
+    <!-- Animaciones de fondo (manteniendo solo la medialuna) -->
     <div class="floating-animations">
-        <!-- Existing Croissant Animation -->
+        <!-- Croissant Animation -->
         <div class="croissant">
             <div class="croissant-body">
                 <div class="croissant-layer"></div>
@@ -638,6 +642,10 @@
     <script src="stateful-button.js"></script>
     <script src="app.js"></script>
     <script src="features.js"></script>
+    
+    <!-- Three.js y Fondo 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/background-3d.js"></script>
     
     <!-- PWA Service Worker Registration -->
     <script>
