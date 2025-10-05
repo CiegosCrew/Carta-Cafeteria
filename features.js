@@ -537,12 +537,33 @@ function getCurrentUser() {
 
 function viewOrders() {
     const currentUser = getCurrentUser();
-    if (currentUser.orderHistory && currentUser.orderHistory.length > 0) {
+    if (currentUser && Array.isArray(currentUser.orderHistory) && currentUser.orderHistory.length > 0) {
         console.log('Pedidos:', currentUser.orderHistory);
         alert(`Tenés ${currentUser.orderHistory.length} pedido(s). Ver consola (F12) para detalles.`);
     } else {
         alert('No tenés pedidos aún');
     }
+}
+
+function openFavorites() {
+    const currentUser = getCurrentUser();
+    if (!currentUser || !Array.isArray(currentUser.favorites) || currentUser.favorites.length === 0) {
+        alert('Todavía no tenés favoritos guardados.');
+        return;
+    }
+
+    const list = currentUser.favorites
+        .map((fav, index) => {
+            if (typeof fav === 'string') {
+                return `${index + 1}. ${fav}`;
+            }
+            const nombre = fav?.nombre || 'Producto sin nombre';
+            const descripcion = fav?.descripcion ? ` \u2013 ${fav.descripcion}` : '';
+            return `${index + 1}. ${nombre}${descripcion}`;
+        })
+        .join('\n');
+
+    alert(`Tus favoritos:\n${list}`);
 }
 
 function logout() {
@@ -571,21 +592,32 @@ function updateUserButton() {
         
         // Actualizar la sección de usuario
         navUserSection.innerHTML = `
-            <div class="user-profile">
-                <div class="user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div>
-                <div class="user-details">
-                    <span class="user-name">${currentUser.name}</span>
-                    <span class="user-email">${currentUser.email}</span>
+            <div class="user-profile-card ${isAdmin ? 'user-profile-admin' : ''}">
+                <div class="user-profile-header">
+                    <div class="user-avatar" aria-hidden="true">${currentUser.name.charAt(0).toUpperCase()}</div>
+                    <div class="user-info">
+                        <span class="user-name">${currentUser.name}</span>
+                        <span class="user-email">${currentUser.email}</span>
+                        <span class="user-role ${isAdmin ? 'role-admin' : 'role-user'}">
+                            ${isAdmin ? 'Administrador' : 'Cliente'}
+                        </span>
+                    </div>
+                    <button class="logout-btn" onclick="logout()" aria-label="Cerrar sesión">
+                        <img src="assets/icons/logout.svg" alt="Cerrar sesión" class="icon icon-18"/>
+                    </button>
+{{ ... }}
+                    <button class="user-action" onclick="openFavorites()">
+                        <span class="user-action-icon">⭐</span>
+                        <span class="user-action-text">Favoritos</span>
+                    </button>
                 </div>
-                <button class="logout-btn" onclick="logout()" aria-label="Cerrar sesión">
-                    <img src="assets/icons/logout.svg" alt="Cerrar sesión" class="icon icon-18"/>
-                </button>
             </div>
         `;
         
         // Si es administrador, agregar el enlace de administración como un nuevo elemento li
         if (isAdmin) {
             const adminLi = document.createElement('li');
+{{ ... }}
             adminLi.className = 'admin-nav-item';
             adminLi.innerHTML = `
                 <a href="admin-panel.html" class="nav-link admin-link" target="_blank">
@@ -613,24 +645,29 @@ function updateUserButton() {
     }
     
     // Asegurarse de que los estilos se apliquen correctamente
-    const style = document.createElement('style');
-    style.textContent = `
+    let style = document.getElementById('user-profile-styles');
+    if (!style) {
+        style = document.createElement('style');
+        style.id = 'user-profile-styles';
+        style.textContent = `
         .nav-link {
             display: flex;
             align-items: center;
             gap: 8px;
             padding: 8px 12px;
-            border-radius: 4px;
+            border-radius: 6px;
             text-decoration: none;
             transition: all 0.2s ease;
         }
         .nav-link-login {
             background-color: #f5f5f5;
             color: #333;
+            border: 1px solid #e0e0e0;
         }
         .nav-link-register {
-            background-color: #8d6e63;
+            background: linear-gradient(135deg, #8d6e63, #a98274);
             color: white;
+            box-shadow: 0 4px 10px rgba(141, 110, 99, 0.25);
         }
         .icon-18 {
             width: 18px;
@@ -639,8 +676,136 @@ function updateUserButton() {
         .icon-left {
             margin-right: 6px;
         }
+        .user-profile-card {
+            width: 100%;
+            background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .user-profile-admin {
+            background: linear-gradient(145deg, rgba(109,76,65,0.95), rgba(141,110,99,0.85));
+            color: white;
+        }
+        .user-profile-header {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            color: inherit;
+        }
+        .user-profile-admin .user-avatar {
+            background: rgba(255,255,255,0.25);
+            color: white;
+        }
+        .user-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .user-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .user-email {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        .user-role {
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .role-admin {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+        }
+        .role-user {
+            background: rgba(141, 110, 99, 0.12);
+            color: #6d4c41;
+        }
+        .logout-btn {
+            background: rgba(0,0,0,0.06);
+            border: none;
+            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .user-profile-admin .logout-btn {
+            background: rgba(0,0,0,0.2);
+        }
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .user-profile-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .user-action {
+            background: rgba(255,255,255,0.8);
+            border: 1px solid rgba(141, 110, 99, 0.2);
+            border-radius: 10px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #5d4037;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .user-profile-admin .user-action {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border-color: rgba(255,255,255,0.25);
+        }
+        .user-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .user-profile-admin .user-action:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .user-action-icon {
+            font-size: 1rem;
+        }
+        .user-action-text {
+            font-size: 0.85rem;
+        }
     `;
-    document.head.appendChild(style);
+        document.head.appendChild(style);
+    }
 }
 
 // ========== INITIALIZE ==========
