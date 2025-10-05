@@ -95,7 +95,11 @@ function processProducts() {
 // Renderizar la lista de productos
 function renderProducts(products) {
     if (products.length === 0) {
-        productsList.innerHTML = '<div class="no-results">No se encontraron productos</div>';
+        productsList.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-search"></i>
+                <p>No se encontraron productos que coincidan con tu búsqueda</p>
+            </div>`;
         return;
     }
     
@@ -103,21 +107,39 @@ function renderProducts(products) {
         <div class="product-item" data-id="${product.id}">
             <div class="product-info">
                 <div class="product-name">${product.nombre}</div>
-                <span class="product-category">${product.category}</span>
+                <div class="product-category">${product.categoria || 'Sin categoría'}</div>
             </div>
             <div class="product-price">$${product.precio?.toFixed(2) || '0.00'}</div>
-            <button class="btn-edit" data-id="${product.id}">
-                <i class="fas fa-edit"></i> Editar
-            </button>
+            <div class="product-actions">
+                <button class="btn-edit" data-id="${product.id}">
+                    <i class="fas fa-edit"></i>
+                    <span>Editar</span>
+                </button>
+                <button class="btn-delete" data-id="${product.id}">
+                    <i class="fas fa-trash"></i>
+                    <span>Eliminar</span>
+                </button>
+            </div>
         </div>
     `).join('');
     
-    // Agregar event listeners a los botones de editar
+    // Agregar event listeners a los botones
     document.querySelectorAll('.btn-edit').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const productId = btn.dataset.id;
             openEditModal(productId);
+        });
+    });
+    
+    // Agregar event listeners a los botones de eliminar
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const productId = btn.dataset.id;
+            if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+                deleteProduct(productId);
+            }
         });
     });
 }

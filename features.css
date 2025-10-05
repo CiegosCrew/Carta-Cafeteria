@@ -796,6 +796,33 @@
     color: var(--color-dark);
 }
 
+/* Admin Link Styles */
+.admin-nav-item {
+    margin: 10px 0;
+    list-style: none;
+}
+
+.admin-nav-item .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #8d6e63;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    background-color: rgba(141, 110, 99, 0.1);
+    margin: 5px 10px;
+}
+
+.admin-nav-item .nav-link:hover {
+    background-color: rgba(141, 110, 99, 0.2);
+    color: #6d4c41;
+}
+
+.admin-nav-item .nav-link img {
+    margin-right: 8px;
+}
+
 .admin-form button {
     padding: 12px;
     background-color: var(--color-secondary);
