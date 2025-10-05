@@ -73,21 +73,57 @@ async function loadMenuData() {
 function processProducts() {
     allProducts = [];
     
-    // Recorrer cada categoría y subcategoría para extraer los productos
-    for (const [category, subcategories] of Object.entries(menuData)) {
-        for (const [subcategory, products] of Object.entries(subcategories)) {
-            if (Array.isArray(products)) {
-                products.forEach(product => {
-                    allProducts.push({
-                        ...product,
-                        category: `${category} > ${subcategory}`,
-                        fullCategory: { category, subcategory },
-                        id: `${category}-${subcategory}-${product.nombre.toLowerCase().replace(/\s+/g, '-')}`
-                    });
+    // Función auxiliar para agregar productos con manejo de categorías
+    const addProducts = (items, category, subcategory = '') => {
+        if (Array.isArray(items)) {
+            items.forEach(product => {
+                allProducts.push({
+                    ...product,
+                    categoria: subcategory || category,
+                    category: subcategory ? `${category} > ${subcategory}` : category,
+                    fullCategory: { category, subcategory },
+                    id: `${category}-${subcategory || 'general'}-${product.nombre.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`
                 });
-            }
+            });
+        }
+    };
+
+    // Procesar promociones
+    if (menuData.promos && Array.isArray(menuData.promos)) {
+        addProducts(menuData.promos, 'Promociones');
+    }
+
+    // Procesar bebidas calientes y frías
+    if (menuData.bebidas) {
+        if (menuData.bebidas.calientes && Array.isArray(menuData.bebidas.calientes)) {
+            addProducts(menuData.bebidas.calientes, 'Bebidas', 'Calientes');
+        }
+        if (menuData.bebidas.frias && Array.isArray(menuData.bebidas.frias)) {
+            addProducts(menuData.bebidas.frias, 'Bebidas', 'Frías');
         }
     }
+
+    // Procesar panificados
+    if (menuData.panificado && Array.isArray(menuData.panificado)) {
+        addProducts(menuData.panificado, 'Panificados');
+    }
+
+    // Procesar almuerzos
+    if (menuData.almuerzo && Array.isArray(menuData.almuerzo)) {
+        addProducts(menuData.almuerzo, 'Almuerzos');
+    }
+
+    // Procesar servicios de fotografía
+    if (menuData.fotoCarnet && Array.isArray(menuData.fotoCarnet)) {
+        addProducts(menuData.fotoCarnet, 'Fotografía', 'Foto Carnet');
+    }
+    
+    // Ordenar productos por categoría y nombre
+    allProducts.sort((a, b) => {
+        if (a.category < b.category) return -1;
+        if (a.category > b.category) return 1;
+        return a.nombre.localeCompare(b.nombre);
+    });
     
     renderProducts(allProducts);
 }
