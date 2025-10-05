@@ -957,28 +957,39 @@ body {
 /* Ajustes responsivos */
 @media (max-width: 768px) {
     .croissant {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         right: 5%;
     }
     
-    .hand-drawn-coffee {
-        width: 120px;
-        height: 160px;
+    .logo-coffee {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .logo {
+        font-size: 2.2rem;
     }
 }
 
 @media (max-width: 480px) {
     .croissant {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         right: 2%;
     }
     
-    .hand-drawn-coffee {
-        width: 90px;
-        height: 120px;
-        left: 2%;
+    .logo-container {
+        gap: 10px;
+    }
+    
+    .logo-coffee {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
     }
 }
 /* Estilos mejorados para la sección de cafetería */
@@ -1092,39 +1103,51 @@ body {
     :root { --fab-size: 50px; --fab-right: 16px; --fab-bottom: 16px; --fab-gap: 8px; }
 }
 
-/* ========== HAND-DRAWN COFFEE ANIMATION ========== */
-.hand-drawn-coffee {
-    position: absolute;
-    left: 10%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 120px;
-    height: 160px;
-    z-index: 1;
-    perspective: 1000px;
+/* ========== LOGO CON TAZA DE CAFÉ ========== */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 80%;
+    justify-content: center;
+}
+
+.logo-coffee {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
 }
 
 .hand-drawn-svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-/* Animación para dibujar el plato */
+/* Estilos para la taza de café */
 #plate {
-    stroke: #D2691E;
-    stroke-width: 3;
-    fill: none;
+    stroke: #6F4E37; /* Café más oscuro para el plato */
+    stroke-width: 2;
+    fill: #F5F5DC; /* Beige claro para el plato */
     stroke-dasharray: 200;
     stroke-dashoffset: 200;
     animation: draw 1s ease-out 0s forwards;
     transform-origin: center 160px;
 }
 
-/* Animación para dibujar la taza */
-#cup-body, #cup-handle {
-    stroke: #8B6F47;
-    stroke-width: 3;
+/* Estilos para la taza */
+#cup-body {
+    stroke: #3E2723; /* Café oscuro para el borde */
+    stroke-width: 2.5;
+    fill: #F5F5DC; /* Beige claro para la taza */
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+}
+
+#cup-handle {
+    stroke: #3E2723; /* Café oscuro para el asa */
+    stroke-width: 2.5;
     fill: none;
     stroke-dasharray: 150;
     stroke-dashoffset: 150;
@@ -1138,28 +1161,37 @@ body {
     animation: draw 0.5s ease-out 2s forwards;
 }
 
-/* Café llenándose */
+/* Estilo del café */
 #coffee {
-    fill: #8B4513;
+    fill: #6F4E37; /* Color café oscuro para el café */
     opacity: 0;
     animation: fill 0.5s ease-in 2.5s forwards;
 }
 
-/* Vapor */
+/* Efecto de vapor */
 .steam {
-    fill: #F0F8FF;
-    opacity: 0.7;
-    animation: steamRise 2s ease-out 3s infinite;
+    fill: #FFFFFF; /* Blanco para el vapor */
+    opacity: 0.6;
+    animation: steamRise 2.5s ease-out 3s infinite;
 }
 
-#steam1 { animation-delay: 3s; }
-#steam2 { animation-delay: 3.2s; }
-#steam3 { animation-delay: 3.4s; }
+#steam1 { 
+    animation-delay: 3s; 
+    opacity: 0.4;
+}
+#steam2 { 
+    animation-delay: 3.2s; 
+    opacity: 0.3;
+}
+#steam3 { 
+    animation-delay: 3.4s; 
+    opacity: 0.5;
+}
 
-/* Giro de la taza al final */
+/* Animación de balanceo suave */
 #cup-group {
     transform-origin: bottom center;
-    animation: rotate 4s ease-in-out infinite;
+    animation: gentleSway 6s ease-in-out infinite;
     transform-style: preserve-3d;
     perspective: 1000px;
 }
@@ -1192,7 +1224,11 @@ body {
     }
 }
 
-@keyframes rotate {
-    0%, 100% { transform: rotate(-10deg); }
-    50% { transform: rotate(10deg); }
+@keyframes gentleSway {
+    0%, 100% { 
+        transform: rotate(-3deg) translateY(0); 
+    }
+    50% { 
+        transform: rotate(3deg) translateY(-5px); 
+    }
 }
