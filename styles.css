@@ -942,100 +942,6 @@ body {
     .whatsapp-icon { width: 30px; height: 30px; }
 }
 
-/* ========== ANIMACIONES FLOTANTES ========== */
-.floating-animations {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    overflow: hidden;
-}
-
-/* Estilos para la taza de café (eliminados para reemplazar con animación hand-drawn) */
-
-/* Estilos para la medialuna */
-.croissant {
-    position: absolute;
-    right: 10%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100px;
-    height: 100px;
-    animation: floatCroissant 10s ease-in-out infinite 1s;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
-}
-
-.croissant-body {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    animation: rotateCroissant 15s linear infinite;
-}
-
-.croissant-layer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 5px solid transparent;
-    border-color: #f5c85d transparent transparent #f5c85d;
-    border-radius: 50%;
-    animation: croissantShape 15s ease-in-out infinite;
-}
-
-.croissant-layer:nth-child(1) { transform: rotate(0deg); }
-.croissant-layer:nth-child(2) { 
-    transform: rotate(60deg); 
-    animation-delay: -5s;
-}
-.croissant-layer:nth-child(3) { 
-    transform: rotate(120deg); 
-    animation-delay: -10s;
-}
-
-/* Animaciones */
-/* Keyframes de animaciones antiguas eliminadas */
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    .croissant {
-        width: 60px;
-        height: 60px;
-        right: 5%;
-    }
-    
-    .logo-coffee {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .logo {
-        font-size: 2.2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .croissant {
-        width: 50px;
-        height: 50px;
-        right: 2%;
-    }
-    
-    .logo-container {
-        gap: 10px;
-    }
-    
-    .logo-coffee {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .logo {
-        font-size: 1.8rem;
-    }
-}
 /* Estilos mejorados para la sección de cafetería */
 #cafeteria .menu-item {
     background: var(--color-white);
@@ -1174,10 +1080,6 @@ body {
     stroke: #6F4E37; /* Café más oscuro para el plato */
     stroke-width: 2;
     fill: #F5F5DC; /* Beige claro para el plato */
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    animation: draw 1s ease-out 0s forwards;
-    transform-origin: center 160px;
 }
 
 /* Estilos para la taza */
@@ -1185,94 +1087,16 @@ body {
     stroke: #3E2723; /* Café oscuro para el borde */
     stroke-width: 2.5;
     fill: #F5F5DC; /* Beige claro para la taza */
-    stroke-dasharray: 150;
-    stroke-dashoffset: 150;
 }
 
 #cup-handle {
     stroke: #3E2723; /* Café oscuro para el asa */
     stroke-width: 2.5;
     fill: none;
-    stroke-dasharray: 150;
-    stroke-dashoffset: 150;
-}
-
-#cup-body {
-    animation: draw 1s ease-out 1s forwards;
-}
-
-#cup-handle {
-    animation: draw 0.5s ease-out 2s forwards;
 }
 
 /* Estilo del café */
 #coffee {
     fill: #6F4E37; /* Color café oscuro para el café */
-    opacity: 0;
-    animation: fill 0.5s ease-in 2.5s forwards;
-}
-
-/* Efecto de vapor */
-.steam {
-    fill: #FFFFFF; /* Blanco para el vapor */
-    opacity: 0.6;
-    animation: steamRise 2.5s ease-out 3s infinite;
-}
-
-#steam1 { 
-    animation-delay: 3s; 
-    opacity: 0.4;
-}
-#steam2 { 
-    animation-delay: 3.2s; 
-    opacity: 0.3;
-}
-#steam3 { 
-    animation-delay: 3.4s; 
-    opacity: 0.5;
-}
-
-/* Animación de balanceo suave */
-#cup-group {
-    transform-origin: bottom center;
-    animation: gentleSway 6s ease-in-out infinite;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-@keyframes draw {
-    to {
-        stroke-dashoffset: 0;
-    }
-}
-
-@keyframes fill {
-    to {
-        opacity: 1;
-        transform: scaleY(1);
-        transform-origin: bottom;
-    }
-}
-
-@keyframes steamRise {
-    0% {
-        opacity: 0;
-        transform: translateY(0) scale(0.5);
-    }
-    50% {
-        opacity: 0.7;
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-50px) scale(1.2);
-    }
-}
-
-@keyframes gentleSway {
-    0%, 100% { 
-        transform: rotate(-3deg) translateY(0); 
-    }
-    50% { 
-        transform: rotate(3deg) translateY(-5px); 
-    }
+    opacity: 1;
 }

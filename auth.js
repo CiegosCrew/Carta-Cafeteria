@@ -188,21 +188,63 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'index.html';
     }
     const users = getUsers();
-    if (!users.find(u => u.email === 'cristianbenegas137@gmail.com')) {
-        users.push({
-            id: Date.now(),
+    let usersChanged = false;
+
+    const defaultAccounts = [
+        {
+            name: 'PHOTOMARKET Admin',
+            email: 'photomarketgadea@gmail.com',
+            phone: '',
+            password: 'Admin123!',
+            role: 'admin'
+        },
+        {
             name: 'Cristian Benegas',
             email: 'cristianbenegas137@gmail.com',
             phone: '',
-            password: 'Ciego.2024',
-            createdAt: new Date().toISOString(),
-            lastLogin: null,
-            favorites: [],
-            orderHistory: [],
-            addresses: [],
-            points: 0,
-            level: 'Bronze'
-        });
+            password: 'Ciego.2024'
+        }
+    ];
+
+    defaultAccounts.forEach(account => {
+        const existingUser = users.find(
+            u => (u.email || '').toLowerCase() === account.email.toLowerCase()
+        );
+
+        if (existingUser) {
+            let updated = false;
+            if (account.role && existingUser.role !== account.role) {
+                existingUser.role = account.role;
+                updated = true;
+            }
+            if (existingUser.password !== account.password) {
+                existingUser.password = account.password;
+                updated = true;
+            }
+            if (updated) {
+                usersChanged = true;
+            }
+        } else {
+            users.push({
+                id: Date.now() + Math.floor(Math.random() * 1000),
+                name: account.name,
+                email: account.email,
+                phone: account.phone,
+                password: account.password,
+                role: account.role || 'user',
+                createdAt: new Date().toISOString(),
+                lastLogin: null,
+                favorites: [],
+                orderHistory: [],
+                addresses: [],
+                points: 0,
+                level: 'Bronze'
+            });
+            usersChanged = true;
+        }
+    });
+
+    if (usersChanged) {
         saveUsers(users);
     }
 });
