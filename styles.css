@@ -898,6 +898,112 @@ body {
     .whatsapp-icon { width: 30px; height: 30px; }
 }
 
+/* Estilos mejorados para la sección de cafetería */
+#cafeteria .menu-item {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border-top: 4px solid var(--color-accent);
+    position: relative;
+}
+
+#cafeteria .menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#cafeteria .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, var(--color-light), var(--color-white));
+}
+
+#cafeteria .item-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin: 0;
+    flex: 1;
+}
+
+#cafeteria .item-price {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+    padding: 8px 16px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(139, 111, 71, 0.3);
+    position: relative;
+    overflow: hidden;
+    min-width: 100px;
+    text-align: center;
+}
+
+#cafeteria .item-price::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0) 50%
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+#cafeteria .item-description {
+    padding: 15px 20px;
+    color: var(--color-medium);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--color-light);
+}
+
+#cafeteria .item-actions {
+    padding: 15px 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    #cafeteria .item-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    #cafeteria .item-price {
+        align-self: flex-start;
+        font-size: 1.2rem;
+        padding: 6px 14px;
+    }
+    
+    #cafeteria .item-name {
+        font-size: 1.1rem;
+    }
+    
+    #cafeteria .item-actions {
+        flex-direction: column;
+    }
+    
+    #cafeteria .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* Ultra-compact for small phones */
 @media (max-width: 414px) {
     :root { --fab-size: 50px; --fab-right: 16px; --fab-bottom: 16px; --fab-gap: 8px; }
